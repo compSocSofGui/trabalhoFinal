@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,7 +92,7 @@
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('landing')">
                     <div class="bg-gradient-to-tr from-seguro-600 to-seguro-500 text-white p-2 rounded-xl shadow-md">
-                        <i class="fa-solid fa-shield-halved text-xl"></i>
+                        <i class="fa-solid fa-shield-halved textxl"></i>
                     </div>
                     <div>
                         <span class="font-extrabold text-lg text-seguro-900 dark:text-white tracking-tight block leading-none transition-colors duration-500">GUARDIÃO</span>
@@ -118,10 +118,10 @@
                 </div>
                 
                 <div class="max-w-4xl space-y-6 relative z-10">
-                    <span class="bg-esperanca-600 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">Segurança na Rede</span>
+                    <span class="bg-esperanca-600 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">Segurança na Internet</span>
                     <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">Internet Segura para Todos</h1>
                     <p class="text-seguro-100 text-base sm:text-lg leading-relaxed text-justify w-full max-w-4xl">
-                        Aprender a proteger-se no mundo digital não tem de ser complicado ou assustador. Desenvolvemos esta ferramenta interativa com módulos exclusivos para cada faixa etária e guias de segurança essenciais para a família, promovendo reflexões e boas práticas que asseguram uma convivência saudável e livre de riscos no ambiente cibernético.
+                        Aprender a se proteger no mundo digital não precisa ser complicado ou assustador. Desenvolvemos esta ferramenta interativa com módulos exclusivos para cada faixa etária e guias de segurança essenciais para a família, promovendo reflexões e boas práticas que garantem uma navegação saudável e livre de riscos no ambiente virtual.
                     </p>
                     <div class="pt-2">
                         <a href="#modulos-selecao" class="inline-flex items-center gap-2 bg-white text-seguro-900 hover:bg-seguro-50 font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 text-sm sm:text-base">
@@ -134,27 +134,33 @@
             <div id="modulos-selecao" class="grid grid-cols-1 md:grid-cols-3 gap-8 scroll-mt-24">
                 <div onclick="switchTab('kids')" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:border-amber-400 hover:shadow-xl shadow-md transition-all duration-300 cursor-pointer flex flex-col justify-between h-80 group">
                     <div class="space-y-4">
-                        <div class="w-12 h-12 bg-amber-100 text-amber-500 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-                            🎈
+                        <div class="flex justify-between items-start">
+                            <div class="w-12 h-12 bg-amber-100 text-amber-500 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                🎈
+                            </div>
+                            <span class="bg-amber-100 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full">Até 7 anos</span>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900">Módulo Kids</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">
-                            Um Quiz interativo e muito divertido preparado para crianças aprenderem a navegar e proteger os seus dados com segurança.
+                            Um jogo com missões interativas e recompensas visuais para ensinar os menores a identificar riscos comuns em vídeos e jogos.
                         </p>
                     </div>
                     <div class="flex items-center gap-2 text-amber-500 font-bold text-sm mt-4">
-                        Aceder ao Quiz <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                        Jogar o Quiz <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
                     </div>
                 </div>
 
                 <div onclick="switchTab('teens')" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:border-indigo-400 hover:shadow-xl shadow-md transition-all duration-300 cursor-pointer flex flex-col justify-between h-80 group">
                     <div class="space-y-4">
-                        <div class="w-12 h-12 bg-indigo-100 text-indigo-500 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-                            📱
+                        <div class="flex justify-between items-start">
+                            <div class="w-12 h-12 bg-indigo-100 text-indigo-500 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                📱
+                            </div>
+                            <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded-full">De 8 a 17 anos</span>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900">Módulo Teens</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">
-                            Estudos de caso reais de segurança digital, engenharia social e análise de mensagens perigosas para jovens.
+                            Simulações realistas e completas sobre golpes, privacidade, desafios de redes sociais, apostas online e uso seguro de Inteligência Artificial.
                         </p>
                     </div>
                     <div class="flex items-center gap-2 text-indigo-500 font-bold text-sm mt-4">
@@ -164,16 +170,19 @@
 
                 <div onclick="switchTab('adults')" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:border-seguro-400 hover:shadow-xl shadow-md transition-all duration-300 cursor-pointer flex flex-col justify-between h-80 group">
                     <div class="space-y-4">
-                        <div class="w-12 h-12 bg-seguro-100 text-seguro-500 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-                            🛡️
+                        <div class="flex justify-between items-start">
+                            <div class="w-12 h-12 bg-seguro-100 text-seguro-500 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                🛡️
+                            </div>
+                            <span class="bg-seguro-100 text-seguro-700 text-xs font-bold px-2.5 py-1 rounded-full">Pais e Professores</span>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900">Módulo Adultos</h3>
                         <p class="text-slate-600 text-sm leading-relaxed">
-                            Central de orientações essenciais para pais com guias de prevenção rápidos para proteger a família na internet.
+                            Central de orientações baseada em IA. Tire dúvidas em tempo real enviando suas próprias perguntas sobre cibersegurança familiar.
                         </p>
                     </div>
                     <div class="flex items-center gap-2 text-seguro-500 font-bold text-sm mt-4">
-                        Obter Orientações <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                        Consultar Assistente <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
                     </div>
                 </div>
             </div>
@@ -185,13 +194,21 @@
                     <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i> Voltar ao Menu Principal
                 </button>
 
-                <div class="text-center space-y-2 mb-8">
-                    <span class="text-4xl animate-pulse block">🎈</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Super Quiz da Internet Segura</h2>
-                    <p class="text-slate-600 text-sm sm:text-base">Ajuda a manter a navegação divertida e totalmente protegida!</p>
+                <div class="bg-amber-100 border border-amber-200 rounded-2xl p-4 flex justify-between items-center shadow-sm">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">🛡️</span>
+                        <div>
+                            <span class="text-xs uppercase tracking-wider font-extrabold text-amber-800 block">Missão Atual</span>
+                            <span id="kids-mission-title" class="text-sm font-bold text-slate-800">Carregando aventura...</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl shadow-sm border border-amber-200">
+                        <span class="text-amber-500 font-black text-sm">⭐</span>
+                        <span id="kids-score" class="font-extrabold text-slate-800 text-sm">0</span>
+                    </div>
                 </div>
 
-                <div id="kids-main-card" class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-amber-100 relative overflow-hidden">
+                <div id="kids-main-card" class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-amber-200 relative overflow-hidden mt-4">
                     <div class="absolute top-0 left-0 right-0 h-2 bg-slate-100">
                         <div id="kids-progress" class="h-full bg-gradient-to-r from-amber-400 to-amber-500 transition-all duration-300" style="width: 0%"></div>
                     </div>
@@ -203,7 +220,7 @@
                 <div id="kids-controls" class="flex justify-between items-center mt-6">
                     <span id="kids-step-indicator" class="text-sm font-bold text-slate-500"></span>
                     <button id="kids-next-btn" onclick="nextKidsQuestion()" class="hidden bg-amber-400 hover:bg-amber-500 text-slate-900 font-extrabold px-6 py-3 rounded-xl shadow-md transition flex items-center gap-2">
-                        Avançar <i class="fa-solid fa-circle-arrow-right"></i>
+                        Próxima Missão <i class="fa-solid fa-circle-arrow-right"></i>
                     </button>
                 </div>
             </div>
@@ -217,8 +234,8 @@
 
                 <div class="text-center space-y-2 mb-6">
                     <span class="text-4xl block">📱</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Estudos de Caso & Análise de Risco</h2>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">Avalia situações digitais complexas e aprende a identificar ameaças graves e perfis suspeitos.</p>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Estudos de Caso & Cibersegurança Avançada</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">Avalie situações reais sobre engenharia social, crimes cibernéticos, fraudes digitais e ferramentas modernas.</p>
                 </div>
 
                 <div id="teen-mode-cases-panel" class="space-y-6">
@@ -247,21 +264,21 @@
                     <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i> Voltar ao Menu Principal
                 </button>
 
-                <div class="text-center space-y-2 mb-8">
+                <div class="text-center space-y-2 mb-6">
                     <span class="text-4xl block">🛡️</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Guardião Digital - Central de Ajuda</h2>
-                    <p class="text-slate-600 text-sm sm:text-base">Guia prático para pais, professores e encarregados de educação.</p>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Assistente do Guardião Digital</h2>
+                    <p class="text-slate-600 text-sm sm:text-base">Espaço exclusivo para pais, professores e responsáveis tirarem dúvidas complexas.</p>
                 </div>
 
-                <div id="adult-mode-quick-panel" class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden flex flex-col h-[520px]">
+                <div id="adult-mode-quick-panel" class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden flex flex-col h-[560px]">
                     <div class="bg-gradient-to-r from-seguro-700 to-seguro-600 p-4 flex items-center justify-between text-white shadow-md shrink-0">
                         <div class="flex items-center space-x-3">
-                            <div class="relative">
-                                <span class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-lg"><i class="fa-solid fa-user-shield"></i></span>
-                            </div>
+                            <span class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-lg"><i class="fa-solid fa-user-shield"></i></span>
                             <div>
-                                <h3 class="font-bold text-sm">Painel Informativo de Orientação</h3>
-                                <p class="text-xs text-seguro-100">Respostas Estruturadas</p>
+                                <h3 class="font-bold text-sm">IA de Orientação Familiar</h3>
+                                <p class="text-xs text-seguro-100 flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Online para perguntas
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -270,24 +287,32 @@
                         <div class="flex items-start gap-3">
                             <span class="w-8 h-8 bg-seguro-600 text-white rounded-full flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-robot"></i></span>
                             <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-sm leading-relaxed max-w-[85%] text-slate-700">
-                                <p class="font-semibold text-slate-900 mb-1">Olá! Bem-vindo à central do Guardião Digital.</p>
-                                Selecione um dos tópicos abaixo para obter diretrizes instantâneas sobre como monitorizar e proteger menores na rede.
+                                <p class="font-bold text-slate-900 mb-1">Olá, responsável/educador! Sou o seu consultor de cibersegurança.</p>
+                                <p class="mb-2">Escreva abaixo a sua dúvida ou o problema que está enfrentando com os seus filhos/alunos na internet. Você pode me perguntar livremente sobre:</p>
+                                <ul class="list-disc pl-4 space-y-1 text-xs text-slate-600 font-medium">
+                                    <li>Como identificar se o menor está sob risco (Sinais de Alerta)</li>
+                                    <li>Como e onde realizar denúncias jurídicas (Canais e Delegacias)</li>
+                                    <li>Configurações de bloqueio, roteadores e monitoramento (Prevenção)</li>
+                                    <li>Dúvidas específicas sobre fraudes reais (Roblox, Tigrinho, WhatsApp, Deepfakes, Chantagens)</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div class="p-5 bg-white border-t border-slate-200 flex flex-col gap-3 shrink-0">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                            <button onclick="sendQuickMessage('Sinais de Alerta')" class="bg-slate-50 hover:bg-seguro-50 text-seguro-700 border-2 border-slate-200 hover:border-seguro-300 font-bold px-4 py-3.5 rounded-2xl text-sm transition shadow-sm text-center">
-                                🔍 Sinais de Alerta
+                    <div class="p-4 bg-white border-t border-slate-200 shrink-0">
+                        <form id="chat-form" onsubmit="handleAdultQuestion(event)" class="flex gap-2">
+                            <input 
+                                type="text" 
+                                id="chat-user-input" 
+                                placeholder="Digite sua pergunta aqui (ex: Como posso denunciar um perfil falso?)..." 
+                                class="flex-grow bg-slate-50 border-2 border-slate-200 focus:border-seguro-500 focus:bg-white text-slate-800 rounded-2xl px-4 py-3 text-sm font-medium outline-none transition"
+                                autocomplete="off"
+                                required
+                            >
+                            <button type="submit" class="bg-seguro-600 hover:bg-seguro-700 text-white font-bold px-5 rounded-2xl transition flex items-center justify-center gap-1.5 shadow-md">
+                                <span class="hidden sm:inline text-sm">Enviar</span> <i class="fa-solid fa-paper-plane text-xs"></i>
                             </button>
-                            <button onclick="sendQuickMessage('Como Denunciar')" class="bg-slate-50 hover:bg-seguro-50 text-seguro-700 border-2 border-slate-200 hover:border-seguro-300 font-bold px-4 py-3.5 rounded-2xl text-sm transition shadow-sm text-center">
-                                🚨 Como Denunciar
-                            </button>
-                            <button onclick="sendQuickMessage('Prevenção')" class="bg-slate-50 hover:bg-seguro-50 text-seguro-700 border-2 border-slate-200 hover:border-seguro-300 font-bold px-4 py-3.5 rounded-2xl text-sm transition shadow-sm text-center">
-                                🛡️ Prevenção
-                            </button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -301,100 +326,157 @@
     </footer>
 
     <script>
-        // --- BANCO DE DADOS AUMENTADO E ADAPTADO ---
+        // --- BANCO DE DADOS: KIDS (ATÉ 7 ANOS) ---
         const kidsQuestions = [
             {
-                question: "Estás a jogar o teu jogo favorito e outro jogador, que não conheces, pede o teu nome completo e o número de telefone dos teus pais para te dar 'moedas grátis'. O que fazes?",
+                mission: "O Segredo do Nome 🤫",
+                question: "Você está jogando no tablet e um personagem que você não conhece na vida real pede o seu nome inteiro e o telefone da mamãe. O que você faz?",
                 options: [
-                    { text: "Dou os dados, afinal moedas grátis são ótimas e ele parece simpático.", correct: false },
-                    { text: "Não dou nada e aviso imediatamente um adulto (pais ou professor).", correct: true },
-                    { text: "Invento um nome falso e dou o número verdadeiro dos meus pais.", correct: false }
+                    { text: "Não escrevo nada e chamo correndo um adulto! 🚫", correct: true },
+                    { text: "Escrevo rapidinho para ele ser meu amigo no jogo. 😊", correct: false }
                 ],
-                explanation: "Nunca partilhes dados pessoais na internet. Pessoas mal-intencionadas usam ofertas falsas para roubar informações e tentar contactar crianças fora dos jogos."
+                rule: "Regra de Ouro: Dados de casa e da família são segredos que nunca contamos na internet!",
+                explanation: "Muito bem! Pessoas que não conhecemos na vida real não podem saber onde moramos ou o telefone dos pais."
             },
             {
-                question: "Um amigo online que conheceste há uma semana pede para lhe enviares uma fotografia tua com a camisola da tua escola. O que deves fazer?",
+                mission: "A Pegadinha da Foto 📸",
+                question: "Alguém no chat do jogo diz que vai te dar muitas moedas grátis se você mandar uma foto do seu rostinho fazendo pose. Qual o certo?",
                 options: [
-                    { text: "Não envio. Fotos pessoais e da escola revelam onde moro ou estudo.", correct: true },
-                    { text: "Tiro uma foto bonita e envio, porque ele também já mandou uma foto dele.", correct: false },
-                    { text: "Envio a foto, mas peço-lhe para não mostrar a mais ninguém.", correct: false }
+                    { text: "Tiro a foto bem alegre para ganhar os itens!", correct: false },
+                    { text: "Não mando foto nenhuma e aviso quem estiver cuidando de mim. 🛑", correct: true }
                 ],
-                explanation: "Fotos revelam muito sobre a nossa rotina (como o uniforme escolar). Na internet, perfis podem ser falsos e fotos podem ser usadas de forma maldosa."
+                rule: "Regra de Ouro: Nosso corpinho e nosso rosto são preciosos. Nenhuma foto vai para estranhos!",
+                explanation: "Isso aí! Na internet, pessoas ruins podem mentir sobre presentes para tentar conseguir fotos de crianças."
             },
             {
-                question: "Apareceu uma janela a piscar no ecrã a dizer: 'Parabéns! Foste o visitante número 1.000.000! Clica aqui para ganhar um tablet!' O que fazes?",
+                mission: "O Botão Misterioso 👾",
+                question: "Apareceu uma janela brilhante bem no meio do seu desenho favorito piscando: 'CLIQUE AQUI E GANHE UM BRINQUEDO AGORA!'. O que fazer?",
                 options: [
-                    { text: "Clico rápido antes que outra pessoa ganhe o prémio.", correct: false },
-                    { text: "Chamo os meus pais para eles preencherem o prémio para mim.", correct: false },
-                    { text: "Fecho a janela. É uma publicidade falsa e pode infetar o computador.", correct: true }
+                    { text: "Não clico e peço ajuda para um adulto ver o que é. 🧑‍✈️", correct: true },
+                    { text: "Clico bem rápido antes que o brinquedo suma!", correct: false }
                 ],
-                explanation: "Ninguém oferece prémios caros de forma fácil assim. Estes anúncios falsos servem para instalar vírus (malware) ou roubar informações."
+                rule: "Regra de Ouro: Telas que piscam prometendo brinquedos grátis podem estragar o celular.",
+                explanation: "Exatamente! Esses botões falsos costumam ter vírus que quebram o celular ou apagam as fotos da família."
             },
             {
-                question: "Um colega da escola criou um grupo para partilhar piadas maldosas e rir de outro menino da turma. Convidaram-te para entrar. Qual é a atitude correta?",
+                mission: "O Monstro na Tela 👻",
+                question: "Você abriu um vídeo para assistir, mas de repente apareceu uma imagem feia, assustadora e que te deu muito medo. Como agir?",
                 options: [
-                    { text: "Entro e apenas observo, sem escrever nada para não me meter em sarilhos.", correct: false },
-                    { text: "Não aceito entrar e aviso um adulto sobre o que está a acontecer.", correct: true },
-                    { text: "Entro e ajudo a criar mais piadas para apoiar os meus amigos.", correct: false }
+                    { text: "Escondo o tablet embaixo do cobertor e continuo olhando com medo.", correct: false },
+                    { text: "Fecho os olhos, desligo a tela e conto tudo para o papai ou mamãe! 🗣️", correct: true }
                 ],
-                explanation: "Isto chama-se Ciberbullying. Apoiar ou ignorar ataques a colegas magoa os outros. Denunciar salva o ambiente seguro da turma."
+                rule: "Regra de Ouro: Se te deu medo ou tristeza, os adultos protetores precisam saber!",
+                explanation: "Perfeito! Você nunca deve guardar segredos ruins. Falar com os pais limpa o medo da sua cabecinha."
             },
             {
-                question: "Queres descarregar um jogo novo para o telemóvel, mas encontraste um site fora da loja oficial (App Store/Play Store) que diz que é grátis. O que fazes?",
+                mission: "O Convite no Jogo 🎮",
+                question: "Um jogador desconhecido no Roblox ou PK XD te convida para mudar de jogo e ir para um aplicativo diferente que você nunca viu. Você vai?",
                 options: [
-                    { text: "Peço ajuda aos meus pais para verificar se o site é seguro antes de clicar.", correct: true },
-                    { text: "Faço o download escondido porque os meus pais dizem sempre que não.", correct: false },
-                    { text: "Descarrego porque se está na internet significa que foi testado.", correct: false }
+                    { text: "Não aceito. Só entro em jogos novos se os meus pais deixarem. 🛡️", correct: true },
+                    { text: "Aceito na hora porque adoro jogos novos!", correct: false }
                 ],
-                explanation: "Instalar aplicações fora das lojas oficiais é perigoso, pois podem conter softwares espiões que capturam tudo o que digitas."
+                rule: "Regra de Ouro: Jogos desconhecidos podem ter coisas que não são adequadas para crianças.",
+                explanation: "Certíssimo! Só devemos navegar e baixar joguinhos que os responsáveis olharam e aprovaram antes."
+            },
+            {
+                mission: "A Chave do Castelo 🔑",
+                question: "Sua senha do jogo é como a chave de um cofre secreto. Um colega da internet pediu para você contar a senha para ele jogar na sua conta. Você conta?",
+                options: [
+                    { text: "Conto, afinal amigos dividem tudo.", correct: false },
+                    { text: "Não conto para ninguém! A senha é só minha e dos meus pais. 🤫", correct: true }
+                ],
+                rule: "Regra de Ouro: Senha é um segredo individual. Se alguém descobrir, pode sumir com seus jogos!",
+                explanation: "Incrível! Guardar a senha em segredo protege sua conta de ser roubada ou bloqueada para sempre."
             }
         ];
 
+        // --- BANCO DE DADOS: TEENS ---
         const teenCases = [
             {
-                title: "O Alvo no Discord",
-                description: "O Tomás (14 anos) conheceu um utilizador num servidor de Minecraft. Após semanas de conversas amigáveis sobre jogos, esse utilizador diz que trabalha como recrutador de streamers e pede para o Tomás enviar um vídeo curto mostrando o seu quarto e o seu rosto, prometendo equipamentos gaming profissionais.",
+                title: "1. O Alvo no Discord (Aliciamento)",
+                description: "O Tomás (14 anos) conheceu um usuário em um servidor de Minecraft. Após semanas de conversas amigáveis sobre jogos, esse usuário diz que trabalha como recrutador de streamers e pede para o Tomás enviar um vídeo curto mostrando o seu quarto e o seu rosto, prometendo equipamentos de games profissionais.",
                 options: [
                     { text: "O Tomás deve mandar o vídeo, afinal já se conhecem há tempo suficiente e há um benefício claro.", correct: false },
-                    { text: "O Tomás deve recusar, bloquear o utilizador e reportar o comportamento aos moderadores e encarregados de educação.", correct: true },
+                    { text: "O Tomás deve recusar, bloquear o usuário e reportar o comportamento aos moderadores e responsáveis.", correct: true },
                     { text: "O Tomás deve pedir uma prova de identidade antes de enviar o vídeo para garantir a segurança.", correct: false }
                 ],
-                explanation: "A tática de criar uma ligação de amizade prolongada antes de pedir conteúdos íntimos ou dados físicos chama-se 'Grooming' (aliciamento de menores). Criminosos fingem ser jovens ou profissionais para obter acesso visual à vida da vítima."
+                explanation: "A tática de criar uma ligação de amizade prolongada antes de pedir conteúdos íntimos ou dados físicos chama-se 'Grooming' (aliciamento de menores). Criminosos fingem ser jovens ou profissionais para obter acesso visual e informações da vítima."
             },
             {
-                title: "A Ameaça de Partilha (Extorsão)",
-                description: "A Mariana (15 anos) enviou uma fotografia privada a um rapaz que achava ser de confiança através do Snapchat. Dias depois, um perfil anónimo envia-lhe uma mensagem no Instagram com um print dessa foto, ameaçando partilhá-la com toda a escola se ela não enviar mais imagens.",
+                title: "2. A Ameaça de Compartilhamento (Sextorsão)",
+                description: "A Mariana (15 anos) enviou uma fotografia privada para um garoto que achava ser de confiança pelo Snapchat. Dias depois, um perfil anônimo envia uma mensagem para ela no Instagram com um print dessa foto, ameaçando espalhá-la para toda a escola se ela não enviar mais imagens.",
                 options: [
                     { text: "Ceder à chantagem e enviar outra fotografia para evitar que a primeira seja espalhada.", correct: false },
                     { text: "Apagar todas as redes sociais e fingir que nada aconteceu, esperando que o chantagista desista.", correct: false },
-                    { text: "Não ceder, guardar capturas de ecrã das ameaças, não apagar as provas e denunciar imediatamente à polícia (ou pais).", correct: true }
+                    { text: "Não ceder, tirar prints das ameaças como prova, não apagar o histórico e denunciar imediatamente à polícia e aos pais.", correct: true }
                 ],
-                explanation: "Isto é um crime grave de Extorsão/Sextorsão. Ceder nunca para os chantagistas, eles vão pedir sempre mais. Guardar provas e acionar as autoridades (como a Linha Alerta ou a Polícia) é a única forma de parar o criminoso."
+                explanation: "Isso é um crime grave de Extorsão/Sextorsão. Ceder nunca funciona com chantagistas, eles vão pedir sempre mais. Guardar provas e acionar as autoridades ou a SaferNet é a única forma de parar o criminoso."
             },
             {
-                title: "O Link da Falsa Promessa",
-                description: "Recebes uma mensagem direta no Instagram de uma conta que parece ser de um amigo teu de infância. A mensagem diz: 'A sério que estão a espalhar este boato sobre ti neste site? Vê aqui: bit.ly/noticia-falsa-sh'."
-                ,options: [
-                    { text: "Clico imediatamente para descobrir quem anda a falar mal de mim na escola.", correct: false },
-                    { text: "Ignoro o link e contacto o meu amigo por outro meio (como chamada) para confirmar se foi ele quem enviou.", correct: true },
-                    { text: "Respondo à mensagem com insultos para mostrar que não tenho medo.", correct: false }
+                title: "3. O Link da Falsa Promessa (Phishing)",
+                description: "Você recebe uma mensagem direta no Instagram de uma conta que parece ser de um amigo seu de infância. A mensagem diz: 'Cara, você viu o que estão falando de você nesse site? Veja aqui antes que apaguem: bit.ly/noticia-falsa-sh'.",
+                options: [
+                    { text: "Clico imediatamente para descobrir quem está falando mal de mim na escola.", correct: false },
+                    { text: "Ignoro o link e entro em contato com o meu amigo por outro meio (como uma ligação) para confirmar se foi ele mesmo quem enviou.", correct: true },
+                    { text: "Respondo à mensagem com xingamentos para mostrar que não tenho medo.", correct: false }
                 ],
-                explanation: "Esta é uma técnica clássica de Engenharia Social chamada Phishing. A conta do teu amigo foi provavelmente clonada ou pirateada. O link direciona para uma página de login falsa feita para roubar a tua própria palavra-passe."
+                explanation: "Esta é uma técnica clássica de Engenharia Social chamada Phishing. A conta do seu amigo foi provavelmente hackeada. O link direciona para uma página de login falsa feita para roubar a sua própria senha."
             },
             {
-                title: "A Proposta de Emprego Fácil no TikTok",
-                description: "Um jovem de 16 anos vê um anúncio que promete ganhos de 100€ por dia apenas para avaliar aplicações em casa. Ao entrar em contacto, o administrador pede uma foto do Cartão de Cidadão e os dados bancários para 'fazer o contrato de trabalho digital'.",
+                title: "4. A Proposta de Emprego Fácil no TikTok (Roubo de Identidade)",
+                description: "Um jovem de 16 anos vê um anúncio que promete ganhos de R$ 200 por dia apenas para avaliar aplicativos em casa. Ao entrar em contato, o administrador pede uma foto do RG/CPF e os dados bancários para 'fazer o contrato de trabalho digital'.",
                 options: [
                     { text: "Enviar os dados. É uma excelente oportunidade de começar a ganhar o próprio dinheiro.", correct: false },
-                    { text: "Interromper o contacto. Empresas legítimas não recrutam menores informalmente pedindo documentos confidenciais por chat.", correct: true },
-                    { text: "Enviar os dados omitindo apenas o número de identificação fiscal (NIF).", correct: false }
+                    { text: "Interromper o contato. Empresas legítimas não recrutam menores informalmente pedindo documentos confidenciais por chat.", correct: true },
+                    { text: "Enviar os dados ocultando apenas o número do CPF.", correct: false }
                 ],
-                explanation: "Pedir fotografias de documentos pessoais por mensagens é o primeiro passo para o Roubo de Identidade. Com estes dados, os criminosos abrem contas bancárias falsas e cometem fraudes no teu nome."
+                explanation: "Pedir fotos de documentos pessoais por mensagens é o primeiro passo para o Roubo de Identidade. Com esses dados, os criminosos abrem contas bancárias falsas e cometem fraudes e empréstimos usando o seu nome."
+            },
+            {
+                title: "5. A Armadilha dos Quizzes e Testes Virtuais (Vazamento de Dados)",
+                description: "Um quiz super famoso no Twitter/X chamado 'Quem você seria na Idade Média?' pede para se conectar à sua conta. Para gerar o resultado, o aplicativo solicita acesso à sua lista de amigos, localização, e-mail e permissão para postar no seu perfil.",
+                options: [
+                    { text: "Recusar o quiz. Jogos que exigem acesso excessivo a dados pessoais servem para capturar informações corporativas e privadas para venda ilegal.", correct: true },
+                    { text: "Aceitar, fazer o teste apenas uma vez e depois desinstalar o navegador para limpar as permissões.", correct: false },
+                    { text: "Aceitar sem problemas, pois grandes plataformas barram aplicativos perigosos de forma automática.", correct: false }
+                ],
+                explanation: "Quizzes inofensivos são frequentemente usados para 'Data Scraping' (raspagem de dados). Essas informações alimentam bancos de dados de cibercriminosos, facilitando ataques futuros direcionados à sua conta ou à sua família."
+            },
+            {
+                title: "6. A Ilusão das Plataformas de Apostas e 'Bets' (Fraude Financeira)",
+                description: "Um influenciador que você segue posta um link de uma nova plataforma de jogos (estilo 'Tigrinho') garantindo que descobriu um bug no algoritmo que faz qualquer um ganhar dinheiro fácil. He diz que mesmo menores de idade conseguem colocar dinheiro usando o Pix dos pais.",
+                options: [
+                    { text: "Colocar um valor baixo para testar se o bug do influenciador realmente funciona.", correct: false },
+                    { text: "Não entrar. Plataformas de azar online para menores são ilegais e os links de influenciadores são programados para fazer o usuário perder, retendo o saldo depositado.", correct: true },
+                    { text: "Pedir dinheiro emprestado para amigos para jogar sem mexer nas finanças de casa.", correct: false }
+                ],
+                explanation: "Apostas online (jogos de azar) são terminantemente proibidas para menores de idade. Os 'bugs' divulgados por influenciadores são fraudes de marketing para atrair vítimas. Além de perder o dinheiro, os sites podem clonar os dados do Pix utilizado."
+            },
+            {
+                title: "7. A Pressão dos Desafios de Redes Sociais (Cyberbullying e Perigo Real)",
+                description: "Um grupo de WhatsApp da escola cria um desafio de 'trote' em vídeo onde os alunos devem filmar um colega de classe em uma situação humilhante na quadra e postar no TikTok de forma anônima. Quem não participar é ameaçado de exclusão do grupo.",
+                options: [
+                    { text: "Participar apenas assistindo e rindo para não ser excluído, sem gravar o vídeo.", correct: false },
+                    { text: "Alertar a coordenação da escola ou um responsável sobre o desafio e se recusar a participar.", correct: true },
+                    { text: "Gravar o vídeo, mas borrar o rosto do aluno para que o trote não seja considerado crime.", correct: false }
+                ],
+                explanation: "Humilhar, filmar e expor pessoas na internet sem consentimento configura Cyberbullying e difamação, crimes previstos por lei. A conivência ou omissão também gera responsabilização escolar e jurídica dos envolvidos."
+            },
+            {
+                title: "8. A Montagem Perfeita com Inteligência Artificial (Deepfake)",
+                description: "Um colega de classe aparece com um áudio ou imagem onde supostamente ele fala mal de vários professores. Ele jura que nunca disse aquilo e que usaram uma ferramenta de Inteligência Artificial com a voz dele tirada de um vídeo antigo para prejudicá-lo.",
+                options: [
+                    { text: "Compartilhar o áudio nos outros grupos, já que a voz parece idêntica e a culpa não é sua.", correct: false },
+                    { text: "Apoiar o colega a reportar o caso à diretoria e à polícia para realização de uma perícia digital, interrompendo o compartilhamento imediatamente.", correct: true },
+                    { text: "Ignorar o assunto por completo, pois áudios de IA não podem ser investigados pela polícia.", correct: false }
+                ],
+                explanation: "O uso de IA para criar áudios ou imagens falsas sem autorização chama-se Deepfake. Isso constitui crime de falsidade ideológica e difamação. Encaminhar esse tipo de conteúdo propaga o crime, tornando quem compartilha corresponsável."
             }
         ];
 
         // --- SISTEMA DE ESTADO ---
         let currentKidsIdx = 0;
+        let kidsScore = 0;
         let currentTeensIdx = 0;
 
         function switchTab(tabId) {
@@ -431,6 +513,8 @@
         // --- MÓDULO KIDS: LÓGICA ---
         function resetKidsQuiz() {
             currentKidsIdx = 0;
+            kidsScore = 0;
+            document.getElementById('kids-score').innerText = kidsScore;
             renderKidsQuestion();
         }
 
@@ -444,30 +528,38 @@
 
             const progress = (currentKidsIdx / kidsQuestions.length) * 100;
             document.getElementById('kids-progress').style.width = `${progress}%`;
-            document.getElementById('kids-step-indicator').innerText = `Pergunta ${currentKidsIdx + 1} de ${kidsQuestions.length}`;
+            document.getElementById('kids-step-indicator').innerText = `Missão ${currentKidsIdx + 1} de ${kidsQuestions.length}`;
 
             if(currentKidsIdx >= kidsQuestions.length) {
                 document.getElementById('kids-progress').style.width = '100%';
+                document.getElementById('kids-mission-title').innerText = "Aventura Concluída!";
                 container.innerHTML = `
                     <div class="text-center space-y-4 py-6">
-                        <span class="text-5xl">👑</span>
-                        <h3 class="text-2xl font-extrabold text-esperanca-600">Parabéns! Completaste o Quiz!</h3>
-                        <p class="text-slate-600">Agora és oficialmente um Guardião Digital Júnior da Internet!</p>
-                        <button onclick="switchTab('landing')" class="mt-4 bg-slate-950 text-white font-bold px-6 py-2.5 rounded-xl text-sm">Voltar ao Menu</button>
+                        <span class="text-6xl animate-bounce block">🏆</span>
+                        <h3 class="text-2xl font-extrabold text-amber-600">Incrível! Você conseguiu!</h3>
+                        <p class="text-slate-700 font-medium text-base">Você completou todas as missões e ganhou <span class="text-amber-500 font-black">${kidsScore} estrelas</span>!</p>
+                        <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 inline-block text-xs font-bold text-amber-900 uppercase tracking-widest shadow-sm">
+                            🏅 Título Garantido: Super Guardião da Internet
+                        </div>
+                        <div class="pt-2 block">
+                            <button onclick="switchTab('landing')" class="bg-slate-950 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md hover:bg-slate-800 transition">Voltar para o Menu Inicial</button>
+                        </div>
                     </div>
                 `;
-                document.getElementById('kids-step-indicator').innerText = "Concluído!";
+                document.getElementById('kids-step-indicator').innerText = "Vitória!";
                 return;
             }
 
             const q = kidsQuestions[currentKidsIdx];
+            document.getElementById('kids-mission-title').innerText = q.mission;
+            
             container.innerHTML = `
                 <div class="space-y-4">
-                    <h3 class="text-lg font-bold text-slate-900 leading-snug">${q.question}</h3>
+                    <h3 class="text-xl font-bold text-slate-900 leading-snug">${q.question}</h3>
                     <div class="grid grid-cols-1 gap-3 pt-2">
                         ${q.options.map((opt, i) => `
-                            <button onclick="checkKidsAnswer(${i}, ${opt.correct})" class="kids-opt-btn bg-slate-50 hover:bg-slate-100 text-slate-700 text-left font-semibold p-4 rounded-2xl border-2 border-slate-200 transition text-sm flex items-start gap-3">
-                                <span class="bg-white border border-slate-300 w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold text-slate-400">${String.fromCharCode(65+i)}</span>
+                            <button onclick="checkKidsAnswer(${i}, ${opt.correct})" class="kids-opt-btn bg-slate-50 hover:bg-slate-100 text-slate-700 text-left font-bold p-5 rounded-2xl border-2 border-slate-200 transition text-base flex items-start gap-3 shadow-sm">
+                                <span class="bg-amber-400 border border-amber-500 w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-xs font-black text-slate-900">${i+1}</span>
                                 <span>${opt.text}</span>
                             </button>
                         `).join('')}
@@ -484,13 +576,23 @@
             const q = kidsQuestions[currentKidsIdx];
 
             if(isCorrect) {
+                kidsScore += 10;
+                document.getElementById('kids-score').innerText = kidsScore;
                 btns[index].classList.add('border-esperanca-500', 'bg-esperanca-50', 'text-esperanca-800');
-                fbContainer.className = "p-5 rounded-2xl bg-esperanca-50 border-2 border-esperanca-200 text-esperanca-900 text-sm space-y-1 block";
-                fbContainer.innerHTML = `<strong>✨ Resposta Correta!</strong><p class="mt-1">${q.explanation}</p>`;
+                fbContainer.className = "p-5 rounded-2xl bg-esperanca-50 border-2 border-esperanca-200 text-esperanca-900 text-base font-medium space-y-2 block shadow-sm";
+                fbContainer.innerHTML = `
+                    <div class="flex items-center gap-2 text-esperanca-700 font-extrabold text-lg">🎉 Incrível! Você acertou (+10★)</div>
+                    <p class="text-sm text-slate-700 font-semibold bg-white p-3 rounded-xl border border-esperanca-100">${q.rule}</p>
+                    <p class="text-xs text-slate-500 italic mt-1">${q.explanation}</p>
+                `;
             } else {
                 btns[index].classList.add('border-red-400', 'bg-red-50', 'text-red-800');
-                fbContainer.className = "p-5 rounded-2xl bg-red-50 border-2 border-red-200 text-red-900 text-sm space-y-1 block";
-                fbContainer.innerHTML = `<strong>❌ Que pena, não é a melhor opção.</strong><p class="mt-1">${q.explanation}</p>`;
+                fbContainer.className = "p-5 rounded-2xl bg-red-50 border-2 border-red-200 text-red-900 text-base font-medium space-y-2 block shadow-sm";
+                fbContainer.innerHTML = `
+                    <div class="flex items-center gap-2 text-red-700 font-extrabold text-lg">⚠️ Cuidado, Pequeno Guardião!</div>
+                    <p class="text-sm text-slate-700 font-semibold bg-white p-3 rounded-xl border border-red-100">${q.rule}</p>
+                    <p class="text-xs text-slate-500 italic mt-1">${q.explanation}</p>
+                `;
             }
             document.getElementById('kids-next-btn').classList.remove('hidden');
         }
@@ -524,7 +626,7 @@
                     <div class="text-center space-y-4 py-6">
                         <span class="text-5xl">🛡️</span>
                         <h3 class="text-2xl font-extrabold text-indigo-400">Análise Completa!</h3>
-                        <p class="text-slate-300">Dominas os conceitos essenciais contra engenharia social e cibersegurança.</p>
+                        <p class="text-slate-300">Você domina com excelência os conceitos avançados de privacidade, proteção contra golpes corporativos e engenharia social digital.</p>
                         <button onclick="switchTab('landing')" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-sm">Voltar ao Início</button>
                     </div>
                 `;
@@ -575,59 +677,140 @@
             renderTeensCase();
         }
 
-        // --- MÓDULO ADULTOS: RESPOSTAS RÁPIDAS ---
-        function sendQuickMessage(topic) {
-            const chatBox = document.getElementById('chat-messages');
+        // --- MÓDULO ADULTOS: MECANISMO DE CHATBOT COM ENTRADA LIVRE (NLP LOCAL) ---
+        function handleAdultQuestion(event) {
+            event.preventDefault();
             
-            let responseHTML = "";
-            if (topic === 'Sinais de Alerta') {
-                responseHTML = `
-                    <strong>🔍 Sinais de que o menor pode estar sob risco ou aliciamento:</strong>
-                    <ul class="list-disc pl-4 mt-2 space-y-1">
-                        <li>Mudanças repentinas de comportamento e isolamento da família.</li>
-                        <li>Esconder o ecrã do telemóvel ou fechar abas rapidamente quando alguém se aproxima.</li>
-                        <li>Receber presentes, encomendas ou dinheiro digital (skins, cartões presente) sem justificação.</li>
-                        <li>Ansiedade ou choro excessivo após usar a internet.</li>
-                    </ul>
-                `;
-            } else if (topic === 'Como Denunciar') {
-                responseHTML = `
-                    <strong>🚨 Onde e como denunciar crimes digitais contra menores:</strong>
-                    <p class="mt-1">Não elimine nenhuma conversa, fotografia ou perfil suspeito. As provas digitais são fundamentais.</p>
-                    <ul class="list-disc pl-4 mt-2 space-y-1">
-                        <li><strong>Polícia / Autoridades:</strong> Contacte imediatamente os órgãos de polícia local ou a brigada de cibercrime.</li>
-                        <li><strong>Linhas de Alerta Nacionais:</strong> Submeta os links ou as provas de forma anónima em portais oficiais de denúncia de abuso de menores.</li>
-                        <li><strong>Plataformas:</strong> Use o botão 'Reportar/Denunciar' integrado no Discord, Instagram ou jogo.</li>
-                    </ul>
-                `;
-            } else if (topic === 'Prevenção') {
-                responseHTML = `
-                    <strong>🛡️ Práticas de Prevenção Ativa para a Família:</strong>
-                    <ul class="list-disc pl-4 mt-2 space-y-1">
-                        <li><strong>Diálogo Aberto:</strong> Certifique-se de que o seu filho sabe que pode contar consigo mesmo que tenha cometido um erro ou enviado uma foto errada.</li>
-                        <li><strong>Controlo Parental:</strong> Utilize ferramentas de monitorização para limitar o tempo de ecrã e bloquear o acesso a aplicações não autorizadas para a idade.</li>
-                        <li><strong>Configurações de Privacidade:</strong> Mantenha os perfis das redes sociais dos jovens sempre estritamente como 'Privados' e bloqueie DMs (mensagens diretas) de desconhecidos.</li>
-                    </ul>
-                `;
-            }
+            const inputEl = document.getElementById('chat-user-input');
+            const chatBox = document.getElementById('chat-messages');
+            const userText = inputEl.value.trim();
+            
+            if(!userText) return;
 
+            // 1. Renderiza a pergunta do usuário na tela
             chatBox.innerHTML += `
                 <div class="flex items-start gap-3 justify-end">
-                    <div class="bg-indigo-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm text-sm max-w-[85%]">
-                        Quero saber sobre: ${topic}
-                    </div>
-                </div>
-                <div class="flex items-start gap-3">
-                    <span class="w-8 h-8 bg-seguro-600 text-white rounded-full flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-robot"></i></span>
-                    <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-sm leading-relaxed max-w-[85%] text-slate-700">
-                        ${responseHTML}
+                    <div class="bg-indigo-600 text-white p-3.5 rounded-2xl rounded-tr-none shadow-sm text-sm font-medium max-w-[85%] text-left">
+                        ${escapeHTML(userText)}
                     </div>
                 </div>
             `;
             
+            // Limpa o input imediatamente
+            inputEl.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // 2. Processador de Linguagem Natural Local (NLP) por correspondência de intenções
+            const textNormalized = userText.toLowerCase();
+            let botResponse = "";
+
+            // Cenário A: Sinais de Alerta e Mudanças de Comportamento
+            if (matchesKeywords(textNormalized, ['sinal', 'sinais', 'alerta', 'comportamento', 'esconde', 'mudar', 'triste', 'isolado', 'isolamento', 'comportar'])) {
+                botResponse = `
+                    <strong>🔍 Diretrizes Práticas — Identificando Sinais de Alerta:</strong>
+                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">Mudanças abruptas são os indicadores mais confiáveis de assédio ou aliciamento digital. Fique atento a:</p>
+                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600">
+                        <li><strong>Segredo de Tela:</strong> O menor fecha abas instantaneamente ou vira o celular para baixo quando você entra no cômodo.</li>
+                        <li><strong>Isolamento Social:</strong> Abandono de atividades físicas ou hobbies presenciais para passar noites inteiras trancado no quarto jogando ou conversando.</li>
+                        <li><strong>Riqueza Inexplicável:</strong> Aparição de moedas virtuais caras (*Robux, V-Bucks*), skins raras ou eletrônicos novos sem que você tenha comprado.</li>
+                    </ul>
+                `;
+            } 
+            // Cenário B: Canais Jurídicos e Delegacias de Denúncia
+            else if (matchesKeywords(textNormalized, ['denuncia', 'denunciar', 'policia', 'delegacia', 'boletim', 'bo', 'safernet', 'disque', 'crime', 'autoridade'])) {
+                botResponse = `
+                    <strong>🚨 Guia Jurídico — Como Proceder com Denúncias Criminais:</strong>
+                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">Em caso de crimes contra menores, a preservação técnica das evidências digitais é indispensável:</p>
+                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600">
+                        <li><strong>Preserve as Provas:</strong> Não apague chats, contas ou mídias. Tire prints completos incluindo a barra de endereço (URLs) e o ID numérico dos perfis criminosos.</li>
+                        <li><strong>Polícia Especializada:</strong> Vá à Delegacia de Repressão a Crimes Cibernéticos (DERCC) do seu estado ou registre um Boletim de Ocorrência Eletrônico.</li>
+                        <li><strong>Canais Digitais:</strong> Utilize o portal nacional da <strong>SaferNet Brasil</strong> (safernet.org.br) para denúncias anônimas de abuso, vazamento ou racismo.</li>
+                    </ul>
+                `;
+            } 
+            // Cenário C: Ferramentas Técnicas e Medidas Preventivas
+            else if (matchesKeywords(textNormalized, ['prevencao', 'prevenir', 'bloquear', 'aplicativo', 'controle', 'parental', 'filtro', 'roteador', 'monitorar', 'proteger'])) {
+                botResponse = `
+                    <strong>🛡️ Protocolo Técnico — Prevenção Ativa e Controle Parental:</strong>
+                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">A cibersegurança preventiva combina barreiras tecnológicas com instrução contínua:</p>
+                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600">
+                        <li><strong>Controle de Ecossistema:</strong> Instale aplicações de gestão como o <em>Google Family Link</em> ou <em>Apple Screen Time</em> para supervisionar downloads de apps.</li>
+                        <li><strong>Privacidade Restrita:</strong> Configure perfis do Instagram e TikTok dos jovens como 'Privados' e bloqueie o recebimento de DMs de contas desconhecidas.</li>
+                        <li><strong>Posicionamento Físico:</strong> Mantenha computadores e videogames em áreas comuns da residência (sala), evitando o uso isolado de telas na madrugada.</li>
+                    </ul>
+                `;
+            }
+            // Cenário D: Apostas / Tigrinho / Bets
+            else if (matchesKeywords(textNormalized, ['tigrinho', 'aposta', 'bet', 'bets', 'jogo de azar', 'perder dinheiro', 'roleta'])) {
+                botResponse = `
+                    <strong>🎰 Alerta de Fraude: Plataformas de Apostas (Bets / Tigrinho):</strong>
+                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">O acesso de menores a plataformas de cassino digital cresceu de forma drástica através de marketing abusivo:</p>
+                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600">
+                        <li><strong>Engenharia Financeira:</strong> Menores costumam subtrair cartões ou chaves Pix de familiares atraídos por promessas de ganhos rápidos feitas por influenciadores.</li>
+                        <li><strong>Abordagem Escolar:</strong> Monitore se há o uso de cartões pré-pagos ou transações Pix suspeitas no extrato da conta da família. Explique que o algoritmo é programado de forma fraudulenta para retenção do dinheiro depositado.</li>
+                    </ul>
+                `;
+            }
+            // Cenário E: Deepfakes e Uso Inadequado de Inteligência Artificial
+            else if (matchesKeywords(textNormalized, ['deepfake', 'ia', 'inteligencia artificial', 'montagem', 'voz', 'foto alterada'])) {
+                botResponse = `
+                    <strong>🤖 Riscos Tecnológicos: Deepfakes e Modificações por IA:</strong>
+                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">Ferramentas abertas de IA agora conseguem simular rostos e vozes reais com precisão perigosa:</p>
+                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600">
+                        <li><strong>Uso Escolar:</strong> Alunos têm gerado deepfakes pornográficos ou de difamação para humilhar colegas e professores em grupos de WhatsApp.</li>
+                        <li><strong>Como Combater:</strong> Ensine os jovens a não compartilharem mídias de alta resolução em perfis públicos. Caso ocorra uma montagem difamatória, a escola e os pais devem registrar ocorrência policial por falsidade ideológica e difamação imediatamente.</li>
+                    </ul>
+                `;
+            }
+            // Cenário F: Chantagem / Extorsão / Fotos Íntimas
+            else if (matchesKeywords(textNormalized, ['chantagem', 'ameaca', 'extorsao', 'snapchat', 'foto privada', 'nudes', 'vazar'])) {
+                botResponse = `
+                    <strong>⚠️ Crise Digital: Chantagem e Vazamento de Fotos (Sextorsão):</strong>
+                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">Esta é uma das maiores emergências enfrentadas por adolescentes em redes sociais:</p>
+                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600">
+                        <li><strong>Jamais Ceda:</strong> Criminosos exigem dinheiro ou mais fotos prometendo deletar o arquivo inicial, mas isso nunca acontece. Ceder alimenta a extorsão.</li>
+                        <li><strong>Intervenção Adulta imediata:</strong> Acolha o jovem sem agressividade verbal (o medo do julgamento familiar faz com que muitos cometam atos extremos). Corte o contato com o chantagista, capture prints de todas as ameaças e números de telefone envolvidos, e acione a delegacia civil.</li>
+                    </ul>
+                `;
+            }
+            // Fallback: Resposta Genérica Avançada
+            else {
+                botResponse = `
+                    <strong>🤖 Olá! Compreendi sua questão, mas preciso focar em Cibersegurança Infantil.</strong>
+                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">Como um assistente especializado em segurança digital escolar e familiar, recomendo refazer sua pergunta utilizando palavras-chave voltadas aos tópicos abaixo:</p>
+                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600 font-medium">
+                        <li><strong>"Como posso fazer uma denúncia?"</strong> (Para delegacias e SaferNet)</li>
+                        <li><strong>"Quais são os sinais de perigo?"</strong> (Para comportamento e isolamento)</li>
+                        <li><strong>"Como bloquear aplicativos?"</strong> (Para controle parental e roteadores)</li>
+                        <li><strong>Perguntas sobre golpes:</strong> <em>"Tigrinho", "Roblox", "Chantagem", "WhatsApp" ou "Deepfakes"</em>.</li>
+                    </ul>
+                `;
+            }
+
+            // 3. Renderiza a resposta simulada do robô após um pequeno delay
             setTimeout(() => {
+                chatBox.innerHTML += `
+                    <div class="flex items-start gap-3">
+                        <span class="w-8 h-8 bg-seguro-600 text-white rounded-full flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-robot"></i></span>
+                        <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-sm leading-relaxed max-w-[85%] text-slate-700 text-left">
+                            ${botResponse}
+                        </div>
+                    </div>
+                `;
                 chatBox.scrollTop = chatBox.scrollHeight;
-            }, 100);
+            }, 550);
+        }
+
+        // Função utilitária para checar palavras-chave
+        function matchesKeywords(text, keywords) {
+            return keywords.some(keyword => text.includes(keyword));
+        }
+
+        // Função utilitária para higienizar texto digitado pelo usuário
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
         }
     </script>
 </body>
