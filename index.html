@@ -28,7 +28,7 @@
                             900: '#0b356f',
                         },
                         esperanca: {
-                            50: '#f0fdf4',
+                            50: '#f0df4',
                             100: '#dcfce7',
                             200: '#bbf7d0',
                             300: '#86efac',
@@ -92,7 +92,7 @@
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('landing')">
                     <div class="bg-gradient-to-tr from-seguro-600 to-seguro-500 text-white p-2 rounded-xl shadow-md">
-                        <i class="fa-solid fa-shield-halved textxl"></i>
+                        <i class="fa-solid fa-shield-halved text-[20px]"></i>
                     </div>
                     <div>
                         <span class="font-extrabold text-lg text-seguro-900 dark:text-white tracking-tight block leading-none transition-colors duration-500">GUARDIÃO</span>
@@ -234,7 +234,7 @@
 
                 <div class="text-center space-y-2 mb-6">
                     <span class="text-4xl block">📱</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Estudos de Caso & Cibersegurança Avançada</h2>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Estudos de Caso & Cibersegurança Advanced</h2>
                     <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">Avalie situações reais sobre engenharia social, crimes cibernéticos, fraudes digitais e ferramentas modernas.</p>
                 </div>
 
@@ -290,6 +290,7 @@
                                 <p class="font-bold text-slate-900 mb-1">Olá, responsável/educador! Sou o seu consultor de cibersegurança.</p>
                                 <p class="mb-2">Escreva abaixo a sua dúvida ou o problema que está enfrentando com os seus filhos/alunos na internet. Você pode me perguntar livremente sobre:</p>
                                 <ul class="list-disc pl-4 space-y-1 text-xs text-slate-600 font-medium">
+                                    <li>Gerenciamento saudável de tempo de tela e controles parentais técnicos</li>
                                     <li>Como identificar se o menor está sob risco (Sinais de Alerta)</li>
                                     <li>Como e onde realizar denúncias jurídicas (Canais e Delegacias)</li>
                                     <li>Configurações de bloqueio, roteadores e monitoramento (Prevenção)</li>
@@ -304,7 +305,7 @@
                             <input 
                                 type="text" 
                                 id="chat-user-input" 
-                                placeholder="Digite sua pergunta aqui (ex: Como posso denunciar um perfil falso?)..." 
+                                placeholder="Digite sua pergunta aqui (ex: Como limitar o tempo de tela do meu filho?)..." 
                                 class="flex-grow bg-slate-50 border-2 border-slate-200 focus:border-seguro-500 focus:bg-white text-slate-800 rounded-2xl px-4 py-3 text-sm font-medium outline-none transition"
                                 autocomplete="off"
                                 required
@@ -444,373 +445,274 @@
             },
             {
                 title: "6. A Ilusão das Plataformas de Apostas e 'Bets' (Fraude Financeira)",
-                description: "Um influenciador que você segue posta um link de uma nova plataforma de jogos (estilo 'Tigrinho') garantindo que descobriu um bug no algoritmo que faz qualquer um ganhar dinheiro fácil. He diz que mesmo menores de idade conseguem colocar dinheiro usando o Pix dos pais.",
+                description: "Um influenciador que você segue posta um link de uma nova plataforma de jogos (estilo 'Tigrinho') garantindo que descobriu um bug no algoritmo que faz qualquer um ganhar dinheiro fácil. Ele diz que mesmo menores de idade conseguem colocar dinheiro usando o Pix dos pais.",
                 options: [
                     { text: "Colocar um valor baixo para testar se o bug do influenciador realmente funciona.", correct: false },
-                    { text: "Não entrar. Plataformas de azar online para menores são ilegais e os links de influenciadores são programados para fazer o usuário perder, retendo o saldo depositado.", correct: true },
-                    { text: "Pedir dinheiro emprestado para amigos para jogar sem mexer nas finanças de casa.", correct: false }
+                    { text: "Não entrar. Plataformas de azar online para menores são ilegais e os links de influenciadores são programados para fazer o usuário perder, retendo o saldo de depósitos.", correct: true },
+                    { text: "Tentar fazer o cadastro usando os dados de um irmão mais velho para burlar o sistema de segurança.", correct: false }
                 ],
-                explanation: "Apostas online (jogos de azar) são terminantemente proibidas para menores de idade. Os 'bugs' divulgados por influenciadores são fraudes de marketing para atrair vítimas. Além de perder o dinheiro, os sites podem clonar os dados do Pix utilizado."
-            },
-            {
-                title: "7. A Pressão dos Desafios de Redes Sociais (Cyberbullying e Perigo Real)",
-                description: "Um grupo de WhatsApp da escola cria um desafio de 'trote' em vídeo onde os alunos devem filmar um colega de classe em uma situação humilhante na quadra e postar no TikTok de forma anônima. Quem não participar é ameaçado de exclusão do grupo.",
-                options: [
-                    { text: "Participar apenas assistindo e rindo para não ser excluído, sem gravar o vídeo.", correct: false },
-                    { text: "Alertar a coordenação da escola ou um responsável sobre o desafio e se recusar a participar.", correct: true },
-                    { text: "Gravar o vídeo, mas borrar o rosto do aluno para que o trote não seja considerado crime.", correct: false }
-                ],
-                explanation: "Humilhar, filmar e expor pessoas na internet sem consentimento configura Cyberbullying e difamação, crimes previstos por lei. A conivência ou omissão também gera responsabilização escolar e jurídica dos envolvidos."
-            },
-            {
-                title: "8. A Montagem Perfeita com Inteligência Artificial (Deepfake)",
-                description: "Um colega de classe aparece com um áudio ou imagem onde supostamente ele fala mal de vários professores. Ele jura que nunca disse aquilo e que usaram uma ferramenta de Inteligência Artificial com a voz dele tirada de um vídeo antigo para prejudicá-lo.",
-                options: [
-                    { text: "Compartilhar o áudio nos outros grupos, já que a voz parece idêntica e a culpa não é sua.", correct: false },
-                    { text: "Apoiar o colega a reportar o caso à diretoria e à polícia para realização de uma perícia digital, interrompendo o compartilhamento imediatamente.", correct: true },
-                    { text: "Ignorar o assunto por completo, pois áudios de IA não podem ser investigados pela polícia.", correct: false }
-                ],
-                explanation: "O uso de IA para criar áudios ou imagens falsas sem autorização chama-se Deepfake. Isso constitui crime de falsidade ideológica e difamação. Encaminhar esse tipo de conteúdo propaga o crime, tornando quem compartilha corresponsável."
+                explanation: "Esquemas de apostas promovidos como 'ganho garantido' são fraudes matemáticas e financeiras estruturadas. Além do risco de vício tecnológico precoce, essas plataformas ilegais coletam dados bancários e retêm os valores injetados sem possibilidade de estorno."
             }
         ];
 
-        // --- SISTEMA DE ESTADO ---
-        let currentKidsIdx = 0;
-        let kidsScore = 0;
-        let currentTeensIdx = 0;
+        // --- SISTEMA DE NAVEGAÇÃO ENTRE ABAS ---
+        function switchTab(tabName) {
+            const tabs = ['landing', 'kids', 'teens', 'adults'];
+            tabs.forEach(tab => {
+                const element = document.getElementById(`tab-${tab}`);
+                if (tab === tabName) {
+                    element.classList.add('active');
+                    setTimeout(() => element.classList.add('show'), 50);
+                } else {
+                    element.classList.remove('show', 'active');
+                }
+            });
 
-        function switchTab(tabId) {
-            const currentActive = document.querySelector('.tab-content.active');
-            const targetTab = document.getElementById(`tab-${tabId}`);
-            
-            if (!targetTab || currentActive === targetTab) return;
-
-            if (tabId === 'teens') {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-
-            if (currentActive) {
-                currentActive.classList.remove('show');
-                setTimeout(() => {
-                    currentActive.classList.remove('active');
-                    targetTab.classList.add('active');
-                    targetTab.offsetHeight;
-                    targetTab.classList.add('show');
-                }, 400);
-            } else {
-                targetTab.classList.add('active');
-                targetTab.offsetHeight;
-                targetTab.classList.add('show');
-            }
-
-            if(tabId === 'kids') resetKidsQuiz();
-            if(tabId === 'teens') resetTeensQuiz();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (tabName === 'kids') startKidsQuiz();
+            if (tabName === 'teens') startTeensQuiz();
         }
 
-        // --- MÓDULO KIDS: LÓGICA ---
-        function resetKidsQuiz() {
-            currentKidsIdx = 0;
+        // --- LÓGICA DO MÓDULO KIDS ---
+        let currentKidsIndex = 0;
+        let kidsScore = 0;
+
+        function startKidsQuiz() {
+            currentKidsIndex = 0;
             kidsScore = 0;
             document.getElementById('kids-score').innerText = kidsScore;
-            renderKidsQuestion();
+            showKidsQuestion();
         }
 
-        function renderKidsQuestion() {
+        function showKidsQuestion() {
             const container = document.getElementById('kids-quiz-container');
-            const fbContainer = document.getElementById('kids-feedback-container');
+            const feedback = document.getElementById('kids-feedback-container');
             const nextBtn = document.getElementById('kids-next-btn');
             
-            fbContainer.classList.add('hidden');
+            feedback.classList.add('hidden');
             nextBtn.classList.add('hidden');
 
-            const progress = (currentKidsIdx / kidsQuestions.length) * 100;
-            document.getElementById('kids-progress').style.width = `${progress}%`;
-            document.getElementById('kids-step-indicator').innerText = `Missão ${currentKidsIdx + 1} de ${kidsQuestions.length}`;
-
-            if(currentKidsIdx >= kidsQuestions.length) {
-                document.getElementById('kids-progress').style.width = '100%';
-                document.getElementById('kids-mission-title').innerText = "Aventura Concluída!";
-                container.innerHTML = `
-                    <div class="text-center space-y-4 py-6">
-                        <span class="text-6xl animate-bounce block">🏆</span>
-                        <h3 class="text-2xl font-extrabold text-amber-600">Incrível! Você conseguiu!</h3>
-                        <p class="text-slate-700 font-medium text-base">Você completou todas as missões e ganhou <span class="text-amber-500 font-black">${kidsScore} estrelas</span>!</p>
-                        <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 inline-block text-xs font-bold text-amber-900 uppercase tracking-widest shadow-sm">
-                            🏅 Título Garantido: Super Guardião da Internet
-                        </div>
-                        <div class="pt-2 block">
-                            <button onclick="switchTab('landing')" class="bg-slate-950 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-md hover:bg-slate-800 transition">Voltar para o Menu Inicial</button>
-                        </div>
-                    </div>
-                `;
-                document.getElementById('kids-step-indicator').innerText = "Vitória!";
-                return;
-            }
-
-            const q = kidsQuestions[currentKidsIdx];
+            const q = kidsQuestions[currentKidsIndex];
             document.getElementById('kids-mission-title').innerText = q.mission;
+            document.getElementById('kids-step-indicator').innerText = `Missão ${currentKidsIndex + 1} de ${kidsQuestions.length}`;
             
+            const progress = ((currentKidsIndex) / kidsQuestions.length) * 100;
+            document.getElementById('kids-progress').style.width = `${progress}%`;
+
+            let optionsHtml = q.options.map((opt, i) => `
+                <button onclick="answerKidsQuestion(${i})" class="w-full text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-amber-400 hover:bg-amber-50/50 font-medium transition text-sm sm:text-base text-slate-700">
+                    ${opt.text}
+                </button>
+            `).join('');
+
             container.innerHTML = `
-                <div class="space-y-4">
-                    <h3 class="text-xl font-bold text-slate-900 leading-snug">${q.question}</h3>
-                    <div class="grid grid-cols-1 gap-3 pt-2">
-                        ${q.options.map((opt, i) => `
-                            <button onclick="checkKidsAnswer(${i}, ${opt.correct})" class="kids-opt-btn bg-slate-50 hover:bg-slate-100 text-slate-700 text-left font-bold p-5 rounded-2xl border-2 border-slate-200 transition text-base flex items-start gap-3 shadow-sm">
-                                <span class="bg-amber-400 border border-amber-500 w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-xs font-black text-slate-900">${i+1}</span>
-                                <span>${opt.text}</span>
-                            </button>
-                        `).join('')}
-                    </div>
-                </div>
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 leading-snug">${q.question}</h3>
+                <div class="space-y-3 pt-2">${optionsHtml}</div>
             `;
         }
 
-        function checkKidsAnswer(index, isCorrect) {
-            const btns = document.querySelectorAll('.kids-opt-btn');
-            btns.forEach(b => b.disabled = true);
+        function answerKidsQuestion(index) {
+            const q = kidsQuestions[currentKidsIndex];
+            const isCorrect = q.options[index].correct;
+            const feedback = document.getElementById('kids-feedback-container');
+            const nextBtn = document.getElementById('kids-next-btn');
 
-            const fbContainer = document.getElementById('kids-feedback-container');
-            const q = kidsQuestions[currentKidsIdx];
-
-            if(isCorrect) {
+            if (isCorrect) {
                 kidsScore += 10;
                 document.getElementById('kids-score').innerText = kidsScore;
-                btns[index].classList.add('border-esperanca-500', 'bg-esperanca-50', 'text-esperanca-800');
-                fbContainer.className = "p-5 rounded-2xl bg-esperanca-50 border-2 border-esperanca-200 text-esperanca-900 text-base font-medium space-y-2 block shadow-sm";
-                fbContainer.innerHTML = `
-                    <div class="flex items-center gap-2 text-esperanca-700 font-extrabold text-lg">🎉 Incrível! Você acertou (+10★)</div>
-                    <p class="text-sm text-slate-700 font-semibold bg-white p-3 rounded-xl border border-esperanca-100">${q.rule}</p>
-                    <p class="text-xs text-slate-500 italic mt-1">${q.explanation}</p>
-                `;
+                feedback.className = "mt-6 p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-2";
+                feedback.innerHTML = `<p class="font-bold flex items-center gap-2">🎉 Excelente Escolha!</p><p class="text-xs sm:text-sm font-medium">${q.explanation}</p>`;
             } else {
-                btns[index].classList.add('border-red-400', 'bg-red-50', 'text-red-800');
-                fbContainer.className = "p-5 rounded-2xl bg-red-50 border-2 border-red-200 text-red-900 text-base font-medium space-y-2 block shadow-sm";
-                fbContainer.innerHTML = `
-                    <div class="flex items-center gap-2 text-red-700 font-extrabold text-lg">⚠️ Cuidado, Pequeno Guardião!</div>
-                    <p class="text-sm text-slate-700 font-semibold bg-white p-3 rounded-xl border border-red-100">${q.rule}</p>
-                    <p class="text-xs text-slate-500 italic mt-1">${q.explanation}</p>
-                `;
+                feedback.className = "mt-6 p-5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-900 space-y-2";
+                feedback.innerHTML = `<p class="font-bold flex items-center gap-2">⚠️ Atenção, Herói!</p><p class="text-xs sm:text-sm font-medium">${q.rule}</p>`;
             }
-            document.getElementById('kids-next-btn').classList.remove('hidden');
+
+            feedback.classList.remove('hidden');
+            nextBtn.classList.remove('hidden');
         }
 
         function nextKidsQuestion() {
-            currentKidsIdx++;
-            renderKidsQuestion();
-        }
-
-        // --- MÓDULO TEENS: LÓGICA ---
-        function resetTeensQuiz() {
-            currentTeensIdx = 0;
-            renderTeensCase();
-        }
-
-        function renderTeensCase() {
-            const container = document.getElementById('teens-case-container');
-            const fbContainer = document.getElementById('teens-feedback-container');
-            const nextBtn = document.getElementById('teens-next-btn');
-
-            fbContainer.classList.add('hidden');
-            nextBtn.classList.add('hidden');
-
-            const progress = (currentTeensIdx / teenCases.length) * 100;
-            document.getElementById('teens-progress').style.width = `${progress}%`;
-            document.getElementById('teens-step-indicator').innerText = `Caso ${currentTeensIdx + 1} de ${teenCases.length}`;
-
-            if(currentTeensIdx >= teenCases.length) {
-                document.getElementById('teens-progress').style.width = '100%';
-                container.innerHTML = `
-                    <div class="text-center space-y-4 py-6">
-                        <span class="text-5xl">🛡️</span>
-                        <h3 class="text-2xl font-extrabold text-indigo-400">Análise Completa!</h3>
-                        <p class="text-slate-300">Você domina com excelência os conceitos avançados de privacidade, proteção contra golpes corporativos e engenharia social digital.</p>
-                        <button onclick="switchTab('landing')" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-sm">Voltar ao Início</button>
+            currentKidsIndex++;
+            if (currentKidsIndex < kidsQuestions.length) {
+                showKidsQuestion();
+            } else {
+                document.getElementById('kids-progress').style.width = "100%";
+                document.getElementById('kids-quiz-container').innerHTML = `
+                    <div class="text-center py-8 space-y-4">
+                        <span class="text-5xl block">🏆</span>
+                        <h3 class="text-2xl font-black text-slate-900">Parabéns, Guardião Mirim!</h3>
+                        <p class="text-slate-600 max-w-md mx-auto text-sm">Você completou todas as missões e provou que sabe se proteger no ambiente digital!</p>
+                        <div class="bg-amber-100 inline-block px-4 py-2 rounded-2xl text-amber-900 font-extrabold">Pontuação Final: ${kidsScore} pontos</div>
                     </div>
                 `;
-                document.getElementById('teens-step-indicator').innerText = "Análise finalizada";
-                return;
+                document.getElementById('kids-next-btn').classList.add('hidden');
             }
+        }
 
-            const c = teenCases[currentTeensIdx];
+        // --- LÓGICA DO MÓDULO TEENS ---
+        let currentTeensIndex = 0;
+
+        function startTeensQuiz() {
+            currentTeensIndex = 0;
+            showTeenCase();
+        }
+
+        function showTeenCase() {
+            const container = document.getElementById('teens-case-container');
+            const feedback = document.getElementById('teens-feedback-container');
+            const nextBtn = document.getElementById('teens-next-btn');
+            
+            feedback.classList.add('hidden');
+            nextBtn.classList.add('hidden');
+
+            const c = teenCases[currentTeensIndex];
+            document.getElementById('teens-step-indicator').innerText = `Caso ${currentTeensIndex + 1} de ${teenCases.length}`;
+            
+            const progress = ((currentTeensIndex) / teenCases.length) * 100;
+            document.getElementById('teens-progress').style.width = `${progress}%`;
+
+            let optionsHtml = c.options.map((opt, i) => `
+                <button onclick="answerTeenCase(${i})" class="w-full text-left p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-400 hover:bg-indigo-50/30 font-medium transition text-sm text-slate-700 dark:text-slate-300">
+                    ${opt.text}
+                </button>
+            `).join('');
+
             container.innerHTML = `
-                <div class="space-y-4">
-                    <span class="text-indigo-400 font-extrabold tracking-wider uppercase text-xs">Análise de Incidente</span>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">${c.title}</h3>
-                    <p class="text-slate-600 dark:text-slate-300 text-sm bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 text-justify leading-relaxed">${c.description}</p>
-                    
-                    <div class="grid grid-cols-1 gap-3 pt-2">
-                        ${c.options.map((opt, i) => `
-                            <button onclick="checkTeenAnswer(${i}, ${opt.correct})" class="teen-opt-btn bg-slate-50 dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 text-left font-medium p-4 rounded-2xl border-2 border-transparent transition text-sm flex items-start gap-3">
-                                <span class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-500 w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold text-slate-400">${String.fromCharCode(65+i)}</span>
-                                <span>${opt.text}</span>
-                            </button>
-                        `).join('')}
-                    </div>
+                <div class="space-y-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Estudo de Caso</span>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">${c.title}</h3>
                 </div>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800">${c.description}</p>
+                <div class="space-y-3 pt-2">${optionsHtml}</div>
             `;
         }
 
-        function checkTeenAnswer(index, isCorrect) {
-            const btns = document.querySelectorAll('.teen-opt-btn');
-            btns.forEach(b => b.disabled = true);
+        function answerTeenCase(index) {
+            const c = teenCases[currentTeensIndex];
+            const isCorrect = c.options[index].correct;
+            const feedback = document.getElementById('teens-feedback-container');
+            const nextBtn = document.getElementById('teens-next-btn');
 
-            const fbContainer = document.getElementById('teens-feedback-container');
-            const c = teenCases[currentTeensIdx];
-
-            if(isCorrect) {
-                btns[index].classList.add('border-esperanca-500', 'bg-esperanca-950/20', 'text-esperanca-300');
-                fbContainer.className = "p-5 rounded-2xl bg-esperanca-900/20 border-2 border-esperanca-500/40 text-slate-100 text-sm space-y-1 block";
-                fbContainer.innerHTML = `<strong class="text-esperanca-400"> Decisão Defensiva Perfeita:</strong><p class="mt-1 text-slate-300">${c.explanation}</p>`;
+            if (isCorrect) {
+                feedback.className = "mt-6 p-5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900 text-emerald-900 dark:text-emerald-300 space-y-1";
+                feedback.innerHTML = `<p class="font-bold text-sm">✓ Resposta Correta!</p><p class="text-xs leading-relaxed">${c.explanation}</p>`;
             } else {
-                btns[index].classList.add('border-red-500', 'bg-red-950/20', 'text-red-300');
-                fbContainer.className = "p-5 rounded-2xl bg-red-900/20 border-2 border-red-500/40 text-slate-100 text-sm space-y-1 block";
-                fbContainer.innerHTML = `<strong class="text-red-400"> Risco Identificado:</strong><p class="mt-1 text-slate-300">${c.explanation}</p>`;
+                feedback.className = "mt-6 p-5 rounded-2xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900 text-rose-900 dark:text-rose-300 space-y-1";
+                feedback.innerHTML = `<p class="font-bold text-sm">🗙 Resposta Incorreta ou Insegura</p><p class="text-xs leading-relaxed">${c.explanation}</p>`;
             }
-            document.getElementById('teens-next-btn').classList.remove('hidden');
+
+            feedback.classList.remove('hidden');
+            nextBtn.classList.remove('hidden');
         }
 
         function nextTeenCase() {
-            currentTeensIdx++;
-            renderTeensCase();
+            currentTeensIndex++;
+            if (currentTeensIndex < teenCases.length) {
+                showTeenCase();
+            } else {
+                document.getElementById('teens-progress').style.width = "100%";
+                document.getElementById('teens-case-container').innerHTML = `
+                    <div class="text-center py-8 space-y-3">
+                        <span class="text-4xl block">🚀</span>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Análise Concluída com Sucesso!</h3>
+                        <p class="text-slate-600 dark:text-slate-400 max-w-sm mx-auto text-xs sm:text-sm">Você demonstrou excelente maturidade e entendimento sobre Engenharia Social e prevenção de incidentes digitais.</p>
+                    </div>
+                `;
+                document.getElementById('teens-next-btn').classList.add('hidden');
+            }
         }
 
-        // --- MÓDULO ADULTOS: MECANISMO DE CHATBOT COM ENTRADA LIVRE (NLP LOCAL) ---
+        // --- LÓGICA DO MÓDULO ADULTOS (CHATBOT TECH & CIBERSEGURANÇA) ---
         function handleAdultQuestion(event) {
             event.preventDefault();
-            
-            const inputEl = document.getElementById('chat-user-input');
-            const chatBox = document.getElementById('chat-messages');
-            const userText = inputEl.value.trim();
-            
-            if(!userText) return;
+            const inputElement = document.getElementById('chat-user-input');
+            const questionText = inputElement.value.trim();
+            if (!questionText) return;
 
-            // 1. Renderiza a pergunta do usuário na tela
-            chatBox.innerHTML += `
-                <div class="flex items-start gap-3 justify-end">
-                    <div class="bg-indigo-600 text-white p-3.5 rounded-2xl rounded-tr-none shadow-sm text-sm font-medium max-w-[85%] text-left">
-                        ${escapeHTML(userText)}
-                    </div>
-                </div>
-            `;
-            
-            // Limpa o input imediatamente
-            inputEl.value = "";
-            chatBox.scrollTop = chatBox.scrollHeight;
+            // Insere a pergunta do usuário
+            appendChatMessage(questionText, 'user');
+            inputElement.value = '';
 
-            // 2. Processador de Linguagem Natural Local (NLP) por correspondência de intenções
-            const textNormalized = userText.toLowerCase();
-            let botResponse = "";
-
-            // Cenário A: Sinais de Alerta e Mudanças de Comportamento
-            if (matchesKeywords(textNormalized, ['sinal', 'sinais', 'alerta', 'comportamento', 'esconde', 'mudar', 'triste', 'isolado', 'isolamento', 'comportar'])) {
-                botResponse = `
-                    <strong>🔍 Diretrizes Práticas — Identificando Sinais de Alerta:</strong>
-                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">Mudanças abruptas são os indicadores mais confiáveis de assédio ou aliciamento digital. Fique atento a:</p>
-                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600">
-                        <li><strong>Segredo de Tela:</strong> O menor fecha abas instantaneamente ou vira o celular para baixo quando você entra no cômodo.</li>
-                        <li><strong>Isolamento Social:</strong> Abandono de atividades físicas ou hobbies presenciais para passar noites inteiras trancado no quarto jogando ou conversando.</li>
-                        <li><strong>Riqueza Inexplicável:</strong> Aparição de moedas virtuais caras (*Robux, V-Bucks*), skins raras ou eletrônicos novos sem que você tenha comprado.</li>
-                    </ul>
-                `;
-            } 
-            // Cenário B: Canais Jurídicos e Delegacias de Denúncia
-            else if (matchesKeywords(textNormalized, ['denuncia', 'denunciar', 'policia', 'delegacia', 'boletim', 'bo', 'safernet', 'disque', 'crime', 'autoridade'])) {
-                botResponse = `
-                    <strong>🚨 Guia Jurídico — Como Proceder com Denúncias Criminais:</strong>
-                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">Em caso de crimes contra menores, a preservação técnica das evidências digitais é indispensável:</p>
-                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600">
-                        <li><strong>Preserve as Provas:</strong> Não apague chats, contas ou mídias. Tire prints completos incluindo a barra de endereço (URLs) e o ID numérico dos perfis criminosos.</li>
-                        <li><strong>Polícia Especializada:</strong> Vá à Delegacia de Repressão a Crimes Cibernéticos (DERCC) do seu estado ou registre um Boletim de Ocorrência Eletrônico.</li>
-                        <li><strong>Canais Digitais:</strong> Utilize o portal nacional da <strong>SaferNet Brasil</strong> (safernet.org.br) para denúncias anônimas de abuso, vazamento ou racismo.</li>
-                    </ul>
-                `;
-            } 
-            // Cenário C: Ferramentas Técnicas e Medidas Preventivas
-            else if (matchesKeywords(textNormalized, ['prevencao', 'prevenir', 'bloquear', 'aplicativo', 'controle', 'parental', 'filtro', 'roteador', 'monitorar', 'proteger'])) {
-                botResponse = `
-                    <strong>🛡️ Protocolo Técnico — Prevenção Ativa e Controle Parental:</strong>
-                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">A cibersegurança preventiva combina barreiras tecnológicas com instrução contínua:</p>
-                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600">
-                        <li><strong>Controle de Ecossistema:</strong> Instale aplicações de gestão como o <em>Google Family Link</em> ou <em>Apple Screen Time</em> para supervisionar downloads de apps.</li>
-                        <li><strong>Privacidade Restrita:</strong> Configure perfis do Instagram e TikTok dos jovens como 'Privados' e bloqueie o recebimento de DMs de contas desconhecidas.</li>
-                        <li><strong>Posicionamento Físico:</strong> Mantenha computadores e videogames em áreas comuns da residência (sala), evitando o uso isolado de telas na madrugada.</li>
-                    </ul>
-                `;
-            }
-            // Cenário D: Apostas / Tigrinho / Bets
-            else if (matchesKeywords(textNormalized, ['tigrinho', 'aposta', 'bet', 'bets', 'jogo de azar', 'perder dinheiro', 'roleta'])) {
-                botResponse = `
-                    <strong>🎰 Alerta de Fraude: Plataformas de Apostas (Bets / Tigrinho):</strong>
-                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">O acesso de menores a plataformas de cassino digital cresceu de forma drástica através de marketing abusivo:</p>
-                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600">
-                        <li><strong>Engenharia Financeira:</strong> Menores costumam subtrair cartões ou chaves Pix de familiares atraídos por promessas de ganhos rápidos feitas por influenciadores.</li>
-                        <li><strong>Abordagem Escolar:</strong> Monitore se há o uso de cartões pré-pagos ou transações Pix suspeitas no extrato da conta da família. Explique que o algoritmo é programado de forma fraudulenta para retenção do dinheiro depositado.</li>
-                    </ul>
-                `;
-            }
-            // Cenário E: Deepfakes e Uso Inadequado de Inteligência Artificial
-            else if (matchesKeywords(textNormalized, ['deepfake', 'ia', 'inteligencia artificial', 'montagem', 'voz', 'foto alterada'])) {
-                botResponse = `
-                    <strong>🤖 Riscos Tecnológicos: Deepfakes e Modificações por IA:</strong>
-                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">Ferramentas abertas de IA agora conseguem simular rostos e vozes reais com precisão perigosa:</p>
-                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600">
-                        <li><strong>Uso Escolar:</strong> Alunos têm gerado deepfakes pornográficos ou de difamação para humilhar colegas e professores em grupos de WhatsApp.</li>
-                        <li><strong>Como Combater:</strong> Ensine os jovens a não compartilharem mídias de alta resolução em perfis públicos. Caso ocorra uma montagem difamatória, a escola e os pais devem registrar ocorrência policial por falsidade ideológica e difamação imediatamente.</li>
-                    </ul>
-                `;
-            }
-            // Cenário F: Chantagem / Extorsão / Fotos Íntimas
-            else if (matchesKeywords(textNormalized, ['chantagem', 'ameaca', 'extorsao', 'snapchat', 'foto privada', 'nudes', 'vazar'])) {
-                botResponse = `
-                    <strong>⚠️ Crise Digital: Chantagem e Vazamento de Fotos (Sextorsão):</strong>
-                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">Esta é uma das maiores emergências enfrentadas por adolescentes em redes sociais:</p>
-                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600">
-                        <li><strong>Jamais Ceda:</strong> Criminosos exigem dinheiro ou mais fotos prometendo deletar o arquivo inicial, mas isso nunca acontece. Ceder alimenta a extorsão.</li>
-                        <li><strong>Intervenção Adulta imediata:</strong> Acolha o jovem sem agressividade verbal (o medo do julgamento familiar faz com que muitos cometam atos extremos). Corte o contato com o chantagista, capture prints de todas as ameaças e números de telefone envolvidos, e acione a delegacia civil.</li>
-                    </ul>
-                `;
-            }
-            // Fallback: Resposta Genérica Avançada
-            else {
-                botResponse = `
-                    <strong>🤖 Olá! Compreendi sua questão, mas preciso focar em Cibersegurança Infantil.</strong>
-                    <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">Como um assistente especializado em segurança digital escolar e familiar, recomendo refazer sua pergunta utilizando palavras-chave voltadas aos tópicos abaixo:</p>
-                    <ul class="list-disc pl-4 mt-2 space-y-1 text-xs text-slate-600 font-medium">
-                        <li><strong>"Como posso fazer uma denúncia?"</strong> (Para delegacias e SaferNet)</li>
-                        <li><strong>"Quais são os sinais de perigo?"</strong> (Para comportamento e isolamento)</li>
-                        <li><strong>"Como bloquear aplicativos?"</strong> (Para controle parental e roteadores)</li>
-                        <li><strong>Perguntas sobre golpes:</strong> <em>"Tigrinho", "Roblox", "Chantagem", "WhatsApp" ou "Deepfakes"</em>.</li>
-                    </ul>
-                `;
-            }
-
-            // 3. Renderiza a resposta simulada do robô após um pequeno delay
+            // Simula tempo de resposta do Chatbot
             setTimeout(() => {
-                chatBox.innerHTML += `
-                    <div class="flex items-start gap-3">
-                        <span class="w-8 h-8 bg-seguro-600 text-white rounded-full flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-robot"></i></span>
-                        <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-sm leading-relaxed max-w-[85%] text-slate-700 text-left">
-                            ${botResponse}
-                        </div>
+                const responseText = getAssistantResponse(questionText);
+                appendChatMessage(responseText, 'bot');
+            }, 600);
+        }
+
+        function appendChatMessage(text, sender) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            
+            if (sender === 'user') {
+                messageDiv.className = "flex items-start gap-3 justify-end";
+                messageDiv.innerHTML = `
+                    <div class="bg-seguro-600 text-white p-3.5 rounded-2xl rounded-tr-none shadow-sm text-sm leading-relaxed max-w-[85%] font-medium">
+                        ${text}
+                    </div>
+                    <span class="w-8 h-8 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center text-xs shrink-0 font-bold"><i class="fa-solid fa-user"></i></span>
+                `;
+            } else {
+                messageDiv.className = "flex items-start gap-3";
+                messageDiv.innerHTML = `
+                    <span class="w-8 h-8 bg-seguro-600 text-white rounded-full flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-robot"></i></span>
+                    <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-sm leading-relaxed max-w-[85%] text-slate-700 space-y-2">
+                        ${text}
                     </div>
                 `;
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }, 550);
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Função utilitária para checar palavras-chave
-        function matchesKeywords(text, keywords) {
-            return keywords.some(keyword => text.includes(keyword));
-        }
+        function getAssistantResponse(input) {
+            const query = input.toLowerCase();
 
-        // Função utilitária para higienizar texto digitado pelo usuário
-        function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g, 
-                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-            );
+            // Lista estendida de palavras-chave para detectar controle de tempo de tela e aparelhos móveis
+            const tempoDeTelaKeywords = [
+                'tirar meu filho', 'tirar do computador', 'tempo de tela', 
+                'viciado em jogos', 'limitar o uso', 'limitar tempo', 
+                'no celular', 'no telefone', 'no smartphone', 'ficar tanto',
+                'viciado no celular', 'viciada no celular', 'mexer no celular',
+                'tirar o celular', 'limitar celular'
+            ];
+
+            // Testa se a mensagem do usuário contém alguma das palavras-chave de tempo de tela
+            const alcancouTempoTela = tempoDeTelaKeywords.some(keyword => query.includes(keyword));
+
+            if (alcancouTempoTela) {
+                return `
+                    <p class="font-bold text-slate-900">Gerenciamento de Tempo e Segurança Digital em Dispositivos Móveis</p>
+                    <p>Para mitigar o uso excessivo de celulares e smartphones sem gerar atritos puramente comportamentais, a abordagem recomendada pela arquitetura de segurança é a implementação de <strong>Políticas de Controle Parental e Configurações de Infraestrutura de Rede</strong>:</p>
+                    <ul class="list-disc pl-4 text-xs space-y-1 text-slate-600 font-medium">
+                        <li><strong>Google Family Link (Android):</strong> Permite aos responsáveis bloquear remotamente o smartphone, estipular limites diários de uso para aplicativos específicos (como TikTok, YouTube ou jogos) e programar o "Horário de Dormir", onde o dispositivo fica completamente inativo.</li>
+                        <li><strong>Tempo de Tela / Compartilhamento Familiar (iOS/Apple):</strong> Permite limitar o uso de aplicativos por categorias, bloquear compras na App Store, rastrear a localização em tempo real e suspender o uso do iPhone/iPad durante janelas de horários selecionadas.</li>
+                        <li><strong>Agendamento de Acesso no Roteador (Filtro MAC):</strong> Acesse o painel de administração do seu roteador residencial (via IPs como 192.168.0.1 ou 192.168.1.1). Na aba de segurança ou controle parental, cadastre o endereço MAC do celular do seu filho e defina horários programados de corte do sinal Wi-Fi (ex: corte de sinal às 22h).</li>
+                        <li><strong>Modo Foco e Bem-Estar Digital:</strong> Configure regras diretamente no aparelho para ocultar notificações de redes sociais após determinado horário, reduzindo o gatilho visual e a ansiedade gerada pelos alertas eletrônicos.</li>
+                    </ul>
+                    <p class="text-xs text-slate-500 italic mt-1">Lembrete Técnico: Ferramentas de controle servem como barreiras de segurança estrutural, agindo em conjunto com o diálogo aberto sobre higiene cibernética.</p>
+                `;
+            }
+
+            // Respostas para denúncias de fraudes ou crimes
+            if (query.includes('denunciar') || query.includes('perfil falso') || query.includes('golpe') || query.includes('crime')) {
+                return `
+                    <p class="font-bold text-slate-900">Protocolo de Denúncia para Crimes Cibernéticos</p>
+                    <p>Caso suspeite de infrações contra menores ou fraudes financeiras na internet, siga os procedimentos de preservação técnica de provas:</p>
+                    <ul class="list-disc pl-4 text-xs space-y-1 text-slate-600 font-medium">
+                        <li><strong>Preservação de Evidências:</strong> Não exclua mensagens, metadados ou chats. Faça capturas de tela contendo o cabeçalho completo, número telefônico envolvido e URLs exatas de perfis.</li>
+                        <li><strong>Canal Nacional:</strong> Encaminhe os dados coletados de forma anônima e segura ao portal da <strong>SaferNet Brasil</strong> (safernet.org.br).</li>
+                        <li><strong>Ação Policial:</strong> Dirija-se à <strong>Delegacia de Repressão a Crimes Informáticos (DRCI)</strong> regional ou registre boletim de ocorrência eletrônico no portal da Polícia Civil de seu estado.</li>
+                    </ul>
+                `;
+            }
+
+            // Resposta Padrão Fallback
+            return `
+                <p class="font-bold text-slate-900">Entendido. Como consultor cibernético familiar, recomendo:</p>
+                <p>Para proteger os menores, ative sempre a <strong>Autenticação de Dois Fatores (2FA)</strong> nas contas de jogos (Roblox, Discord), configure filtros de pesquisa segura no Google (SafeSearch) e utilize softwares de monitoramento centralizado.</p>
+                <p class="text-xs text-slate-500">Se você possui dúvidas sobre limites de acesso de rede, tempo de tela no celular ou configuração de roteadores, pode me perguntar!</p>
+            `;
         }
     </script>
 </body>
