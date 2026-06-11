@@ -21,7 +21,7 @@
                             800: '#053f86', 900: '#0b356f',
                         },
                         esperanca: {
-                            50: '#f0df4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac',
+                            50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac',
                             400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d',
                             800: '#166534', 900: '#14532d',
                         }
@@ -37,10 +37,18 @@
         .tab-content.active { display: block; }
         .tab-content.show { opacity: 1; transform: translateY(0); }
         
-        .robot-float { animation: floatRobot 4s ease-in-out infinite; }
+        /* Animação do Robô flutuando */
+        .robot-float { animation: floatRobot 3s ease-in-out infinite; }
         @keyframes floatRobot {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Animação para os olhos piscarem */
+        .eye-blink { animation: blinkEffect 4s infinite; }
+        @keyframes blinkEffect {
+            0%, 45%, 55%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.1); }
         }
         
         ::-webkit-scrollbar { width: 6px; }
@@ -148,24 +156,25 @@
                 </div>
 
                 <div class="relative flex flex-col md:flex-row items-stretch gap-4 mt-6">
-                    <div id="kids-avatar-box" class="w-full md:w-44 bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center shadow-lg border-4 border-amber-400 relative z-20 shrink-0 min-h-[190px] transition-colors duration-300">
+                    <div id="kids-avatar-box" class="w-full md:w-44 bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center shadow-lg border-4 border-amber-400 relative z-20 shrink-0 min-h-[190px] transition-all duration-300">
                         <div class="robot-float flex flex-col items-center justify-center w-full">
                             <div class="w-1.5 h-3 bg-slate-400 rounded-t-full"></div>
                             <div class="w-3 h-3 bg-amber-400 rounded-full -mt-1 shadow-md"></div>
                             <div class="w-24 h-20 bg-gradient-to-b from-slate-300 to-slate-400 rounded-2xl border-4 border-slate-600 p-2 relative flex flex-col justify-between shadow-inner mt-0.5">
                                 <div class="absolute -left-3 top-6 w-3 h-4 bg-slate-500 rounded-l"></div>
                                 <div class="absolute -right-3 top-6 w-3 h-4 bg-slate-500 rounded-r"></div>
-                                <div id="robot-screen" class="w-full h-full bg-slate-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors">
-                                    <div id="robot-eyes" class="flex justify-center gap-4 w-full">
-                                        <div class="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee]"></div>
-                                        <div class="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee]"></div>
+                                
+                                <div id="robot-screen" class="w-full h-full bg-slate-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors duration-300">
+                                    <div id="robot-eyes" class="flex justify-center gap-4 w-full transition-all duration-300">
+                                        <div class="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee] eye-blink"></div>
+                                        <div class="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee] eye-blink"></div>
                                     </div>
-                                    <div id="robot-mouth" class="w-8 h-1 bg-cyan-400 rounded shadow-[0_0_6px_#22d3ee] transition-all"></div>
+                                    <div id="robot-mouth" class="w-8 h-1 bg-cyan-400 rounded shadow-[0_0_6px_#22d3ee] transition-all duration-300"></div>
                                 </div>
                             </div>
                             <div class="w-8 h-2 bg-slate-500 -mt-0.5 rounded-b"></div>
                         </div>
-                        <div id="kids-avatar-status" class="bg-amber-400 px-3 py-0.5 rounded-full text-[9px] font-black text-slate-950 uppercase tracking-wider mt-4 shadow text-center">Amigo Robozi</div>
+                        <div id="kids-avatar-status" class="bg-amber-400 px-3 py-0.5 rounded-full text-[9px] font-black text-slate-950 uppercase tracking-wider mt-4 shadow text-center transition-colors duration-300">Aguardando...</div>
                     </div>
 
                     <div id="kids-main-card" class="flex-grow bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-2 border-amber-100 relative overflow-hidden flex flex-col justify-between">
@@ -296,6 +305,7 @@
             if (modulo === 'Teens') logsTeens.push({ tema, status, detalhe });
         }
 
+        // RECONSTITUÍDO: Todas as perguntas originais completas estão de volta aqui!
         const kidsQuestions = [
             { tema: "Cuidados com Estranhos", mission: "🤫", question: "Você está jogando seu joguinho favorito e alguém que você não conhece na vida real pede o seu nome inteiro e o telefone da mamãe. O que você faz?", options: [{ text: "Não escrevo nada e chamo correndo um adulto de confiança!", correct: true }, { text: "Escrevo rapidinho para a pessoa ser minha amiga no jogo.", correct: false }], rule: "Regra Importante: Nosso nome verdadeiro, telefone e endereço são segredos preciosos que nunca contamos na internet!", explanation: "Muito bem! Pessoas na internet podem fingir ser crianças ou bonzinhas, mas nunca devemos dar nossos dados sem os pais deixarem." },
             { tema: "Cuidado com Fotos", mission: "📸", question: "Alguém no bate-papo do jogo diz que vai te dar muitas moedas grátis se você mandar uma foto do seu rostinho fazendo pose. O que é o certo fazer?", options: [{ text: "Tiro a foto bem alegre para ganhar as moedas!", correct: false }, { text: "Não mando foto nenhuma e aviso correndo quem estiver cuidando de mim.", correct: true }], rule: "Regra Importante: Nosso corpinho e nosso rosto são muito valiosos. Nunca mandamos fotos para quem não conhecemos de verdade!", explanation: "Isso aí! Muitas vezes pessoas ruins mentem sobre presentes em jogos só para conseguir fotos de crianças." },
@@ -347,7 +357,6 @@
             }
         ];
 
-        // LOGICA DE NAVEGAÇÃO E JOGO
         let currentKidsIndex = 0;
         let kidsScore = 0;
         let currentTeenIndex = 0;
@@ -368,7 +377,7 @@
             if (tabName === 'teens' && currentTeenIndex === 0) loadTeenCase();
         }
 
-        // FUNÇÕES DO MÓDULO KIDS
+        // LÓGICA DO JOGO KIDS
         function loadKidsQuestion() {
             if (currentKidsIndex >= kidsQuestions.length) {
                 document.getElementById('kids-quiz-container').innerHTML = `
@@ -380,6 +389,7 @@
                     </div>`;
                 document.getElementById('kids-next-btn').classList.add('hidden');
                 document.getElementById('kids-step-indicator').innerText = "Fim do Jogo";
+                setRobotExpression('happy', 'Fim!');
                 return;
             }
 
@@ -404,23 +414,18 @@
                     <div class="grid grid-cols-1 gap-3 pt-2">${optionsHtml}</div>
                 </div>`;
             
-            // Reset do Robozi
-            document.getElementById('robot-eyes').innerHTML = `
-                <div class="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee]"></div>
-                <div class="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee]"></div>`;
-            document.getElementById('robot-mouth').className = "w-8 h-1 bg-cyan-400 rounded shadow-[0_0_6px_#22d3ee]";
+            setRobotExpression('thinking', 'Pensando');
         }
 
         function answerKidsQuestion(isCorrect, chosenIndex) {
             const q = kidsQuestions[currentKidsIndex];
             const fbBox = document.getElementById('kids-feedback-container');
             
-            // Desativar botões
             q.options.forEach((_, i) => {
                 const btn = document.getElementById(`kids-opt-${i}`);
                 btn.disabled = true;
                 if (q.options[i].correct) {
-                    btn.classList.add('border-emerald-500', 'bg-emerald-50');
+                    btn.classList.add('border-esperanca-500', 'bg-esperanca-50');
                 } else if (i === chosenIndex) {
                     btn.classList.add('border-rose-500', 'bg-rose-50');
                 }
@@ -432,21 +437,12 @@
                 fbBox.className = "mt-4 p-4 rounded-2xl text-sm font-medium bg-emerald-50 border border-emerald-200 text-emerald-800 space-y-1";
                 fbBox.innerHTML = `<p class="font-bold">✨ Acertou de primeira!</p><p class="text-xs text-emerald-700 font-normal">${q.explanation}</p><p class="text-xs font-bold pt-1 text-slate-700">${q.rule}</p>`;
                 registrarLog('Kids', q.tema, 'Correto', 'A criança escolheu a opção de segurança recomendada.');
-                
-                // Expressão do Robozi Feliz
-                document.getElementById('robot-eyes').innerHTML = `
-                    <div class="text-cyan-400 text-xs font-bold -mt-1">^</div>
-                    <div class="text-cyan-400 text-xs font-bold -mt-1">^</div>`;
+                setRobotExpression('happy', 'Boa!');
             } else {
                 fbBox.className = "mt-4 p-4 rounded-2xl text-sm font-medium bg-rose-50 border border-rose-200 text-rose-800 space-y-1";
                 fbBox.innerHTML = `<p class="font-bold">💡 Opa, vamos aprender juntos!</p><p class="text-xs text-rose-700 font-normal">${q.explanation}</p><p class="text-xs font-bold pt-1 text-slate-700">${q.rule}</p>`;
                 registrarLog('Kids', q.tema, 'Incorreto', 'A criança escolheu uma opção que a deixaria exposta na internet.');
-                
-                // Expressão do Robozi Preocupado
-                document.getElementById('robot-eyes').innerHTML = `
-                    <div class="w-3 h-3 bg-amber-400 rounded-full shadow-[0_0_8px_#f59e0b]"></div>
-                    <div class="w-3 h-3 bg-amber-400 rounded-full shadow-[0_0_8px_#f59e0b]"></div>`;
-                document.getElementById('robot-mouth').className = "w-4 h-2 bg-amber-400 rounded-t-full";
+                setRobotExpression('warn', 'Cuidado!');
             }
             fbBox.classList.remove('hidden');
             document.getElementById('kids-next-btn').classList.remove('hidden');
@@ -457,7 +453,46 @@
             loadKidsQuestion();
         }
 
-        // FUNÇÕES DO MÓDULO TEENS
+        // CONTROLADOR DE EXPRESSÕES DO ROBOZI
+        function setRobotExpression(state, statusText) {
+            const screen = document.getElementById('robot-screen');
+            const eyes = document.getElementById('robot-eyes');
+            const mouth = document.getElementById('robot-mouth');
+            const label = document.getElementById('kids-avatar-status');
+            const box = document.getElementById('kids-avatar-box');
+
+            label.innerText = statusText;
+
+            if (state === 'thinking') {
+                screen.className = "w-full h-full bg-slate-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors duration-300";
+                box.className = "w-full md:w-44 bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center shadow-lg border-4 border-amber-400 shrink-0 min-h-[190px] transition-all duration-300";
+                label.className = "bg-amber-400 px-3 py-0.5 rounded-full text-[9px] font-black text-slate-950 uppercase tracking-wider mt-4 shadow text-center";
+                eyes.innerHTML = `
+                    <div class="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee] eye-blink"></div>
+                    <div class="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee] eye-blink"></div>`;
+                mouth.className = "w-8 h-1 bg-cyan-400 rounded shadow-[0_0_6px_#22d3ee]";
+            } 
+            else if (state === 'happy') {
+                screen.className = "w-full h-full bg-emerald-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors duration-300";
+                box.className = "w-full md:w-44 bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center shadow-lg border-4 border-emerald-400 shrink-0 min-h-[190px] transition-all duration-300";
+                label.className = "bg-emerald-400 px-3 py-0.5 rounded-full text-[9px] font-black text-white uppercase tracking-wider mt-4 shadow text-center animate-bounce";
+                eyes.innerHTML = `
+                    <div class="text-emerald-400 text-base font-extrabold -mt-2 leading-none">^</div>
+                    <div class="text-emerald-400 text-base font-extrabold -mt-2 leading-none">^</div>`;
+                mouth.className = "w-6 h-2 bg-emerald-400 rounded-b-full shadow-[0_0_6px_#34d399]";
+            } 
+            else if (state === 'warn') {
+                screen.className = "w-full h-full bg-amber-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors duration-300";
+                box.className = "w-full md:w-44 bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center shadow-lg border-4 border-amber-500 shrink-0 min-h-[190px] transition-all duration-300";
+                label.className = "bg-amber-500 px-3 py-0.5 rounded-full text-[9px] font-black text-white uppercase tracking-wider mt-4 shadow text-center";
+                eyes.innerHTML = `
+                    <div class="text-amber-400 text-xs font-bold leading-none">o</div>
+                    <div class="text-amber-400 text-xs font-bold leading-none">o</div>`;
+                mouth.className = "w-5 h-2 bg-amber-400 rounded-t-full shadow-[0_0_6px_#fbbf24]";
+            }
+        }
+
+        // LÓGICA DA MISSÃO JOVENS
         function loadTeenCase() {
             if (currentTeenIndex >= teenCases.length) {
                 document.getElementById('teen-game-body').classList.add('hidden');
@@ -537,11 +572,9 @@
             const text = input.value.trim();
             if (!text) return;
 
-            // Mensagem do Usuário
             addChatMessage(text, true);
             input.value = '';
 
-            // Lógica Simples de Resposta da IA (Focada em Linguagem Humana e Direta)
             setTimeout(() => {
                 let reply = "";
                 const lower = text.toLowerCase();
