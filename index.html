@@ -37,7 +37,6 @@
         .tab-content.active { display: block; }
         .tab-content.show { opacity: 1; transform: translateY(0); }
         
-        /* Animação de flutuação suave do Robô Fixo */
         .robot-float { animation: floatRobot 4s ease-in-out infinite; }
         @keyframes floatRobot {
             0%, 100% { transform: translateY(0); }
@@ -150,15 +149,12 @@
 
                 <div class="relative flex flex-col md:flex-row items-stretch gap-4 mt-6">
                     <div id="kids-avatar-box" class="w-full md:w-44 bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center shadow-lg border-4 border-amber-400 relative z-20 shrink-0 min-h-[190px] md:min-h-auto transition-colors duration-300">
-                        
                         <div class="robot-float flex flex-col items-center justify-center w-full">
                             <div class="w-1.5 h-3 bg-slate-400 rounded-t-full"></div>
                             <div class="w-3 h-3 bg-amber-400 rounded-full -mt-1 shadow-md"></div>
-                            
                             <div class="w-24 h-20 bg-gradient-to-b from-slate-300 to-slate-400 rounded-2xl border-4 border-slate-600 p-2 relative flex flex-col justify-between shadow-inner mt-0.5">
                                 <div class="absolute -left-3 top-6 w-3 h-4 bg-slate-500 rounded-l"></div>
                                 <div class="absolute -right-3 top-6 w-3 h-4 bg-slate-500 rounded-r"></div>
-                                
                                 <div id="robot-screen" class="w-full h-full bg-slate-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors">
                                     <div id="robot-eyes" class="flex justify-center gap-4 w-full">
                                         <div class="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee]"></div>
@@ -167,10 +163,8 @@
                                     <div id="robot-mouth" class="w-8 h-1 bg-cyan-400 rounded shadow-[0_0_6px_#22d3ee] transition-all"></div>
                                 </div>
                             </div>
-                            
                             <div class="w-8 h-2 bg-slate-500 -mt-0.5 rounded-b"></div>
                         </div>
-
                         <div id="kids-avatar-status" class="bg-amber-400 px-3 py-0.5 rounded-full text-[9px] font-black text-slate-950 uppercase tracking-wider mt-4 shadow text-center">Ativo</div>
                     </div>
 
@@ -202,7 +196,7 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div id="teen-game-body" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="md:col-span-2 space-y-4">
                             <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
                                 <div class="flex items-center justify-between"><span class="text-[11px] font-bold uppercase text-slate-500">Relato do Incidente</span><span id="teen-case-id" class="text-[10px] bg-indigo-950 border border-indigo-800 px-2 py-0.5 rounded text-indigo-400 font-mono">CASO #1</span></div>
@@ -227,6 +221,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <div id="teen-conclusion-box" class="hidden bg-slate-950 border border-slate-800 p-8 rounded-2xl text-center space-y-4"></div>
 
                     <div id="teen-game-feedback" class="hidden p-4 rounded-2xl text-xs leading-relaxed border font-mono"></div>
                     
@@ -293,7 +289,6 @@
     </footer>
 
     <script>
-        // TELEMETRIA DO SISTEMA
         let logsKids = [];
         let logsTeens = [];
 
@@ -303,12 +298,12 @@
         }
 
         const kidsQuestions = [
-            { tema: "Privacidade", mission: "O Segredo do Nome 🤫", question: "Você está jogando no tablet e um personagem que você não conhece na vida real pede o seu nome inteiro e o telefone da mamãe. O que você faz?", options: [{ text: "Não escrevo nada e chamo correndo um adulto! 🚫", correct: true }, { text: "Escrevo rapidinho para ele ser meu amigo no jogo. 😊", correct: false }], rule: "Regra de Ouro: Dados de casa e da família são segredos que nunca contamos na internet!", explanation: "Muito bem! Pessoas que não conhecemos na vida real não podem saber onde moramos." },
-            { tema: "Vazamento de Imagem", mission: "A Pegadinha da Foto 📸", question: "Alguém no chat do jogo diz que vai te dar muitas moedas grátis se você mandar uma foto do seu rostinho fazendo pose. Qual o certo?", options: [{ text: "Tiro a foto bem alegre para ganhar os itens!", correct: false }, { text: "Não mando foto nenhuma e aviso quem estiver cuidando de mim. 🛑", correct: true }], rule: "Regra de Ouro: Nosso corpinho e nosso rosto são preciosos. Nenhuma foto vai para estranhos!", explanation: "Isso aí! Na internet, pessoas ruins podem mentir sobre presentes para conseguir fotos." },
-            { tema: "Cibercrimes / Segurança", mission: "A Chave do Castelo 🔑", question: "Sua senha do jogo é como a chave de um cofre secreto. Um colega da internet pediu para você contar a senha para ele jogar na sua conta. Você conta?", options: [{ text: "Conto, afinal amigos dividem tudo.", correct: false }, { text: "Não conto para ninguém! A senha é só minha e dos meus pais. 🤫", correct: true }], rule: "Regra de Ouro: Senha é um segredo individual. Se alguém descobrir, pode sumir com seus jogos!", explanation: "Incrível! Guardar a senha em segredo protege sua conta de ser roubada para sempre." },
-            { tema: "Suporte Emocional", mission: "O Monstro na Tela 👻", question: "Você abriu um vídeo para assistir, mas de repente apareceu uma imagem feia, assustadora e que te deu muito medo. Como agir?", options: [{ text: "Escondo o tablet embaixo do cobertor e continuo olhando com medo.", correct: false }, { text: "Fecho os olhos, desligo a tela e conto tudo para o papai ou mamãe! 🗣️", correct: true }], rule: "Regra de Ouro: Se te deu medo ou tristeza, os adultos protetores precisam saber!", explanation: "Perfeito! Você nunca deve guardar segredos ruins. Falar com os pais limpa o medo." },
-            { tema: "Segurança em Jogos", mission: "O Convite no Jogo 🎮", question: "Um jogador desconhecido no Roblox ou PK XD te convida para mudar de jogo e ir para um aplicativo diferente que você nunca viu. Você vai?", options: [{ text: "Não aceito. Só entro em jogos novos se os meus pais deixarem. 🛡️", correct: true }, { text: "Aceito na hora porque adoro jogos novos!", correct: false }], rule: "Regra de Ouro: Jogos desconhecidos podem ter coisas que não são adequadas para crianças.", explanation: "Certíssimo! Só devemos navegar e baixar joguinhos que os responsáveis aprovaram." },
-            { tema: "Segurança Geral", mission: "O Celular Emprestado 📱", question: "Um amigo na rua pediu para mexer no celular da sua mãe que estava com você. O que você deve responder?", options: [{ text: "Não posso emprestar. Celular dos adultos tem coisas importantes de trabalho. 🔒", correct: true }, { text: "Empresto na hora para jogar junto.", correct: false }], rule: "Regra de Ouro: Dispositivos de adultos guardam contas e dados sérios da família.", explanation: "Perfeito! Dispositivos com acessos bancários e e-mails não devem ser compartilhados." }
+            { tema: "Privacidade", mission: "🤫", question: "Você está jogando no tablet e um personagem que você não conhece na vida real pede o seu nome inteiro e o telefone da mamãe. O que você faz?", options: [{ text: "Não escrevo nada e chamo correndo um adulto!", correct: true }, { text: "Escrevo rapidinho para ele ser meu amigo no jogo.", correct: false }], rule: "Regra de Ouro: Dados de casa e da família são segredos que nunca contamos na internet!", explanation: "Muito bem! Pessoas que não conhecemos na vida real não podem saber onde moramos." },
+            { tema: "Vazamento de Imagem", mission: "📸", question: "Alguém no chat do jogo diz que vai te dar muitas moedas grátis se você mandar uma foto do seu rostinho fazendo pose. Qual o certo?", options: [{ text: "Tiro a foto bem alegre para ganhar os itens!", correct: false }, { text: "Não mando foto nenhuma e aviso quem estiver cuidando de mim.", correct: true }], rule: "Regra de Ouro: Nosso corpinho e nosso rosto são preciosos. Nenhuma foto vai para estranhos!", explanation: "Isso aí! Na internet, pessoas ruins podem mentir sobre presentes para conseguir fotos." },
+            { tema: "Cibercrimes / Segurança", mission: "🔑", question: "Sua senha do jogo é como a chave de um cofre secreto. Um colega da internet pediu para você contar a senha para ele jogar na sua conta. Você conta?", options: [{ text: "Conto, afinal amigos dividem tudo.", correct: false }, { text: "Não conto para ninguém! A senha é só minha e dos meus pais.", correct: true }], rule: "Regra de Ouro: Senha é um segredo individual. Se alguém descobrir, pode sumir com seus jogos!", explanation: "Incrível! Guardar a senha em segredo protege sua conta de ser roubada para sempre." },
+            { tema: "Suporte Emocional", mission: "👻", question: "Você abriu um vídeo para assistir, mas de repente apareceu uma imagem feia, assustadora e que te deu muito medo. Como agir?", options: [{ text: "Escondo o tablet embaixo do cobertor e continuo olhando com medo.", correct: false }, { text: "Fecho os olhos, desligo a tela e conto tudo para o papai ou mamãe!", correct: true }], rule: "Regra de Ouro: Se te deu medo ou tristeza, os adultos protetores precisam saber!", explanation: "Perfeito! Você nunca deve guardar segredos ruins. Falar com os pais limpa o medo." },
+            { tema: "Segurança em Jogos", mission: "🎮", question: "Um jogador desconhecido no Roblox ou PK XD te convida para mudar de jogo e ir para um aplicativo diferente que você nunca viu. Você vai?", options: [{ text: "Não aceito. Só entro em jogos novos se os meus pais deixarem.", correct: true }, { text: "Aceito na hora porque adoro jogos novos!", correct: false }], rule: "Regra de Ouro: Jogos desconhecidos podem ter coisas que não são adequadas para crianças.", explanation: "Certíssimo! Só devemos navegar e baixar joguinhos que os responsáveis aprovaram." },
+            { tema: "Segurança Geral", mission: "📱", question: "Um amigo na rua pediu para mexer no celular da sua mãe que estava com você. O que você deve responder?", options: [{ text: "Não posso emprestar. Celular dos adultos tem coisas importantes de trabalho.", correct: true }, { text: "Empresto na hora para jogar junto.", correct: false }], rule: "Regra de Ouro: Dispositivos de adultos guardam contas e dados sérios da família.", explanation: "Perfeito! Dispositivos com acessos bancários e e-mails não devem ser compartilhados." }
         ];
 
         const teenCases = [
@@ -384,13 +379,15 @@
             if (tabName === 'teens') startTeensGame();
         }
 
-        // CONTROLADOR DE EXPRESSÕES DIGITAL (CORRIGIDO E UNIFICADO)
+        // CONTROLADOR DE EXPRESSÕES DIGITAL
         function mudarExpressaoAvatar(tipo) {
             const screen = document.getElementById('robot-screen');
             const eyes = document.getElementById('robot-eyes');
             const mouth = document.getElementById('robot-mouth');
             const statusLabel = document.getElementById('kids-avatar-status');
             const avatarBox = document.getElementById('kids-avatar-box');
+
+            if (!screen) return; // Proteção caso mude de aba rápido
 
             if (tipo === 'espera') {
                 screen.className = "w-full h-full bg-slate-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors";
@@ -405,7 +402,6 @@
             } 
             else if (tipo === 'sucesso') {
                 screen.className = "w-full h-full bg-emerald-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors";
-                // Triângulos de alegria neon
                 eyes.innerHTML = `
                     <div class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-emerald-400 drop-shadow-[0_0_4px_#34d399]"></div>
                     <div class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-emerald-400 drop-shadow-[0_0_4px_#34d399]"></div>
@@ -417,7 +413,6 @@
             } 
             else if (tipo === 'perigo') {
                 screen.className = "w-full h-full bg-rose-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors";
-                // Olhos em fenda de atenção
                 eyes.innerHTML = `
                     <div class="w-3 h-1 bg-rose-400 rotate-12 shadow-[0_0_6px_#f43f5e]"></div>
                     <div class="w-3 h-1 bg-rose-400 -rotate-12 shadow-[0_0_6px_#f43f5e]"></div>
@@ -426,6 +421,18 @@
                 statusLabel.innerText = "Alerta!";
                 statusLabel.className = "bg-rose-500 text-white px-3 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider mt-4 shadow text-center";
                 avatarBox.className = "w-full md:w-44 bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center shadow-lg border-4 border-rose-500 relative z-20 shrink-0 min-h-[190px] md:min-h-auto transition-colors duration-300";
+            }
+            else if (tipo === 'vitoria') {
+                screen.className = "w-full h-full bg-indigo-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors";
+                eyes.innerHTML = `
+                    <div class="w-3 h-3 bg-indigo-400 rounded-full animate-ping absolute"></div>
+                    <div class="w-3 h-3 bg-indigo-400 rounded-full shadow-[0_0_8px_#818cf8]"></div>
+                    <div class="w-3 h-3 bg-indigo-400 rounded-full shadow-[0_0_8px_#818cf8]"></div>
+                `;
+                mouth.className = "w-8 h-2 bg-indigo-400 rounded-full drop-shadow-[0_0_6px_#818cf8]";
+                statusLabel.innerText = "Finalizado";
+                statusLabel.className = "bg-indigo-500 text-white px-3 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider mt-4 shadow text-center";
+                avatarBox.className = "w-full md:w-44 bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center shadow-lg border-4 border-indigo-400 relative z-20 shrink-0 min-h-[190px] md:min-h-auto transition-colors duration-300";
             }
         }
 
@@ -457,6 +464,9 @@
             const isCorrect = q.options[index].correct;
             const feedback = document.getElementById('kids-feedback-container');
 
+            // Desabilita os botões para não clicar duas vezes
+            document.querySelectorAll('#kids-quiz-container button').forEach(b => b.disabled = true);
+
             if (isCorrect) {
                 kidsScore += 10; document.getElementById('kids-score').innerText = kidsScore;
                 mudarExpressaoAvatar('sucesso');
@@ -471,20 +481,57 @@
             }
             feedback.classList.remove('hidden');
             document.getElementById('kids-next-btn').classList.remove('hidden');
+            
+            // Muda o texto do botão se for a última pergunta
+            if (currentKidsIndex === kidsQuestions.length - 1) {
+                document.getElementById('kids-next-btn').innerHTML = `Finalizar Jogo <i class="fa-solid fa-flag-checkered ml-1"></i>`;
+            }
         }
 
         function nextKidsQuestion() {
             currentKidsIndex++;
-            if (currentKidsIndex < kidsQuestions.length) showKidsQuestion();
-            else {
-                document.getElementById('kids-quiz-container').innerHTML = `<div class="text-center py-6 space-y-2"><span>🏆</span><h3 class="text-sm font-bold text-slate-900">Módulo Kids Concluído!</h3><p class="text-xs text-slate-500">Relatório de segurança atualizado para visualização dos pais.</p></div>`;
+            if (currentKidsIndex < kidsQuestions.length) {
+                showKidsQuestion();
+            } else {
+                mudarExpressaoAvatar('vitoria');
+                document.getElementById('kids-mission-title').innerText = "Aventura Concluída! 🏆";
+                document.getElementById('kids-step-indicator').innerText = "Fim do Percurso";
+                
+                document.getElementById('kids-quiz-container').innerHTML = `
+                    <div class="text-center py-4 space-y-4">
+                        <div class="text-4xl">🏆</div>
+                        <h3 class="text-base font-extrabold text-slate-900">Parabéns! Você é um Guardião Digital!</h3>
+                        <p class="text-xs text-slate-600 max-w-md mx-auto">
+                            Você concluiu todas as missões e aprendeu a proteger sua internet, seus jogos e sua família contra perigos online.
+                        </p>
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 inline-block font-mono text-xs font-bold text-amber-800">
+                            Pontuação Final Absoluta: ${kidsScore} / 60 Pontos
+                        </div>
+                        <div class="pt-2 flex justify-center gap-2">
+                            <button onclick="openParentReport()" class="bg-slate-900 text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow hover:bg-slate-800 transition flex items-center gap-2">
+                                <i class="fa-solid fa-chart-pie"></i> Ver Relatório dos Pais
+                            </button>
+                            <button onclick="switchTab('landing')" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xs py-2.5 px-4 rounded-xl transition">
+                                Voltar ao Menu
+                            </button>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('kids-feedback-container').classList.add('hidden');
                 document.getElementById('kids-next-btn').classList.add('hidden');
             }
         }
 
         // LÓGICA TEENS (CYBER-DETETIVE)
         let currentTeensIndex = 0; let teenReputation = 100;
-        function startTeensGame() { currentTeensIndex = 0; teenReputation = 100; document.getElementById('teen-score').innerText = teenReputation; showTeenCase(); }
+        function startTeensGame() { 
+            currentTeensIndex = 0; 
+            teenReputation = 100; 
+            document.getElementById('teen-score').innerText = teenReputation; 
+            document.getElementById('teen-game-body').classList.remove('hidden');
+            document.getElementById('teen-conclusion-box').classList.add('hidden');
+            showTeenCase(); 
+        }
 
         function showTeenCase() {
             const c = teenCases[currentTeensIndex];
@@ -517,6 +564,9 @@
             const feedBox = document.getElementById('teen-game-feedback');
             feedBox.classList.remove('hidden');
 
+            // Bloqueia comandos repetidos
+            document.querySelectorAll('#teen-actions-box button').forEach(b => b.disabled = true);
+
             if (act.correct) {
                 feedBox.className = "p-4 rounded-2xl text-xs border bg-emerald-950/40 border-emerald-800 text-emerald-400 font-mono mt-4";
                 feedBox.innerText = `ANÁLISE CONCLUÍDA: ${act.feedback}`;
@@ -529,14 +579,50 @@
                 registrarLog('Teens', c.tema, 'Vulnerável', 'Executou comandos perigosos, links de phishing ou cedeu a extorsões.');
             }
             document.getElementById('teen-next-btn').classList.remove('hidden');
+
+            if (currentTeensIndex === teenCases.length - 1) {
+                document.getElementById('teen-next-btn').innerHTML = `Finalizar Investigação <i class="fa-solid fa-terminal ml-1"></i>`;
+            }
         }
 
         function nextTeenCase() {
             currentTeensIndex++;
-            if (currentTeensIndex < teenCases.length) showTeenCase();
-            else {
-                document.getElementById('teen-actions-box').innerHTML = `<p class="text-xs text-indigo-400 font-mono">Investigações encerradas. Logs compilados na telemetria.</p>`;
+            if (currentTeensIndex < teenCases.length) {
+                showTeenCase();
+            } else {
+                // EXIBE FEEDBACK FINAL DE ENCERRAMENTO TEENS
+                document.getElementById('teen-game-body').classList.add('hidden');
+                document.getElementById('teen-game-feedback').classList.add('hidden');
                 document.getElementById('teen-next-btn').classList.add('hidden');
+                document.getElementById('teen-step-indicator').innerText = "Casos Encerrados";
+
+                const conclusionBox = document.getElementById('teen-conclusion-box');
+                conclusionBox.classList.remove('hidden');
+                
+                let performanceMsg = teenReputation >= 70 ? "EXCELENTE: Protocolos de defesa executados dentro das conformidades de segurança." : "ATENÇÃO: Sistema comprometido por falhas em engenharia social. Recomenda-se auditoria.";
+
+                conclusionBox.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="text-indigo-400 text-3xl font-mono"><i class="fa-solid fa-circle-check"></i></div>
+                        <h3 class="text-lg font-bold font-mono tracking-tight text-white">CONCLUÍDO: Relatório Geral Compilado</h3>
+                        <p class="text-xs text-slate-400 max-w-lg mx-auto font-mono">
+                            Todas as denúncias de crimes digitais, tentativas de extorsão e engenharia financeira foram catalogadas no banco de auditoria local.
+                        </p>
+                        <div class="p-3 bg-indigo-950/60 border border-indigo-800/80 rounded-xl inline-block font-mono text-xs">
+                            <span class="text-slate-400">Reputação de Rede Final:</span> 
+                            <span class="${teenReputation >= 70 ? 'text-emerald-400' : 'text-rose-400'} font-bold">${teenReputation}%</span>
+                            <div class="text-[10px] text-slate-500 mt-1">${performanceMsg}</div>
+                        </div>
+                        <div class="pt-2 flex justify-center gap-2">
+                            <button onclick="openParentReport()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-mono font-bold text-xs py-2.5 px-4 rounded-xl shadow transition">
+                                > EXECUTAR: Abrir Diagnóstico
+                            </button>
+                            <button onclick="switchTab('landing')" class="bg-slate-800 hover:bg-slate-700 text-slate-400 font-mono text-xs py-2.5 px-4 rounded-xl transition">
+                                > SAIR
+                            </button>
+                        </div>
+                    </div>
+                `;
             }
         }
 
