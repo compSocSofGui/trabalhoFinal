@@ -186,7 +186,7 @@
                 <button onclick="switchTab('landing')" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-indigo-600 transition mb-2"><i class="fa-solid fa-arrow-left"></i> Voltar ao Menu</button>
 
                 <div class="bg-slate-900 text-white rounded-3xl p-6 shadow-xl border border-slate-800 space-y-4">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-800 pb-4 gap-2">
+                    <div id="teen-panel-header" class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-800 pb-4 gap-2">
                         <div>
                             <span class="text-xs font-bold tracking-widest text-indigo-400 uppercase">Terminal de Operações Digitais</span>
                             <h2 class="text-xl font-extrabold flex items-center gap-2">🔬 Modo Cyber-Detetive</h2>
@@ -222,11 +222,11 @@
                         </div>
                     </div>
 
-                    <div id="teen-conclusion-box" class="hidden bg-slate-950 border border-slate-800 p-8 rounded-2xl text-center space-y-4"></div>
-
                     <div id="teen-game-feedback" class="hidden p-4 rounded-2xl text-xs leading-relaxed border font-mono"></div>
+
+                    <div id="teen-conclusion-box" class="hidden bg-slate-950 border border-slate-800 p-8 rounded-2xl text-center space-y-4"></div>
                     
-                    <div class="flex justify-between items-center pt-2">
+                    <div id="teen-panel-footer" class="flex justify-between items-center pt-2">
                         <span id="teen-step-indicator" class="text-xs text-slate-500 font-mono"></span>
                         <button id="teen-next-btn" onclick="nextTeenCase()" class="hidden bg-indigo-500 hover:bg-indigo-600 text-white font-bold px-4 py-2 rounded-xl text-xs transition">Avançar Caso <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
@@ -387,7 +387,7 @@
             const statusLabel = document.getElementById('kids-avatar-status');
             const avatarBox = document.getElementById('kids-avatar-box');
 
-            if (!screen) return; // Proteção caso mude de aba rápido
+            if (!screen) return;
 
             if (tipo === 'espera') {
                 screen.className = "w-full h-full bg-slate-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors";
@@ -440,6 +440,10 @@
         let currentKidsIndex = 0; let kidsScore = 0;
         function startKidsQuiz() { currentKidsIndex = 0; kidsScore = 0; document.getElementById('kids-score').innerText = kidsScore; showKidsQuestion(); }
 
+        document.addEventListener("DOMContentLoaded", function() {
+            // Inicializador padrão se necessário
+        });
+
         function showKidsQuestion() {
             const container = document.getElementById('kids-quiz-container');
             document.getElementById('kids-feedback-container').classList.add('hidden');
@@ -464,7 +468,6 @@
             const isCorrect = q.options[index].correct;
             const feedback = document.getElementById('kids-feedback-container');
 
-            // Desabilita os botões para não clicar duas vezes
             document.querySelectorAll('#kids-quiz-container button').forEach(b => b.disabled = true);
 
             if (isCorrect) {
@@ -482,7 +485,6 @@
             feedback.classList.remove('hidden');
             document.getElementById('kids-next-btn').classList.remove('hidden');
             
-            // Muda o texto do botão se for a última pergunta
             if (currentKidsIndex === kidsQuestions.length - 1) {
                 document.getElementById('kids-next-btn').innerHTML = `Finalizar Jogo <i class="fa-solid fa-flag-checkered ml-1"></i>`;
             }
@@ -528,8 +530,13 @@
             currentTeensIndex = 0; 
             teenReputation = 100; 
             document.getElementById('teen-score').innerText = teenReputation; 
+            
+            // Restaura visibilidade padrão do painel de jogo
+            document.getElementById('teen-panel-header').classList.remove('hidden');
             document.getElementById('teen-game-body').classList.remove('hidden');
+            document.getElementById('teen-panel-footer').classList.remove('hidden');
             document.getElementById('teen-conclusion-box').classList.add('hidden');
+            
             showTeenCase(); 
         }
 
@@ -564,7 +571,6 @@
             const feedBox = document.getElementById('teen-game-feedback');
             feedBox.classList.remove('hidden');
 
-            // Bloqueia comandos repetidos
             document.querySelectorAll('#teen-actions-box button').forEach(b => b.disabled = true);
 
             if (act.correct) {
@@ -590,35 +596,33 @@
             if (currentTeensIndex < teenCases.length) {
                 showTeenCase();
             } else {
-                // EXIBE FEEDBACK FINAL DE ENCERRAMENTO TEENS
+                // REMOVE E APAGA TOTALMENTE O JOGO DO PAINEL TEENS
+                document.getElementById('teen-panel-header').classList.add('hidden');
                 document.getElementById('teen-game-body').classList.add('hidden');
                 document.getElementById('teen-game-feedback').classList.add('hidden');
-                document.getElementById('teen-next-btn').classList.add('hidden');
-                document.getElementById('teen-step-indicator').innerText = "Casos Encerrados";
+                document.getElementById('teen-panel-footer').classList.add('hidden');
 
+                // EXIBE APENAS O FEEDBACK DO QUIZ ENCERRADO
                 const conclusionBox = document.getElementById('teen-conclusion-box');
                 conclusionBox.classList.remove('hidden');
                 
-                let performanceMsg = teenReputation >= 70 ? "EXCELENTE: Protocolos de defesa executados dentro das conformidades de segurança." : "ATENÇÃO: Sistema comprometido por falhas em engenharia social. Recomenda-se auditoria.";
-
                 conclusionBox.innerHTML = `
-                    <div class="space-y-4">
-                        <div class="text-indigo-400 text-3xl font-mono"><i class="fa-solid fa-circle-check"></i></div>
-                        <h3 class="text-lg font-bold font-mono tracking-tight text-white">CONCLUÍDO: Relatório Geral Compilado</h3>
-                        <p class="text-xs text-slate-400 max-w-lg mx-auto font-mono">
-                            Todas as denúncias de crimes digitais, tentativas de extorsão e engenharia financeira foram catalogadas no banco de auditoria local.
+                    <div class="space-y-4 py-6">
+                        <div class="text-indigo-400 text-4xl"><i class="fa-solid fa-circle-check"></i></div>
+                        <h3 class="text-xl font-bold font-mono text-white">QUIZ ENCERRADO</h3>
+                        <p class="text-xs text-slate-400 max-w-md mx-auto font-mono">
+                            Todas as simulações e investigações de segurança foram concluídas com sucesso.
                         </p>
-                        <div class="p-3 bg-indigo-950/60 border border-indigo-800/80 rounded-xl inline-block font-mono text-xs">
-                            <span class="text-slate-400">Reputação de Rede Final:</span> 
-                            <span class="${teenReputation >= 70 ? 'text-emerald-400' : 'text-rose-400'} font-bold">${teenReputation}%</span>
-                            <div class="text-[10px] text-slate-500 mt-1">${performanceMsg}</div>
+                        <div class="p-3 bg-indigo-950 border border-indigo-800 rounded-xl inline-block font-mono text-xs">
+                            <span class="text-slate-400">Desempenho Geral:</span> 
+                            <span class="text-indigo-400 font-bold">${teenReputation}% de Aproveitamento</span>
                         </div>
-                        <div class="pt-2 flex justify-center gap-2">
+                        <div class="pt-4 flex justify-center gap-3">
                             <button onclick="openParentReport()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-mono font-bold text-xs py-2.5 px-4 rounded-xl shadow transition">
-                                > EXECUTAR: Abrir Diagnóstico
+                                > Abrir Diagnóstico Final
                             </button>
                             <button onclick="switchTab('landing')" class="bg-slate-800 hover:bg-slate-700 text-slate-400 font-mono text-xs py-2.5 px-4 rounded-xl transition">
-                                > SAIR
+                                > Voltar ao Menu
                             </button>
                         </div>
                     </div>
