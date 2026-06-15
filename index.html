@@ -402,6 +402,43 @@
                     </button>
                 </div>
 
+                <!-- Gerenciar senha dos filhos -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-bold text-sm text-slate-900">Senha de acesso dos filhos</p>
+                            <p class="text-xs text-slate-500 mt-0.5" id="senha-status-txt">Carregando...</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="abrirGerenciarSenha()" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition" id="btn-gerenciar-senha">
+                                Alterar senha
+                            </button>
+                            <button onclick="redefinirSenhaPais()" class="bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold px-4 py-2 rounded-xl border border-rose-200 transition" id="btn-redefinir-senha">
+                                Esqueci a senha
+                            </button>
+                        </div>
+                    </div>
+                    <div id="gerenciar-senha-form" class="hidden space-y-3 pt-3 border-t border-slate-200">
+                        <div id="gerenciar-senha-atual-wrap">
+                            <label class="text-xs font-bold text-slate-700 block mb-1">Senha atual</label>
+                            <input type="password" id="gerenciar-senha-atual" placeholder="Digite a senha atual..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 block mb-1">Nova senha</label>
+                            <input type="password" id="gerenciar-senha-nova" placeholder="Mínimo 4 caracteres..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 block mb-1">Confirmar nova senha</label>
+                            <input type="password" id="gerenciar-senha-confirma" placeholder="Repita a nova senha..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
+                        </div>
+                        <div id="gerenciar-senha-erro" class="hidden text-xs text-rose-600 font-semibold"></div>
+                        <div class="flex gap-2">
+                            <button onclick="salvarNovaSenha()" class="flex-grow bg-seguro-600 hover:bg-seguro-700 text-white font-bold py-2.5 rounded-xl text-xs transition">Salvar nova senha</button>
+                            <button onclick="fecharGerenciarSenha()" class="px-4 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Link para o guia -->
                 <div class="border-t border-slate-100 pt-4 text-center">
                     <p class="text-xs text-slate-400 mb-2">Nao se encaixa em nenhum perfil acima?</p>
@@ -841,43 +878,6 @@
                     </div>
                 </div>
 
-                <!-- Gerenciar senha dos filhos -->
-                <div class="mt-4 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-3">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="font-bold text-sm text-slate-900">Senha de acesso dos filhos</p>
-                            <p class="text-xs text-slate-500 mt-0.5" id="senha-status-txt">Carregando...</p>
-                        </div>
-                        <button onclick="abrirGerenciarSenha()" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition" id="btn-gerenciar-senha">
-                            Alterar senha
-                        </button>
-                        <button onclick="redefinirSenhaPais()" class="bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold px-4 py-2 rounded-xl border border-rose-200 transition" id="btn-redefinir-senha">
-                            Esqueci a senha
-                        </button>
-                    </div>
-
-                    <!-- Formulário inline de troca de senha (oculto por padrão) -->
-                    <div id="gerenciar-senha-form" class="hidden space-y-3 pt-3 border-t border-slate-100">
-                        <div id="gerenciar-senha-atual-wrap">
-                            <label class="text-xs font-bold text-slate-700 block mb-1">Senha atual</label>
-                            <input type="password" id="gerenciar-senha-atual" placeholder="Digite a senha atual..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-700 block mb-1">Nova senha</label>
-                            <input type="password" id="gerenciar-senha-nova" placeholder="Mínimo 4 caracteres..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-700 block mb-1">Confirmar nova senha</label>
-                            <input type="password" id="gerenciar-senha-confirma" placeholder="Repita a nova senha..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
-                        </div>
-                        <div id="gerenciar-senha-erro" class="hidden text-xs text-rose-600 font-semibold"></div>
-                        <div class="flex gap-2">
-                            <button onclick="salvarNovaSenha()" class="flex-grow bg-seguro-600 hover:bg-seguro-700 text-white font-bold py-2.5 rounded-xl text-xs transition">Salvar nova senha</button>
-                            <button onclick="fecharGerenciarSenha()" class="px-4 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Menção ao guia -->
                 <div class="mt-4 bg-slate-50 border border-slate-200 rounded-2xl p-4 flex items-center justify-between gap-4">
                     <p class="text-xs text-slate-500 leading-relaxed">Quer entender melhor como a Inteligencia Artificial funciona e seus riscos? Temos um guia completo baseado na SaferNet Brasil.</p>
@@ -1210,13 +1210,8 @@
 
         function selecionarPerfilOnboarding(categoria) {
             if (categoria === 'kids' || categoria === 'teens') {
-                // Se já autorizou nesta sessão, entra direto
-                if (sessionStorage.getItem('pais_autorizado') === '1') {
-                    finalizarDefinirPerfil(categoria);
-                } else {
-                    perfilPendente = categoria;
-                    abrirSenhaPaisModal();
-                }
+                perfilPendente = categoria;
+                abrirSenhaPaisModal();
             } else {
                 finalizarDefinirPerfil(categoria);
             }
@@ -1284,37 +1279,36 @@
 
                 const badgeContainer = card.querySelector('.badge-status-container');
                 const actionContainer = card.querySelector('.action-status-container');
+                const descEl = card.querySelector('p');
 
                 if (!userCategory) {
-                    return; 
+                    return;
                 }
 
                 if (userCategory === cat) {
-                    // Módulo Disponível/Recomendado
-                    card.classList.remove('opacity-60', 'grayscale', 'border-transparent');
-                    card.classList.add('border-emerald-400', 'ring-4', 'ring-emerald-50/50');
-                    if (badgeContainer) {
-                        badgeContainer.innerHTML = `<span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full"> Recomendado</span>`;
-                    }
+                    // Card ativo — grande e destacado
+                    card.classList.remove('opacity-40', 'grayscale', 'border-transparent', 'h-20', 'py-3');
+                    card.classList.add('border-emerald-400', 'ring-4', 'ring-emerald-50/50', 'h-85');
+                    if (descEl) descEl.classList.remove('hidden');
+                    if (badgeContainer) badgeContainer.innerHTML = `<span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full">Recomendado</span>`;
                     if (actionContainer) {
                         let acaoTexto = "Entrar na Aventura";
                         if (cat === 'teens') acaoTexto = "Resolver Casos";
                         if (cat === 'adults') acaoTexto = "Conversar com Assistente";
                         if (cat === 'seniors') acaoTexto = "Aprender a se Proteger";
-
-                        actionContainer.innerHTML = `${acaoTexto} `;
+                        actionContainer.innerHTML = acaoTexto;
                         actionContainer.className = "action-status-container flex items-center gap-2 text-emerald-600 font-bold text-xs sm:text-sm mt-3";
                     }
                 } else {
-                    // Módulo Bloqueado
-                    card.classList.add('opacity-60', 'grayscale', 'border-transparent');
-                    card.classList.remove('border-emerald-400', 'ring-4', 'ring-emerald-50/50');
-                    if (badgeContainer) {
-                        badgeContainer.innerHTML = `<span class="bg-slate-200 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-full"> Bloqueado</span>`;
-                    }
+                    // Card bloqueado — compacto
+                    card.classList.add('opacity-40', 'grayscale', 'border-transparent');
+                    card.classList.remove('border-emerald-400', 'ring-4', 'ring-emerald-50/50', 'h-85');
+                    card.classList.add('h-20', 'py-3');
+                    if (descEl) descEl.classList.add('hidden');
+                    if (badgeContainer) badgeContainer.innerHTML = `<span class="bg-slate-200 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-full">Bloqueado</span>`;
                     if (actionContainer) {
-                        actionContainer.innerHTML = `Bloqueado para sua idade `;
-                        actionContainer.className = "action-status-container flex items-center gap-2 text-slate-400 font-bold text-xs sm:text-sm mt-3";
+                        actionContainer.innerHTML = '';
+                        actionContainer.className = "action-status-container hidden";
                     }
                 }
             });
@@ -1585,6 +1579,8 @@
             if (tabName === 'teens' && currentTeenIndex === 0) loadTeenCase();
             if (tabName === 'seniors' && currentSeniorsIndex === 0) loadSeniorsQuestion();
             if (tabName === 'adults') atualizarStatusSenha();
+            if (tabName === 'onboarding') atualizarStatusSenha();
+            if (tabName === 'landing') atualizarVisualizacaoModulos();
         }
 
         // Intercepta o botão de voltar/avançar do Safari/navegador
