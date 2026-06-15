@@ -297,27 +297,27 @@
     <!-- ===== BARRA DE ACESSIBILIDADE ===== -->
     <div id="acessibilidade-bar" role="toolbar" aria-label="Ferramentas de acessibilidade">
         <div class="flex items-center gap-2 flex-wrap">
-            <span class="a11y-label"><i class="fa-solid fa-universal-access"></i> Acessibilidade</span>
+            <span class="a11y-label"> Acessibilidade</span>
             <!-- Voz (TTS) -->
             <button id="btn-voz" onclick="toggleVoz()" aria-pressed="false" title="Ativar leitura de tela" class="text-red-400">
-                <i class="fa-solid fa-volume-xmark"></i> Voz
+                 Voz
             </button>
             <div class="a11y-divider"></div>
             <!-- Contraste -->
             <button id="btn-contraste" onclick="toggleAltoContraste()" aria-pressed="false" title="Ativar alto contraste">
-                <i class="fa-solid fa-circle-half-stroke"></i> Alto Contraste
+                 Alto Contraste
             </button>
             <div class="a11y-divider"></div>
             <!-- Animações -->
             <button id="btn-animacoes" onclick="toggleAnimacoes()" aria-pressed="false" title="Desativar animações na tela">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> Animações
+                 Animações
             </button>
         </div>
 
         <div class="flex items-center gap-1.5 mt-2 sm:mt-0">
             <span class="a11y-label">Tamanho do texto:</span>
-            <button onclick="alterarFonte(1)" title="Aumentar texto"><i class="fa-solid fa-plus"></i></button>
-            <button onclick="alterarFonte(-1)" title="Diminuir texto"><i class="fa-solid fa-minus"></i></button>
+            <button onclick="alterarFonte(1)" title="Aumentar texto"></button>
+            <button onclick="alterarFonte(-1)" title="Diminuir texto"></button>
             <button onclick="resetarFonte()" title="Restaurar tamanho de texto padrão">A</button>
         </div>
     </div>
@@ -326,9 +326,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('landing')" role="button" tabindex="0" aria-label="Voltar à página inicial do Guardião Digital" onkeydown="if(event.key==='Enter')switchTab('landing')">
-                    <div class="bg-gradient-to-tr from-seguro-600 to-seguro-500 text-white p-2 rounded-xl shadow-md" aria-hidden="true">
-                        <i class="fa-solid fa-shield-halved text-[20px]"></i>
-                    </div>
+                    
                     <div>
                         <span class="font-extrabold text-lg text-seguro-900 tracking-tight block leading-none">GUARDIÃO</span>
                         <span class="text-xs font-semibold text-esperanca-600 uppercase tracking-widest">DIGITAL</span>
@@ -340,10 +338,10 @@
                     <div id="perfil-header-badge" class="transition-all"></div>
 
                     <button onclick="openParentReport()" class="bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold uppercase tracking-wider py-2 px-3 rounded-lg flex items-center gap-1.5 shadow transition" aria-label="Ver resumo de desempenho para os pais">
-                        <i class="fa-solid fa-chart-pie text-esperanca-400" aria-hidden="true"></i> Resumo para os Pais
+                         Resumo para os Pais
                     </button>
                     <button onclick="switchTab('landing')" class="text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-seguro-600 transition flex items-center gap-1.5 py-2 px-3 rounded-lg" aria-label="Ir para início">
-                        <i class="fa-solid fa-house" aria-hidden="true"></i> Início
+                         Início
                     </button>
                 </div>
             </div>
@@ -356,9 +354,7 @@
         <div id="tab-onboarding" class="tab-content active show max-w-lg mx-auto py-8 space-y-6" role="region" aria-label="Boas-vindas e Seleção de Perfil">
             <div class="bg-white border-2 border-slate-200 rounded-3xl p-8 shadow-xl text-center space-y-6">
                 <div class="flex justify-center">
-                    <div class="bg-gradient-to-tr from-seguro-600 to-seguro-500 text-white p-4 rounded-2xl shadow-md" aria-hidden="true">
-                        <i class="fa-solid fa-shield-halved text-4xl"></i>
-                    </div>
+                    
                 </div>
 
                 <div class="space-y-2">
@@ -372,37 +368,37 @@
                     <!-- Kids: precisa de senha dos pais -->
                     <button onclick="selecionarPerfilOnboarding('kids')"
                         class="bg-amber-50 hover:bg-amber-100 border-2 border-amber-200 hover:border-amber-400 p-4 rounded-2xl font-bold text-slate-800 flex flex-col items-start gap-2 transition group">
-                        <span class="text-2xl group-hover:scale-110 transition-transform"></span>
+                        <span class="text-2xl text-amber-500 group-hover:scale-110 transition-transform"></span>
                         <span class="text-sm font-extrabold">Sou Criança</span>
                         <span class="text-xs font-normal text-slate-500">Até 7 anos</span>
-                        <span class="text-[10px] text-amber-600 font-bold flex items-center gap-1 mt-1"><i class="fa-solid fa-lock"></i> Requer senha dos pais</span>
+                        <span class="text-[10px] text-amber-600 font-bold flex items-center gap-1 mt-1"> Requer senha dos pais</span>
                     </button>
 
                     <!-- Teens: precisa de senha dos pais -->
                     <button onclick="selecionarPerfilOnboarding('teens')"
                         class="bg-indigo-50 hover:bg-indigo-100 border-2 border-indigo-200 hover:border-indigo-400 p-4 rounded-2xl font-bold text-slate-800 flex flex-col items-start gap-2 transition group">
-                        <span class="text-2xl group-hover:scale-110 transition-transform"></span>
+                        <span class="text-2xl text-indigo-500 group-hover:scale-110 transition-transform"></span>
                         <span class="text-sm font-extrabold">Sou Jovem</span>
                         <span class="text-xs font-normal text-slate-500">8 a 17 anos</span>
-                        <span class="text-[10px] text-indigo-600 font-bold flex items-center gap-1 mt-1"><i class="fa-solid fa-lock"></i> Requer senha dos pais</span>
+                        <span class="text-[10px] text-indigo-600 font-bold flex items-center gap-1 mt-1"> Requer senha dos pais</span>
                     </button>
 
                     <!-- Adults: acesso direto -->
                     <button onclick="selecionarPerfilOnboarding('adults')"
                         class="bg-seguro-50 hover:bg-seguro-100 border-2 border-seguro-200 hover:border-seguro-400 p-4 rounded-2xl font-bold text-slate-800 flex flex-col items-start gap-2 transition group">
-                        <span class="text-2xl group-hover:scale-110 transition-transform"></span>
+                        <span class="text-2xl text-seguro-500 group-hover:scale-110 transition-transform"></span>
                         <span class="text-sm font-extrabold">Sou Adulto</span>
                         <span class="text-xs font-normal text-slate-500">Pais e Professores</span>
-                        <span class="text-[10px] text-seguro-600 font-bold flex items-center gap-1 mt-1"><i class="fa-solid fa-circle-check"></i> Acesso direto</span>
+                        <span class="text-[10px] text-seguro-600 font-bold flex items-center gap-1 mt-1"> Acesso direto</span>
                     </button>
 
                     <!-- Seniors: acesso direto -->
                     <button onclick="selecionarPerfilOnboarding('seniors')"
                         class="bg-rose-50 hover:bg-rose-100 border-2 border-rose-200 hover:border-rose-400 p-4 rounded-2xl font-bold text-slate-800 flex flex-col items-start gap-2 transition group">
-                        <span class="text-2xl group-hover:scale-110 transition-transform"></span>
+                        <span class="text-2xl text-rose-500 group-hover:scale-110 transition-transform"></span>
                         <span class="text-sm font-extrabold">Sou Idoso</span>
                         <span class="text-xs font-normal text-slate-500">60 anos ou mais</span>
-                        <span class="text-[10px] text-rose-600 font-bold flex items-center gap-1 mt-1"><i class="fa-solid fa-circle-check"></i> Acesso direto</span>
+                        <span class="text-[10px] text-rose-600 font-bold flex items-center gap-1 mt-1"> Acesso direto</span>
                     </button>
                 </div>
             </div>
@@ -426,7 +422,7 @@
                 <div onclick="selecionarModulo('kids')" id="card-kids" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-85 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Kids, para crianças até 7 anos" onkeydown="if(event.key==='Enter')selecionarModulo('kids')">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
-                            <div class="w-12 h-12 bg-amber-100 text-amber-500 rounded-2xl flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform" aria-hidden="true">🤖</div>
+                            
                             <div class="badge-status-container">
                                 <span class="bg-amber-100 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full">Até 7 anos</span>
                             </div>
@@ -437,7 +433,7 @@
                         </p>
                     </div>
                     <div class="action-status-container flex items-center gap-2 text-amber-500 font-bold text-xs sm:text-sm mt-3" aria-hidden="true">
-                        Entrar na Aventura <i class="fa-solid fa-arrow-right"></i>
+                        Entrar na Aventura 
                     </div>
                 </div>
 
@@ -445,7 +441,7 @@
                 <div onclick="selecionarModulo('teens')" id="card-teens" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-85 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Teens, para jovens de 8 a 17 anos" onkeydown="if(event.key==='Enter')selecionarModulo('teens')">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
-                            <div class="w-12 h-12 bg-indigo-100 text-indigo-500 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform" aria-hidden="true">🕵️‍♂️</div>
+                            
                             <div class="badge-status-container">
                                 <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded-full">De 8 a 17 anos</span>
                             </div>
@@ -456,7 +452,7 @@
                         </p>
                     </div>
                     <div class="action-status-container flex items-center gap-2 text-indigo-500 font-bold text-xs sm:text-sm mt-3" aria-hidden="true">
-                        Resolver Casos <i class="fa-solid fa-arrow-right"></i>
+                        Resolver Casos 
                     </div>
                 </div>
 
@@ -464,7 +460,7 @@
                 <div onclick="selecionarModulo('adults')" id="card-adults" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-85 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Adulto, para pais e professores" onkeydown="if(event.key==='Enter')selecionarModulo('adults')">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
-                            <div class="w-12 h-12 bg-seguro-100 text-seguro-500 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform" aria-hidden="true">🛡️</div>
+                            
                             <div class="badge-status-container">
                                 <span class="bg-seguro-100 text-seguro-700 text-xs font-bold px-2.5 py-1 rounded-full">Pais e Professores</span>
                             </div>
@@ -475,7 +471,7 @@
                         </p>
                     </div>
                     <div class="action-status-container flex items-center gap-2 text-seguro-500 font-bold text-xs sm:text-sm mt-3" aria-hidden="true">
-                        Conversar com Assistente <i class="fa-solid fa-arrow-right"></i>
+                        Conversar com Assistente 
                     </div>
                 </div>
 
@@ -483,7 +479,7 @@
                 <div onclick="selecionarModulo('seniors')" id="card-seniors" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-85 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Idosos, para pessoas com 60 anos ou mais" onkeydown="if(event.key==='Enter')selecionarModulo('seniors')">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
-                            <div class="w-12 h-12 bg-rose-100 text-rose-500 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform" aria-hidden="true">👴</div>
+                            
                             <div class="badge-status-container">
                                 <span class="bg-rose-100 text-rose-700 text-xs font-bold px-2.5 py-1 rounded-full">60+ anos</span>
                             </div>
@@ -494,7 +490,7 @@
                         </p>
                     </div>
                     <div class="action-status-container flex items-center gap-2 text-rose-500 font-bold text-xs sm:text-sm mt-3" aria-hidden="true">
-                        Aprender a se Proteger <i class="fa-solid fa-arrow-right"></i>
+                        Aprender a se Proteger 
                     </div>
                 </div>
 
@@ -505,12 +501,12 @@
         <div id="tab-kids" class="tab-content space-y-6" role="region" aria-label="Módulo Kids">
             <div class="max-w-4xl mx-auto">
                 <button onclick="switchTab('landing')" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-seguro-600 transition mb-2" aria-label="Voltar ao menu principal">
-                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar ao Menu
+                     Voltar ao Menu
                 </button>
                 
                 <div class="bg-amber-100 border border-amber-200 rounded-2xl p-4 flex justify-between items-center shadow-sm" role="status" aria-live="polite">
                     <div class="flex items-center gap-2"><span id="kids-mission-title" class="text-sm font-bold text-slate-800">Carregando historinha...</span></div>
-                    <div class="bg-white px-3 py-1 rounded-xl shadow-sm border border-amber-200 text-sm font-extrabold text-slate-800" aria-label="Sua pontuação">⭐ Pontos: <span id="kids-score" aria-live="polite">0</span></div>
+                    <div class="bg-white px-3 py-1 rounded-xl shadow-sm border border-amber-200 text-sm font-extrabold text-slate-800" aria-label="Sua pontuação"> Pontos: <span id="kids-score" aria-live="polite">0</span></div>
                 </div>
 
                 <div class="relative flex flex-col md:flex-row items-stretch gap-4 mt-6">
@@ -543,7 +539,7 @@
                 <div class="flex justify-between items-center mt-6">
                     <span id="kids-step-indicator" class="text-xs font-bold text-slate-400" aria-live="polite"></span>
                     <button id="kids-next-btn" onclick="nextKidsQuestion()" class="hidden bg-amber-400 hover:bg-amber-50 text-slate-900 font-extrabold px-5 py-2.5 rounded-xl shadow transition text-sm">
-                        Próxima Pergunta <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        Próxima Pergunta 
                     </button>
                 </div>
             </div>
@@ -553,14 +549,14 @@
         <div id="tab-teens" class="tab-content space-y-6" role="region" aria-label="Módulo Teens">
             <div class="max-w-4xl mx-auto">
                 <button onclick="switchTab('landing')" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-indigo-600 transition mb-2" aria-label="Voltar ao menu principal">
-                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar ao Menu
+                     Voltar ao Menu
                 </button>
 
                 <div class="bg-slate-900 text-white rounded-3xl p-6 shadow-xl border border-slate-800 space-y-4">
                     <div id="teen-panel-header" class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-800 pb-4 gap-2">
                         <div>
                             <span class="text-xs font-bold tracking-widest text-indigo-400 uppercase">Detetive da Internet</span>
-                            <h2 class="text-xl font-extrabold flex items-center gap-2"><span aria-hidden="true"></span> Central de Casos</h2>
+                            <h2 class="text-xl font-extrabold flex items-center gap-2"> Central de Casos</h2>
                         </div>
                         <div>
                             <span class="bg-indigo-950 border border-indigo-800 px-3 py-1 rounded-xl text-xs font-bold text-indigo-300" role="status" aria-live="polite">Sua Nota de Segurança: <span id="teen-score">100</span>%</span>
@@ -579,13 +575,13 @@
                             </div>
                             
                             <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-                                <span class="text-[11px] font-bold uppercase text-indigo-400 block mb-1"><span aria-hidden="true"></span> Botões de Investigação (Dicas)</span>
+                                <span class="text-[11px] font-bold uppercase text-indigo-400 block mb-1"> Botões de Investigação (Dicas)</span>
                                 <div class="grid grid-cols-2 gap-2">
                                     <button onclick="inspectTeenPista('remetente')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-left p-2.5 rounded-xl text-xs flex items-center gap-2 transition text-slate-300" aria-label="Investigar quem enviou a mensagem">
-                                        <i class="fa-solid fa-user text-indigo-400" aria-hidden="true"></i> Olhar quem enviou
+                                         Olhar quem enviou
                                     </button>
                                     <button onclick="inspectTeenPista('link')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-left p-2.5 rounded-xl text-xs flex items-center gap-2 transition text-slate-300" aria-label="Investigar o link enviado">
-                                        <i class="fa-solid fa-link text-indigo-400" aria-hidden="true"></i> Olhar o Link enviado
+                                         Olhar o Link enviado
                                     </button>
                                 </div>
                                 <div id="teen-inspection-log" class="bg-slate-900 border border-slate-800 p-3 rounded-xl text-[11px] text-emerald-400 hidden mt-2" role="status" aria-live="polite"></div>
@@ -606,7 +602,7 @@
                     <div id="teen-panel-footer" class="flex justify-between items-center pt-2">
                         <span id="teen-step-indicator" class="text-xs text-slate-500" aria-live="polite"></span>
                         <button id="teen-next-btn" onclick="nextTeenCase()" class="hidden bg-indigo-500 hover:bg-indigo-600 text-white font-bold px-4 py-2 rounded-xl text-xs transition">
-                            Próximo Caso <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                            Próximo Caso 
                         </button>
                     </div>
                 </div>
@@ -617,17 +613,17 @@
         <div id="tab-adults" class="tab-content space-y-6" role="region" aria-label="Módulo Adulto">
             <div class="max-w-4xl mx-auto">
                 <button onclick="switchTab('landing')" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-seguro-600 transition mb-2" aria-label="Voltar ao menu principal">
-                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar ao Menu
+                     Voltar ao Menu
                 </button>
 
                 <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden flex flex-col h-[560px]">
                     <div class="bg-gradient-to-r from-seguro-700 to-seguro-600 p-4 flex items-center justify-between text-white shrink-0">
                         <div class="flex items-center space-x-3">
-                            <span class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-lg" aria-hidden="true"><i class="fa-solid fa-user-shield"></i></span>
+                            
                             <div>
                                 <h3 class="font-bold text-sm">Guia Digital de Proteção Familiar</h3>
                                 <p class="text-xs text-seguro-100 flex items-center gap-1">
-                                    <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" aria-hidden="true"></span>
+                                    
                                     Online para ajudar sua família
                                 </p>
                             </div>
@@ -636,7 +632,7 @@
 
                     <div id="chat-messages" class="flex-grow overflow-y-auto p-6 space-y-4 bg-slate-50" role="log" aria-live="polite" aria-label="Conversa com o assistente">
                         <div class="flex items-start gap-3">
-                            <span class="w-8 h-8 bg-seguro-600 text-white rounded-full flex items-center justify-center text-xs shrink-0" aria-hidden="true"><i class="fa-solid fa-robot"></i></span>
+                            
                             <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-xs leading-relaxed max-w-[85%] text-slate-700 space-y-2">
                                 <p class="font-bold text-slate-900 text-sm">Olá, responsável!</p>
                                 <p>Estou aqui para traduzir a segurança da internet de um jeito simples. Você pode fazer perguntas sobre como proteger o celular do seu filho, regras para jogos (como Roblox), como colocar senhas seguras em casa ou colar o "Resumo dos Pais" gerado aqui no aplicativo para entender os resultados dos testes das crianças!</p>
@@ -659,13 +655,13 @@
         <div id="tab-seniors" class="tab-content space-y-6" role="region" aria-label="Módulo Idosos">
             <div class="max-w-3xl mx-auto">
                 <button onclick="switchTab('landing')" class="inline-flex items-center gap-2 font-semibold text-slate-500 hover:text-rose-600 transition mb-2" style="font-size:1.05rem" aria-label="Voltar ao menu principal">
-                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar ao Menu
+                     Voltar ao Menu
                 </button>
 
                 <!-- Cabeçalho grande e legível -->
                 <div class="bg-rose-600 rounded-3xl p-6 text-white shadow-xl">
                     <div class="flex items-center gap-4 mb-2">
-                        <span class="text-5xl" aria-hidden="true"></span>
+                        
                         <div>
                             <h2 class="font-extrabold leading-tight" style="font-size:1.5rem">Proteção contra Golpes Digitais</h2>
                             <p class="text-rose-100 mt-1" style="font-size:1rem">Para pessoas com 60 anos ou mais</p>
@@ -679,7 +675,7 @@
 
                 <!-- Aviso importante — fonte grande -->
                 <div class="mt-4 bg-amber-50 border-2 border-amber-400 rounded-2xl p-5 flex gap-3 items-start">
-                    <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-1 shrink-0 text-2xl" aria-hidden="true"></i>
+                    
                     <p class="text-amber-900 leading-relaxed font-medium" style="font-size:1.05rem">
                         O Brasil registra mais de <strong>1 milhão de golpes digitais</strong> contra idosos por ano. Aqui você vai aprender a reconhecer as armadilhas mais comuns — e como se proteger.
                     </p>
@@ -695,14 +691,14 @@
                 <!-- Botão Próxima — enorme e no centro -->
                 <div class="mt-6 flex justify-center">
                     <button id="seniors-next-btn" onclick="nextSeniorsQuestion()" class="hidden bg-rose-500 hover:bg-rose-600 text-white font-extrabold rounded-2xl shadow-lg transition w-full" style="font-size:1.2rem; padding: 1rem 2rem">
-                        Próxima Situação <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        Próxima Situação 
                     </button>
                 </div>
 
                 <!-- Painel de emergência — grande e claro -->
                 <div class="mt-6 bg-slate-900 rounded-2xl p-6">
                     <p class="text-white font-extrabold mb-3" style="font-size:1.15rem">
-                        <i class="fa-solid fa-phone text-rose-400 mr-2" aria-hidden="true"></i> Caiu em um golpe? Ligue agora:
+                         Caiu em um golpe? Ligue agora:
                     </p>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div class="bg-slate-800 rounded-xl p-3 text-center">
@@ -728,13 +724,13 @@
     <div id="parent-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
         <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl border border-slate-100 space-y-4">
             <div class="flex justify-between items-center border-b pb-3">
-                <h3 id="modal-titulo" class="text-base font-black text-slate-900 flex items-center gap-2"><span aria-hidden="true"></span> Como foi o desempenho dos seus filhos?</h3>
-                <button onclick="closeParentReport()" class="text-slate-400 hover:text-slate-600 text-xl" aria-label="Fechar relatório"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+                <h3 id="modal-titulo" class="text-base font-black text-slate-900 flex items-center gap-2"> Como foi o desempenho dos seus filhos?</h3>
+                <button onclick="closeParentReport()" class="text-slate-400 hover:text-slate-600 text-xl" aria-label="Fechar relatório"></button>
             </div>
             <div id="modal-report-content" class="space-y-3 max-h-96 overflow-y-auto text-xs text-slate-600 leading-relaxed" aria-live="polite"></div>
             <div class="flex gap-2 pt-2">
                 <button onclick="copyReportToClipboard()" class="flex-grow bg-slate-900 text-white font-bold p-3 rounded-xl text-xs hover:bg-slate-800 transition shadow flex items-center justify-center gap-1.5" aria-label="Copiar resumo para a área de transferência">
-                    <i class="fa-solid fa-copy" aria-hidden="true"></i> Copiar Resumo para conversar com a nossa IA
+                     Copiar Resumo para conversar com a nossa IA
                 </button>
                 <button onclick="closeParentReport()" class="bg-slate-100 font-bold px-4 rounded-xl text-xs text-slate-600 hover:bg-slate-200 transition">Fechar</button>
             </div>
@@ -745,7 +741,7 @@
     <div id="senha-pais-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-60 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="senha-pais-titulo">
         <div class="bg-white rounded-3xl max-w-sm w-full p-7 shadow-2xl border border-slate-100 space-y-5">
             <div class="text-center space-y-2">
-                <div class="text-4xl" aria-hidden="true"></div>
+                
                 <h3 id="senha-pais-titulo" class="text-lg font-extrabold text-slate-900">Confirmação dos Pais</h3>
                 <p class="text-sm text-slate-500 leading-relaxed">Para liberar o acesso de crianças e jovens, um <strong>pai ou responsável</strong> precisa autorizar com sua senha.</p>
             </div>
@@ -753,7 +749,7 @@
             <!-- Primeira vez: criar senha -->
             <div id="senha-pais-criar" class="space-y-3 hidden">
                 <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800 leading-relaxed">
-                    <i class="fa-solid fa-circle-info text-amber-500 mr-1"></i>
+                    
                     Primeira vez! Crie agora a senha dos pais. Ela será pedida toda vez que uma criança quiser entrar.
                 </div>
                 <div>
@@ -766,7 +762,7 @@
                 </div>
                 <div id="senha-pais-erro-criar" class="hidden text-xs text-rose-600 font-semibold"></div>
                 <button onclick="criarSenhaPais()" class="w-full bg-seguro-600 hover:bg-seguro-700 text-white font-extrabold py-3 rounded-xl text-sm transition shadow">
-                    Criar Senha e Liberar Acesso <i class="fa-solid fa-unlock ml-1"></i>
+                    Criar Senha e Liberar Acesso 
                 </button>
             </div>
 
@@ -778,7 +774,7 @@
                 </div>
                 <div id="senha-pais-erro" class="hidden text-xs text-rose-600 font-semibold"></div>
                 <button onclick="verificarSenhaPais()" class="w-full bg-seguro-600 hover:bg-seguro-700 text-white font-extrabold py-3 rounded-xl text-sm transition shadow">
-                    Confirmar e Liberar <i class="fa-solid fa-unlock ml-1"></i>
+                    Confirmar e Liberar 
                 </button>
                 <button onclick="redefinirSenhaPais()" class="w-full text-xs text-slate-400 hover:text-rose-500 transition font-semibold">
                     Responsável esqueceu a senha? Clique para redefinir
@@ -794,14 +790,14 @@
     <!-- MODAL DE BLOQUEIO DE IDADE -->
     <div id="age-lock-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-55 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="lock-modal-titulo">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 text-center space-y-5">
-            <div class="text-5xl" aria-hidden="true">🔒</div>
+            
             <h3 id="lock-modal-titulo" class="text-xl font-black text-slate-900">Acesso Restrito</h3>
             <p id="lock-modal-desc" class="text-slate-600 text-xs sm:text-sm leading-relaxed">
                 Este espaço possui dinâmicas e conteúdos exclusivos para outra faixa etária. Seu perfil atual está configurado para <strong id="lock-profile-name">...</strong>.
             </p>
             <div class="flex flex-col gap-2 pt-2">
                 <button onclick="redefinirPerfilPeloModal()" class="w-full bg-seguro-600 text-white font-extrabold p-3.5 rounded-xl text-xs hover:bg-seguro-700 transition shadow flex items-center justify-center gap-2 uppercase tracking-wider">
-                    <i class="fa-solid fa-user-gear"></i> Alterar meu Perfil / Idade
+                     Alterar meu Perfil / Idade
                 </button>
                 <button onclick="fecharModalBloqueio()" class="w-full bg-slate-100 font-bold p-3 rounded-xl text-xs text-slate-600 hover:bg-slate-200 transition">
                     Voltar ao meu módulo recomendado
@@ -817,7 +813,7 @@
 
     <!-- PAINEL DESCRIÇÕES (aparece automaticamente) -->
     <div id="libras-painel" role="complementary" aria-label="Painel de descrição visual da tela">
-        <h4>📋 Descrição Visual</h4>
+        <h4> Descrição Visual</h4>
         <div id="libras-descricao" style="background:#0f172a; border:1px solid #1e3a5f; border-radius:10px; padding:12px; font-size:11px; color:#7cc0ff; margin-top:8px; display:none; line-height:1.7;"></div>
     </div>
 
@@ -848,13 +844,13 @@
             
             if (tipo === 'sucesso') {
                 toast.classList.add('bg-emerald-600', 'border', 'border-emerald-500');
-                toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${mensagem}`;
+                toast.innerHTML = ` ${mensagem}`;
             } else if (tipo === 'erro') {
                 toast.classList.add('bg-rose-600', 'border', 'border-rose-500');
-                toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${mensagem}`;
+                toast.innerHTML = ` ${mensagem}`;
             } else {
                 toast.classList.add('bg-slate-900', 'border', 'border-slate-800');
-                toast.innerHTML = `<i class="fa-solid fa-info"></i> ${mensagem}`;
+                toast.innerHTML = ` ${mensagem}`;
             }
             
             document.body.appendChild(toast);
@@ -998,16 +994,16 @@
 
                 badge.innerHTML = `
                     <div class="bg-seguro-100 dark:bg-seguro-900 border border-seguro-200 text-seguro-800 dark:text-seguro-200 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-sm">
-                        <i class="fa-solid fa-user-tag text-[10px]"></i> Perfil: ${nomeCategoria}
+                         Perfil: ${nomeCategoria}
                         <button onclick="mostrarOnboardingParaTroca()" class="ml-1 hover:text-seguro-600 transition" title="Trocar perfil">
-                            <i class="fa-solid fa-user-gear"></i>
+                            
                         </button>
                     </div>
                 `;
             } else {
                 badge.innerHTML = `
                     <button onclick="mostrarOnboardingParaTroca()" class="bg-amber-100 hover:bg-amber-200 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-xl border border-amber-200 transition shadow-sm flex items-center gap-1">
-                        <i class="fa-solid fa-circle-exclamation text-[10px]"></i> Definir Perfil
+                         Definir Perfil
                     </button>
                 `;
             }
@@ -1028,7 +1024,7 @@
                     card.classList.remove('opacity-60', 'grayscale', 'border-transparent');
                     card.classList.add('border-emerald-400', 'ring-4', 'ring-emerald-50/50');
                     if (badgeContainer) {
-                        badgeContainer.innerHTML = `<span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-circle-check"></i> Recomendado</span>`;
+                        badgeContainer.innerHTML = `<span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full"> Recomendado</span>`;
                     }
                     if (actionContainer) {
                         let acaoTexto = "Entrar na Aventura";
@@ -1036,7 +1032,7 @@
                         if (cat === 'adults') acaoTexto = "Conversar com Assistente";
                         if (cat === 'seniors') acaoTexto = "Aprender a se Proteger";
 
-                        actionContainer.innerHTML = `${acaoTexto} <i class="fa-solid fa-arrow-right ml-1"></i>`;
+                        actionContainer.innerHTML = `${acaoTexto} `;
                         actionContainer.className = "action-status-container flex items-center gap-2 text-emerald-600 font-bold text-xs sm:text-sm mt-3";
                     }
                 } else {
@@ -1044,10 +1040,10 @@
                     card.classList.add('opacity-60', 'grayscale', 'border-transparent');
                     card.classList.remove('border-emerald-400', 'ring-4', 'ring-emerald-50/50');
                     if (badgeContainer) {
-                        badgeContainer.innerHTML = `<span class="bg-slate-200 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-lock"></i> Bloqueado</span>`;
+                        badgeContainer.innerHTML = `<span class="bg-slate-200 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-full"> Bloqueado</span>`;
                     }
                     if (actionContainer) {
-                        actionContainer.innerHTML = `Bloqueado para sua idade <i class="fa-solid fa-lock text-slate-400"></i>`;
+                        actionContainer.innerHTML = `Bloqueado para sua idade `;
                         actionContainer.className = "action-status-container flex items-center gap-2 text-slate-400 font-bold text-xs sm:text-sm mt-3";
                     }
                 }
@@ -1122,12 +1118,12 @@
             const btn = document.getElementById('btn-voz');
             btn.setAttribute('aria-pressed', ttsAtivo);
             if (ttsAtivo) {
-                btn.innerHTML = '<i class="fa-solid fa-volume-high"></i> Voz Ativada';
+                btn.innerHTML = ' Voz Ativada';
                 btn.classList.remove('text-red-400');
                 btn.classList.add('ativo');
                 falarVoz("Leitura de tela ativada. Agora vou narrar o conteúdo do jogo para você!");
             } else {
-                btn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> Voz';
+                btn.innerHTML = ' Voz';
                 btn.classList.remove('ativo');
                 btn.classList.add('text-red-400');
                 window.speechSynthesis.cancel();
@@ -1213,7 +1209,7 @@
                 texto = typeof d === 'function' ? d() : d;
             }
 
-            div.innerHTML = `<strong style="color:#4ade80; display:block; margin-bottom:6px;">👁️ O que está na tela:</strong>${texto}`;
+            div.innerHTML = `<strong style="color:#4ade80; display:block; margin-bottom:6px;"> O que está na tela:</strong>${texto}`;
             falarVoz(texto);
         }
 
@@ -1332,11 +1328,11 @@
             if (currentKidsIndex >= kidsQuestions.length) {
                 document.getElementById('kids-mission-title').innerText = "Missão Cumprida!";
                 document.getElementById('kids-step-indicator').innerText = "";
-                let medalha = kidsScore >= 80 ? "🥇 Guardião de Ouro" : "🥈 Guardião de Prata";
+                let medalha = kidsScore >= 80 ? " Guardião de Ouro" : " Guardião de Prata";
 
                 document.getElementById('kids-quiz-container').innerHTML = `
                     <div class="text-center space-y-4 py-6" role="status" aria-live="polite">
-                        <div class="text-5xl" aria-hidden="true">🎉</div>
+                        
                         <h3 class="text-2xl font-black text-slate-900">Parabéns, você terminou!</h3>
                         <p class="text-slate-600 text-sm max-w-md mx-auto">Você completou o treinamento e aprendeu as chaves secretas para se proteger na internet!</p>
                         <div class="inline-block bg-amber-50 border-2 border-amber-300 rounded-2xl p-4">
@@ -1345,7 +1341,7 @@
                         </div>
                         <div class="pt-2">
                             <button onclick="reiniciarKids()" class="bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition shadow">
-                                <i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i> Jogar de Novo
+                                 Jogar de Novo
                             </button>
                         </div>
                     </div>
@@ -1364,7 +1360,7 @@
                 optionsHtml += `
                     <button onclick="answerKidsQuestion(${idx})" class="kids-opt-btn w-full bg-slate-50 hover:bg-amber-50 hover:border-amber-300 border-2 border-slate-200 text-left p-4 rounded-2xl text-xs sm:text-sm font-semibold transition flex items-center justify-between group" aria-label="Opção ${idx + 1}: ${opt.text}">
                         <span>${opt.text}</span>
-                        <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-amber-500 transition" aria-hidden="true"></i>
+                        
                     </button>
                 `;
             });
@@ -1395,7 +1391,7 @@
                 document.getElementById('kids-score').innerText = kidsScore;
                 registrarLog('Kids', q.tema, 'Acertou', q.explanation);
                 feedbackBox.classList.add('bg-emerald-50', 'border', 'border-emerald-200', 'text-emerald-800');
-                feedbackBox.innerHTML = `<p class="font-bold text-sm mb-1">🌟 Sensacional!</p><p>${q.explanation}</p><p class="mt-2 text-xs opacity-80 font-bold">${q.rule}</p>`;
+                feedbackBox.innerHTML = `<p class="font-bold text-sm mb-1"> Sensacional!</p><p>${q.explanation}</p><p class="mt-2 text-xs opacity-80 font-bold">${q.rule}</p>`;
                 screen.classList.add('bg-emerald-950');
                 mouth.className = "w-8 h-3 bg-emerald-400 rounded-b-full shadow-[0_0_6px_#34d399]";
                 statusLabel.classList.replace('bg-amber-400', 'bg-emerald-400');
@@ -1404,7 +1400,7 @@
             } else {
                 registrarLog('Kids', q.tema, 'Errou', q.explanation);
                 feedbackBox.classList.add('bg-rose-50', 'border', 'border-rose-200', 'text-rose-800');
-                feedbackBox.innerHTML = `<p class="font-bold text-sm mb-1">👉 Opa, atenção!</p><p>${q.explanation}</p><p class="mt-2 text-xs opacity-80 font-bold">${q.rule}</p>`;
+                feedbackBox.innerHTML = `<p class="font-bold text-sm mb-1"> Opa, atenção!</p><p>${q.explanation}</p><p class="mt-2 text-xs opacity-80 font-bold">${q.rule}</p>`;
                 screen.classList.add('bg-rose-950');
                 mouth.className = "w-8 h-1 bg-rose-400 rounded shadow-[0_0_6px_#f43f5e]";
                 statusLabel.classList.replace('bg-amber-400', 'bg-rose-400');
@@ -1432,10 +1428,10 @@
                 document.getElementById('teen-panel-footer').classList.add('hidden');
                 const finalBox = document.getElementById('teen-conclusion-box');
                 finalBox.classList.remove('hidden');
-                let tMedalha = teenScore >= 80 ? "🥇 Especialista em Cibersegurança" : "🕵️‍♂️ Investigador Aprendiz";
+                let tMedalha = teenScore >= 80 ? " Especialista em Cibersegurança" : " Investigador Aprendiz";
                 finalBox.innerHTML = `
                     <div class="space-y-4" role="status" aria-live="polite">
-                        <div class="text-4xl" aria-hidden="true">🏆</div>
+                        
                         <h3 class="text-xl font-extrabold text-white">Casos Concluídos!</h3>
                         <p class="text-xs text-slate-400 max-w-md mx-auto">Você analisou todos os incidentes reportados na nossa rede e ajudou a manter a comunidade jovem mais protegida.</p>
                         <div class="inline-block bg-indigo-950 border border-indigo-800 p-4 rounded-xl">
@@ -1444,7 +1440,7 @@
                         </div>
                         <div class="pt-2">
                             <button onclick="reiniciarTeens()" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition shadow">
-                                <i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i> Analisar de Novo
+                                 Analisar de Novo
                             </button>
                         </div>
                     </div>
@@ -1589,10 +1585,10 @@
                 document.getElementById('seniors-mission-title').innerText = "Treinamento Concluído!";
                 document.getElementById('seniors-step-indicator').innerText = "";
 
-                let medalha = seniorsScore >= 80 ? "🥇 Guardião Experiente" : "🥈 Cidadão Alerta";
+                let medalha = seniorsScore >= 80 ? " Guardião Experiente" : " Cidadão Alerta";
                 document.getElementById('seniors-quiz-container').innerHTML = `
                     <div class="text-center space-y-4 py-6" role="status" aria-live="polite">
-                        <div class="text-5xl" aria-hidden="true">🎉</div>
+                        
                         <h3 class="text-2xl font-black text-slate-900">Parabéns, você terminou!</h3>
                         <p class="text-slate-600 text-sm max-w-md mx-auto">Você aprendeu a reconhecer os golpes mais perigosos contra a terceira idade. Compartilhe esse conhecimento com quem você ama!</p>
                         <div class="inline-block bg-rose-50 border-2 border-rose-300 rounded-2xl p-4">
@@ -1601,10 +1597,10 @@
                         </div>
                         <div class="pt-2 flex flex-col sm:flex-row gap-2 justify-center">
                             <button onclick="reiniciarSeniors()" class="bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition shadow">
-                                <i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i> Revisar de Novo
+                                 Revisar de Novo
                             </button>
                             <button onclick="switchTab('adults')" class="bg-rose-500 hover:bg-rose-600 text-white font-extrabold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition shadow">
-                                <i class="fa-solid fa-robot" aria-hidden="true"></i> Tirar Dúvidas com o Assistente
+                                 Tirar Dúvidas com o Assistente
                             </button>
                         </div>
                     </div>
@@ -1622,7 +1618,7 @@
                 opcoesHtml += `
                     <button onclick="answerSeniorsQuestion(${idx})" class="seniors-opt-btn w-full bg-slate-50 hover:bg-rose-50 hover:border-rose-400 border-2 border-slate-300 text-left rounded-2xl font-semibold transition flex items-center justify-between group" style="padding:1.1rem 1.3rem; font-size:1.05rem; line-height:1.5" aria-label="Opção ${idx + 1}: ${op.text}">
                         <span>${op.text}</span>
-                        <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-rose-500 transition shrink-0 ml-3" aria-hidden="true"></i>
+                        
                     </button>
                 `;
             });
@@ -1630,7 +1626,7 @@
             document.getElementById('seniors-quiz-container').innerHTML = `
                 <div class="space-y-5">
                     <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl" style="padding:1.2rem">
-                        <span class="font-black uppercase tracking-widest text-rose-600 block mb-2" style="font-size:0.85rem">⚠️ O que aconteceu?</span>
+                        <span class="font-black uppercase tracking-widest text-rose-600 block mb-2" style="font-size:0.85rem"> O que aconteceu?</span>
                         <p class="font-bold text-slate-900 leading-snug" id="seniors-question-text" style="font-size:1.15rem">${q.question}</p>
                     </div>
                     <p class="font-extrabold text-slate-700" style="font-size:1rem">O que você faria?</p>
@@ -1654,12 +1650,12 @@
                 document.getElementById('seniors-score').innerText = seniorsScore;
                 logsSeniors.push({ tema: q.tema, status: 'Acertou', detalhe: q.explicacao });
                 feedbackBox.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-900');
-                feedbackBox.innerHTML = `<p class="font-extrabold mb-2" style="font-size:1.1rem">✅ Muito bem! Você não caiu no golpe!</p><p style="font-size:1rem">${q.explicacao}</p><p class="mt-3 font-bold" style="font-size:0.95rem; opacity:0.85">${q.regra}</p>`;
+                feedbackBox.innerHTML = `<p class="font-extrabold mb-2" style="font-size:1.1rem"> Muito bem! Você não caiu no golpe!</p><p style="font-size:1rem">${q.explicacao}</p><p class="mt-3 font-bold" style="font-size:0.95rem; opacity:0.85">${q.regra}</p>`;
                 falarVoz("Muito bem! Você não caiu no golpe! " + q.explicacao);
             } else {
                 logsSeniors.push({ tema: q.tema, status: 'Caiu no Golpe', detalhe: q.explicacao });
                 feedbackBox.classList.add('bg-rose-50', 'border-rose-300', 'text-rose-900');
-                feedbackBox.innerHTML = `<p class="font-extrabold mb-2" style="font-size:1.1rem">🚨 Atenção! Esse é um golpe muito comum!</p><p style="font-size:1rem">${q.explicacao}</p><p class="mt-3 font-bold" style="font-size:0.95rem; opacity:0.85">${q.regra}</p>`;
+                feedbackBox.innerHTML = `<p class="font-extrabold mb-2" style="font-size:1.1rem"> Atenção! Esse é um golpe muito comum!</p><p style="font-size:1rem">${q.explicacao}</p><p class="mt-3 font-bold" style="font-size:0.95rem; opacity:0.85">${q.regra}</p>`;
                 falarVoz("Atenção! Esse é um golpe muito comum! " + q.explicacao);
             }
 
@@ -1674,18 +1670,54 @@
 
         // ===== CHAT DO RESPONSÁVEL (MODO ADULTO) =====
 
-        function handleAdultQuestion(e) {
+        let chatHistory = []; // histórico da conversa para contexto
+
+        async function handleAdultQuestion(e) {
             e.preventDefault();
             const input = document.getElementById('chat-user-input');
             const query = input.value.trim();
             if (!query) return;
+
             appendChatMessage('Você', query, true);
             input.value = '';
-            setTimeout(() => {
-                const resposta = processarFiltrosEGerarResposta(query);
+            input.disabled = true;
+
+            // Mostra indicador de digitação
+            const typingId = 'typing-' + Date.now();
+            const container = document.getElementById('chat-messages');
+            container.insertAdjacentHTML('beforeend', `
+                <div id="${typingId}" class="flex items-start gap-3 justify-start">
+                    <span class="w-8 h-8 bg-seguro-600 text-white rounded-full flex items-center justify-center text-xs shrink-0"></span>
+                    <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-xs text-slate-400 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 bg-seguro-400 rounded-full animate-bounce" style="animation-delay:0ms"></span>
+                        <span class="w-1.5 h-1.5 bg-seguro-400 rounded-full animate-bounce" style="animation-delay:150ms"></span>
+                        <span class="w-1.5 h-1.5 bg-seguro-400 rounded-full animate-bounce" style="animation-delay:300ms"></span>
+                    </div>
+                </div>
+            `);
+            container.scrollTop = container.scrollHeight;
+
+            // Adiciona a mensagem ao histórico
+            chatHistory.push({ role: 'user', content: query });
+
+            try {
+                const resposta = await gerarRespostaLocal(query);
+
+                // Adiciona resposta ao histórico
+                chatHistory.push({ role: 'assistant', content: resposta });
+
+                // Remove indicador de digitação
+                document.getElementById(typingId)?.remove();
                 appendChatMessage('Guia Digital', resposta, false);
                 falarVoz(resposta);
-            }, 400);
+
+            } catch (err) {
+                document.getElementById(typingId)?.remove();
+                appendChatMessage('Guia Digital', 'Houve um problema. Tente novamente.', false);
+            }
+
+            input.disabled = false;
+            input.focus();
         }
 
         function appendChatMessage(sender, text, isUser) {
@@ -1693,8 +1725,8 @@
             const side = isUser ? 'justify-end' : 'justify-start';
             const color = isUser ? 'bg-seguro-600 text-white rounded-tr-none' : 'bg-white text-slate-700 rounded-tl-none border border-slate-100';
             const icon = isUser
-                ? '<span class="w-8 h-8 bg-slate-200 text-slate-700 rounded-full flex items-center justify-center text-xs shrink-0 order-2" aria-hidden="true"><i class="fa-solid fa-user"></i></span>'
-                : '<span class="w-8 h-8 bg-seguro-600 text-white rounded-full flex items-center justify-center text-xs shrink-0" aria-hidden="true"><i class="fa-solid fa-robot"></i></span>';
+                ? ''
+                : '';
 
             const messageHtml = `
                 <div class="flex items-start gap-3 ${side}">
@@ -1709,41 +1741,94 @@
             container.scrollTop = container.scrollHeight;
         }
 
-        function processarFiltrosEGerarResposta(query) {
-            const lower = query.toLowerCase();
-            const termosCritica = ['burro', 'idiota', 'estupido', 'so faz merda', 'imbecil', 'incompetente', 'so faz besteira', 'nao aprende', 'reprovou', 'cabeca dura'];
-            for (let termo of termosCritica) {
-                if (lower.includes(termo)) {
-                    return "Entendo perfeitamente a sua preocupação e a exaustão que a rotina de cuidados traz, mas lembre-se: erros cometidos na internet fazem parte do amadurecimento dos nossos jovens. Xingar ou rotular seu filho pode afastá-lo de você justamente quando ele mais precisa de proteção. Que tal focarmos em orientar em vez de punir? Vamos bater um papo construtivo com ele sobre como usar as redes com responsabilidade!";
+        // ===== MOTOR DE RESPOSTAS DO ASSISTENTE =====
+
+        async function gerarRespostaLocal(query) {
+            // Simula tempo de resposta natural
+            await new Promise(r => setTimeout(r, 800 + Math.random() * 600));
+
+            const q = query.toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // remove acentos para comparação
+
+            // Temas fora do escopo — recusa educada
+            const foraDoEscopo = [
+                'cobol', 'python', 'javascript', 'programacao', 'receita', 'culinaria', 'cozinha',
+                'politica', 'presidente', 'eleicao', 'futebol', 'esporte', 'filme', 'serie',
+                'musica', 'banda', 'novela', 'medicina', 'doenca', 'remedio', 'bula',
+                'matematica', 'historia', 'geografia', 'vestibular', 'enem', 'espiritual',
+                'religiao', 'deus', 'oracao', 'astrologia', 'horoscopo', 'financas', 'investimento',
+                'acoes', 'bolsa', 'cripto', 'bitcoin', 'viagem', 'turismo', 'hotel'
+            ];
+            for (const termo of foraDoEscopo) {
+                if (q.includes(termo)) {
+                    return 'Sou especializado em segurança digital familiar e não consigo ajudar com esse assunto. Se tiver dúvidas sobre como proteger sua família na internet, sobre golpes digitais ou sobre como configurar o celular dos seus filhos com segurança, é só perguntar!';
                 }
             }
-            const termosEscopo = ['roblox', 'senha', 'filho', 'filha', 'criança', 'jovem', 'celular', 'instagram', 'tiktok', 'jogo', 'site', 'link', 'hacker', 'virus', 'controle', 'bloquear', 'segurança', 'protege', 'proteção', 'monitorar', 'computador', 'resumo', 'logs', 'internet', 'whatsapp'];
-            if (lower.includes('relatório') || lower.includes('desempenho') || lower.includes('modulo')) {
-                return "Obrigado por compartilhar o resumo de atividades! Analisando os dados salvos nesta seção, recomendo que chame seu filho para conversar sobre os pontos onde houve erros. Reforce que as regras de não falar com estranhos e nunca fornecer senhas são inegociáveis para a segurança dele!";
+
+            // Respostas por tema
+            if (q.includes('roblox') || q.includes('minecraft') || q.includes('free fire') || q.includes('fortnite')) {
+                return 'Jogos online têm riscos reais para crianças. O primeiro passo é ativar o modo privado dentro do jogo para que estranhos não possam mandar mensagens. No Roblox, acesse as Configurações de Privacidade e mude quem pode conversar com seu filho para "Amigos". Além disso, crie uma conta de criança vinculada ao seu e-mail para receber alertas de compras — muitas crianças gastam dinheiro real sem perceber.';
             }
-            let estaNoEscopo = false;
-            for (let t of termosEscopo) {
-                if (lower.includes(t)) { estaNoEscopo = true; break; }
+
+            if (q.includes('whatsapp') && (q.includes('golpe') || q.includes('clone') || q.includes('falso') || q.includes('estranho'))) {
+                return 'O golpe do WhatsApp clonado é o mais comum no Brasil. O criminoso finge ser um filho ou parente pedindo dinheiro de um número novo. A regra de ouro é simples: antes de qualquer transferência, ligue para o número antigo da pessoa ou para outro familiar para confirmar. Se não conseguir contato, não mande nada. Bancos e familiares reais nunca pedem PIX urgente por mensagem.';
             }
-            if (!estaNoEscopo) {
-                return "Desculpe, mas sou um assistente especializado exclusivamente em Segurança Digital Familiar e proteção de crianças na internet. Não posso responder a perguntas sobre outros assuntos.";
+
+            if (q.includes('pix') || q.includes('boleto') || q.includes('transferencia') || q.includes('golpe')) {
+                return 'Golpes financeiros digitais seguem um padrão: urgência, pressão e pedido de sigilo. Se alguém pede PIX urgente, boleto por link ou dados bancários por mensagem, pare tudo e desconfie. Ligue diretamente para o número oficial do banco que está no verso do cartão. Nunca clique em links enviados por SMS ou WhatsApp para resolver problemas bancários.';
             }
-            if (lower.includes('roblox') || lower.includes('jogos')) {
-                return "Para jogos como Roblox ou Minecraft: 1) Desative o chat de texto com desconhecidos nas opções de privacidade da conta. 2) Crie senhas fortes misturando letras e símbolos. 3) Configure uma senha PIN de quatro dígitos para que a criança não mude as configurações de privacidade sozinha.";
+
+            if (q.includes('instagram') || q.includes('tiktok') || q.includes('rede social') || q.includes('redes sociais')) {
+                return 'Por lei brasileira, menores de 14 anos não podem criar contas em redes sociais sem autorização dos pais. Se seu filho usa Instagram ou TikTok, configure a conta como Privada, desative mensagens diretas de desconhecidos e ative o Modo Supervisionado disponível em ambas as plataformas. Isso permite que você acompanhe o tempo de uso e com quem ele interage.';
             }
-            if (lower.includes('celular') || lower.includes('controle') || lower.includes('monitorar')) {
-                return "Recomendo muito a instalação de aplicativos de controle parental oficiais como o 'Google Family Link' (Android) ou o 'Tempo de Uso' nativo do iOS (Apple). Eles permitem gerenciar horários, bloquear downloads de apps impróprios e monitorar o tempo de tela de forma segura.";
+
+            if (q.includes('senha') || q.includes('segura') || q.includes('hacke') || q.includes('invadi')) {
+                return 'Uma senha segura tem pelo menos 12 caracteres com letras maiúsculas, minúsculas, números e um símbolo. Evite datas de aniversário e nomes de pets — são as primeiras combinações que criminosos tentam. Uma dica prática para criar senhas memoráveis é usar frases: "Meu filho tem 8 anos!" vira "MfT8a!". Nunca use a mesma senha em mais de um lugar.';
             }
-            if (lower.includes('senha')) {
-                return "Ensine seus filhos que senhas são segredos absolutos. Uma boa estratégia familiar é criar frases fáceis de lembrar para vocês, substituindo letras por números. Exemplo: 'MinhaCasaSegura123!' vira 'M1nh4C4s4S3gur4!'.";
+
+            if (q.includes('controle parental') || q.includes('family link') || q.includes('tempo de uso') || q.includes('celular') || q.includes('monitorar') || q.includes('bloquear')) {
+                return 'Para Android, o Google Family Link é gratuito e permite definir limites de tempo de tela, aprovar downloads de aplicativos e ver a localização do filho. Para iPhone, o recurso nativo chama "Tempo de Uso" e fica nas Configurações. Ambos permitem bloquear conteúdo impróprio e definir horários em que o celular para de funcionar, como durante as refeições e à noite.';
             }
-            if (lower.includes('redes sociais') || lower.includes('instagram') || lower.includes('tiktok')) {
-                return "Por lei, redes sociais exigem idade mínima de 13 anos. Se seu filho usa, certifique-se de que a conta está configurada como 'Privada', impeça mensagens diretas de desconhecidos e converse abertamente sobre nunca aceitar solicitações de amizade de pessoas que eles não conhecem fora da internet.";
+
+            if (q.includes('cyberbullying') || q.includes('bullying') || q.includes('ameaca') || q.includes('chantagem') || q.includes('foto') || q.includes('extorsao')) {
+                return 'Se seu filho está sofrendo cyberbullying ou chantagem com fotos, a primeira coisa é não apagar nada. Tire prints de todas as mensagens e publicações como prova. Depois, bloqueie o agressor nas plataformas e registre um boletim de ocorrência online pelo site da delegacia do seu estado. O crime de extorsão digital tem pena de 4 a 10 anos no Brasil. Seu filho precisa saber que não é culpa dele e que buscar ajuda é o caminho certo.';
             }
-            return "Essa é uma excelente dúvida sobre convivência digital! A melhor proteção sempre será o diálogo aberto. Explique os perigos sem causar pânico, estabeleça horários equilibrados de uso do celular e deixe claro que se algo assustador acontecer, eles devem contar para você imediatamente sem medo de serem castigados.";
+
+            if (q.includes('conversar') || q.includes('explicar') || q.includes('filho') || q.includes('crianca') || q.includes('como falar')) {
+                return 'A conversa mais importante é a primeira. Ao invés de listar proibições, pergunte ao seu filho o que ele faz na internet — isso abre diálogo sem gerar defesa. Estabeleça uma regra clara: "Se algo te deixar desconfortável online, pode me contar sem medo de perder o celular." Crianças escondem problemas quando temem punição. Ser um porto seguro é mais eficaz do que qualquer filtro tecnológico.';
+            }
+
+            if (q.includes('resumo') || q.includes('relatorio') || q.includes('desempenho') || q.includes('resultado')) {
+                const totalKids = logsKids.length;
+                const totalTeens = logsTeens.length;
+                if (totalKids === 0 && totalTeens === 0) {
+                    return 'Ainda não há atividades registradas nesta sessão. Peça para seus filhos jogarem os módulos Kids ou Teens e depois volte aqui para ver o desempenho deles e conversar sobre os pontos onde precisam de mais atenção.';
+                }
+                const acertosKids = logsKids.filter(l => l.status === 'Acertou').length;
+                const acertosTeens = logsTeens.filter(l => l.status === 'Excelente').length;
+                let resumo = 'Com base nas atividades desta sessão: ';
+                if (totalKids > 0) resumo += `no Modo Kids foram ${totalKids} perguntas respondidas, com ${acertosKids} acertos. `;
+                if (totalTeens > 0) resumo += `no Modo Teens foram ${totalTeens} casos analisados, com ${acertosTeens} decisões corretas. `;
+                const errosKids = logsKids.filter(l => l.status !== 'Acertou');
+                const errosTeens = logsTeens.filter(l => l.status !== 'Excelente');
+                const erros = [...errosKids, ...errosTeens];
+                if (erros.length > 0) {
+                    resumo += `Os temas que merecem mais conversa em casa são: ${erros.map(e => e.tema).join(', ')}.`;
+                } else {
+                    resumo += 'Parabéns, seu filho acertou tudo! Reforce as regras de ouro periodicamente para fixar o aprendizado.';
+                }
+                return resumo;
+            }
+
+            if (q.includes('link') || q.includes('phishing') || q.includes('site falso') || q.includes('virus') || q.includes('malware')) {
+                return 'Antes de clicar em qualquer link, passe o mouse por cima dele e olhe o endereço que aparece no canto inferior do navegador. Se o endereço parecer estranho, tiver letras trocadas ou for diferente do site oficial, não clique. Bancos, Correios e operadoras nunca enviam links por SMS para resolver problemas. Em caso de dúvida, acesse o site digitando o endereço direto no navegador.';
+            }
+
+            // Resposta genérica dentro do tema
+            return 'Essa é uma dúvida importante sobre segurança digital. A regra mais poderosa que você pode ensinar para sua família é simples: diante de qualquer situação suspeita na internet — pedido de dinheiro, link estranho, foto solicitada — pare, respire e confirme por outro canal antes de agir. A maioria dos golpes explora a pressa e o medo. Calma é a melhor defesa. Se quiser aprofundar em algum tema específico, pode perguntar!';
         }
 
-        // ===== RELATÓRIO DOS PAIS =====
+        // ===== RELATORIO DOS PAIS =====
 
         function openParentReport() {
             const modal = document.getElementById('parent-modal');
@@ -1758,7 +1843,7 @@
 
             let html = "";
             if (logsKids.length > 0) {
-                html += "<div class='space-y-2'><h4 class='font-black text-amber-600 uppercase text-[10px] tracking-wider'>🤖 Módulo Kids (Até 7 anos)</h4>";
+                html += "<div class='space-y-2'><h4 class='font-black text-amber-600 uppercase text-[10px] tracking-wider'> Módulo Kids (Até 7 anos)</h4>";
                 logsKids.forEach(l => {
                     html += `<div class="p-2.5 rounded-xl border bg-slate-50 flex flex-col gap-0.5">
                         <div class="flex justify-between font-bold"><span class="text-slate-800">${l.tema}</span><span class="${l.status === 'Acertou' ? 'text-emerald-600' : 'text-rose-600'}">${l.status}</span></div>
@@ -1768,7 +1853,7 @@
                 html += "</div>";
             }
             if (logsTeens.length > 0) {
-                html += "<div class='space-y-2 mt-4'><h4 class='font-black text-indigo-400 uppercase text-[10px] tracking-wider'>🕵️‍♂️ Módulo Teens (8 a 17 anos)</h4>";
+                html += "<div class='space-y-2 mt-4'><h4 class='font-black text-indigo-400 uppercase text-[10px] tracking-wider'> Módulo Teens (8 a 17 anos)</h4>";
                 logsTeens.forEach(l => {
                     html += `<div class="p-2.5 rounded-xl border bg-slate-50 flex flex-col gap-0.5">
                         <div class="flex justify-between font-bold"><span class="text-slate-800">${l.tema}</span><span class="${l.status === 'Excelente' ? 'text-emerald-600' : 'text-rose-600'}">${l.status}</span></div>
