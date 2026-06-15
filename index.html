@@ -340,8 +340,8 @@
                     <button onclick="openParentReport()" class="bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold uppercase tracking-wider py-2 px-3 rounded-lg flex items-center gap-1.5 shadow transition" aria-label="Ver resumo de desempenho para os pais">
                          Resumo para os Pais
                     </button>
-                    <button onclick="switchTab('onboarding')" class="text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-seguro-600 transition flex items-center gap-1.5 py-2 px-3 rounded-lg" aria-label="Ir para início">
-                         Início
+                    <button onclick="history.back()" class="text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-seguro-600 transition flex items-center gap-1.5 py-2 px-3 rounded-lg" aria-label="Voltar para página anterior">
+                         Voltar
                     </button>
                 </div>
             </div>
@@ -402,43 +402,6 @@
                     </button>
                 </div>
 
-                <!-- Gerenciar senha dos filhos -->
-                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-3">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="font-bold text-sm text-slate-900">Senha de acesso dos filhos</p>
-                            <p class="text-xs text-slate-500 mt-0.5" id="senha-status-txt">Carregando...</p>
-                        </div>
-                        <div class="flex gap-2">
-                            <button onclick="abrirGerenciarSenha()" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition" id="btn-gerenciar-senha">
-                                Alterar senha
-                            </button>
-                            <button onclick="redefinirSenhaPais()" class="bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold px-4 py-2 rounded-xl border border-rose-200 transition" id="btn-redefinir-senha">
-                                Esqueci a senha
-                            </button>
-                        </div>
-                    </div>
-                    <div id="gerenciar-senha-form" class="hidden space-y-3 pt-3 border-t border-slate-200">
-                        <div id="gerenciar-senha-atual-wrap">
-                            <label class="text-xs font-bold text-slate-700 block mb-1">Senha atual</label>
-                            <input type="password" id="gerenciar-senha-atual" placeholder="Digite a senha atual..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-700 block mb-1">Nova senha</label>
-                            <input type="password" id="gerenciar-senha-nova" placeholder="Mínimo 4 caracteres..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-700 block mb-1">Confirmar nova senha</label>
-                            <input type="password" id="gerenciar-senha-confirma" placeholder="Repita a nova senha..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
-                        </div>
-                        <div id="gerenciar-senha-erro" class="hidden text-xs text-rose-600 font-semibold"></div>
-                        <div class="flex gap-2">
-                            <button onclick="salvarNovaSenha()" class="flex-grow bg-seguro-600 hover:bg-seguro-700 text-white font-bold py-2.5 rounded-xl text-xs transition">Salvar nova senha</button>
-                            <button onclick="fecharGerenciarSenha()" class="px-4 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Link para o guia -->
                 <div class="border-t border-slate-100 pt-4 text-center">
                     <p class="text-xs text-slate-400 mb-2">Nao se encaixa em nenhum perfil acima?</p>
@@ -459,93 +422,119 @@
                 </div>
             </div>
 
-            <div id="modulos-selecao" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 scroll-mt-24" role="list" aria-label="Módulos do jogo">
-                
-                <!-- CARD KIDS -->
-                <div onclick="selecionarModulo('kids')" id="card-kids" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-85 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Kids, para crianças até 7 anos" onkeydown="if(event.key==='Enter')selecionarModulo('kids')">
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-start">
-                            
-                            <div class="badge-status-container">
-                                <span class="bg-amber-100 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full">Até 7 anos</span>
-                            </div>
+            <div id="modulos-selecao" class="flex flex-col lg:flex-row gap-6" role="list" aria-label="Módulos do jogo">
+
+                <!-- COLUNA ESQUERDA: 3 bloqueados em lista -->
+                <div id="col-bloqueados" class="flex flex-col gap-3 lg:w-56 shrink-0">
+                    <!-- CARD KIDS -->
+                    <div onclick="selecionarModulo('kids')" id="card-kids" class="bg-white rounded-2xl px-4 py-3 border-2 border-transparent shadow-sm transition-all flex items-center justify-between group cursor-pointer" role="listitem button" tabindex="0" aria-label="Modo Kids" onkeydown="if(event.key==='Enter')selecionarModulo('kids')">
+                        <div>
+                            <div class="badge-status-container mb-0.5"></div>
+                            <h3 class="text-sm font-bold text-slate-900">Modo Kids</h3>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">Modo Kids</h3>
-                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                            Uma historinha divertida guiada pelo nosso robozinho amigo. Ensina os pequenos a cuidarem do próprio nome e das senhas como um segredo precioso.
-                        </p>
+                        <div class="action-status-container text-slate-400 text-xs font-bold"></div>
                     </div>
-                    <div class="action-status-container flex items-center gap-2 text-amber-500 font-bold text-xs sm:text-sm mt-3" aria-hidden="true">
-                        Entrar na Aventura 
+
+                    <!-- CARD TEENS -->
+                    <div onclick="selecionarModulo('teens')" id="card-teens" class="bg-white rounded-2xl px-4 py-3 border-2 border-transparent shadow-sm transition-all flex items-center justify-between group cursor-pointer" role="listitem button" tabindex="0" aria-label="Modo Teens" onkeydown="if(event.key==='Enter')selecionarModulo('teens')">
+                        <div>
+                            <div class="badge-status-container mb-0.5"></div>
+                            <h3 class="text-sm font-bold text-slate-900">Modo Teens</h3>
+                        </div>
+                        <div class="action-status-container text-slate-400 text-xs font-bold"></div>
+                    </div>
+
+                    <!-- CARD ADULTS -->
+                    <div onclick="selecionarModulo('adults')" id="card-adults" class="bg-white rounded-2xl px-4 py-3 border-2 border-transparent shadow-sm transition-all flex items-center justify-between group cursor-pointer" role="listitem button" tabindex="0" aria-label="Modo Adulto" onkeydown="if(event.key==='Enter')selecionarModulo('adults')">
+                        <div>
+                            <div class="badge-status-container mb-0.5"></div>
+                            <h3 class="text-sm font-bold text-slate-900">Modo Adulto</h3>
+                        </div>
+                        <div class="action-status-container text-slate-400 text-xs font-bold"></div>
+                    </div>
+
+                    <!-- CARD SENIORS -->
+                    <div onclick="selecionarModulo('seniors')" id="card-seniors" class="bg-white rounded-2xl px-4 py-3 border-2 border-transparent shadow-sm transition-all flex items-center justify-between group cursor-pointer" role="listitem button" tabindex="0" aria-label="Modo Idosos" onkeydown="if(event.key==='Enter')selecionarModulo('seniors')">
+                        <div>
+                            <div class="badge-status-container mb-0.5"></div>
+                            <h3 class="text-sm font-bold text-slate-900">Modo Idosos</h3>
+                        </div>
+                        <div class="action-status-container text-slate-400 text-xs font-bold"></div>
                     </div>
                 </div>
 
-                <!-- CARD TEENS -->
-                <div onclick="selecionarModulo('teens')" id="card-teens" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-85 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Teens, para jovens de 8 a 17 anos" onkeydown="if(event.key==='Enter')selecionarModulo('teens')">
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-start">
-                            
-                            <div class="badge-status-container">
-                                <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded-full">De 8 a 17 anos</span>
+                <!-- COLUNA DIREITA: card ativo + senha + guia -->
+                <div class="flex-grow space-y-4">
+
+                    <!-- Card ativo — gerado dinamicamente pelo JS -->
+                    <div id="card-ativo-display" class="bg-white rounded-3xl p-6 border-2 border-emerald-400 shadow-xl ring-4 ring-emerald-50/50 hidden">
+                        <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full">Recomendado</span>
+                        <h3 id="card-ativo-titulo" class="text-xl font-extrabold text-slate-900 mt-3"></h3>
+                        <p id="card-ativo-desc" class="text-slate-600 text-sm leading-relaxed mt-2"></p>
+                        <button id="card-ativo-btn" onclick="" class="mt-4 bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-sm px-5 py-2.5 rounded-xl transition"></button>
+                    </div>
+
+                    <!-- Senha dos filhos (só aparece se o perfil for adulto) -->
+                    <div id="senha-landing-box" class="hidden bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-bold text-sm text-slate-900">Senha de acesso dos filhos</p>
+                                <p class="text-xs text-slate-500 mt-0.5" id="senha-status-txt">Carregando...</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <button onclick="abrirGerenciarSenha()" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition" id="btn-gerenciar-senha">
+                                    Alterar senha
+                                </button>
+                                <button onclick="redefinirSenhaPais()" class="bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold px-4 py-2 rounded-xl border border-rose-200 transition" id="btn-redefinir-senha">
+                                    Esqueci a senha
+                                </button>
                             </div>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">Modo Teens</h3>
-                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                            Situações do dia a dia sobre fofocas em redes sociais, links perigosos, perfis falsos e mentiras de internet. Descubra como ser o detetive da sua segurança!
-                        </p>
-                    </div>
-                    <div class="action-status-container flex items-center gap-2 text-indigo-500 font-bold text-xs sm:text-sm mt-3" aria-hidden="true">
-                        Resolver Casos 
-                    </div>
-                </div>
-
-                <!-- CARD ADULTS -->
-                <div onclick="selecionarModulo('adults')" id="card-adults" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-85 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Adulto, para pais e professores" onkeydown="if(event.key==='Enter')selecionarModulo('adults')">
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-start">
-                            
-                            <div class="badge-status-container">
-                                <span class="bg-seguro-100 text-seguro-700 text-xs font-bold px-2.5 py-1 rounded-full">Pais e Professores</span>
+                        <div id="gerenciar-senha-form" class="hidden space-y-3 pt-3 border-t border-slate-100">
+                            <div id="gerenciar-senha-atual-wrap">
+                                <label class="text-xs font-bold text-slate-700 block mb-1">Senha atual</label>
+                                <input type="password" id="gerenciar-senha-atual" placeholder="Digite a senha atual..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-700 block mb-1">Nova senha</label>
+                                <input type="password" id="gerenciar-senha-nova" placeholder="Mínimo 4 caracteres..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-700 block mb-1">Confirmar nova senha</label>
+                                <input type="password" id="gerenciar-senha-confirma" placeholder="Repita a nova senha..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
+                            </div>
+                            <div id="gerenciar-senha-erro" class="hidden text-xs text-rose-600 font-semibold"></div>
+                            <div class="flex gap-2">
+                                <button onclick="salvarNovaSenha()" class="flex-grow bg-seguro-600 hover:bg-seguro-700 text-white font-bold py-2.5 rounded-xl text-xs transition">Salvar nova senha</button>
+                                <button onclick="fecharGerenciarSenha()" class="px-4 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition">Cancelar</button>
                             </div>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">Modo Adulto</h3>
-                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                            Converse com nosso assistente para tirar dúvidas simples sobre redes sociais, controle do celular dos filhos e como agir diante de problemas na internet.
-                        </p>
                     </div>
-                    <div class="action-status-container flex items-center gap-2 text-seguro-500 font-bold text-xs sm:text-sm mt-3" aria-hidden="true">
-                        Conversar com Assistente 
-                    </div>
-                </div>
 
-                <!-- CARD SENIORS -->
-                <div onclick="selecionarModulo('seniors')" id="card-seniors" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-85 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Idosos, para pessoas com 60 anos ou mais" onkeydown="if(event.key==='Enter')selecionarModulo('seniors')">
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-start">
-                            
-                            <div class="badge-status-container">
-                                <span class="bg-rose-100 text-rose-700 text-xs font-bold px-2.5 py-1 rounded-full">60+ anos</span>
-                            </div>
+                    <!-- Guia de IA -->
+                    <div id="guia-landing-box" class="bg-slate-900 rounded-2xl p-5 flex items-center justify-between gap-4">
+                        <div class="space-y-1">
+                            <p class="text-xs font-extrabold uppercase tracking-widest text-slate-400">Material de apoio</p>
+                            <p class="text-white font-extrabold text-sm">Guia de Inteligencia Artificial</p>
+                            <p class="text-slate-400 text-xs leading-relaxed">Entenda o que e a IA, seus riscos e como usa-la com responsabilidade.</p>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900">Modo Idosos</h3>
-                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                            Golpes de WhatsApp, PIX falso, boleto adulterado e muito mais. Aprenda a identificar as armadilhas digitais mais comuns que atingem pessoas da terceira idade.
-                        </p>
+                        <button onclick="switchTab('guia')" class="shrink-0 bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-xs px-4 py-2.5 rounded-xl transition">
+                            Acessar
+                        </button>
                     </div>
-                    <div class="action-status-container flex items-center gap-2 text-rose-500 font-bold text-xs sm:text-sm mt-3" aria-hidden="true">
-                        Aprender a se Proteger 
-                    </div>
-                </div>
 
+                </div>
             </div>
         </div>
 
         <!-- GUIA DE IA -->
         <div id="tab-guia" class="tab-content space-y-6" role="region" aria-label="Guia de Inteligencia Artificial">
             <div class="max-w-3xl mx-auto space-y-5">
-                <button onclick="switchTab('landing')" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-800 transition mb-1">
-                    Voltar ao Menu
-                </button>
+                <div class="flex items-center gap-2 mb-4">
+                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior">
+                        Voltar
+                    </button>
+                </div>
 
                 <div class="bg-slate-900 rounded-3xl p-7 text-white space-y-2">
                     <span class="text-xs font-extrabold uppercase tracking-widest text-slate-400">Material Educativo</span>
@@ -732,9 +721,14 @@
         <!-- KIDS -->
         <div id="tab-kids" class="tab-content space-y-6" role="region" aria-label="Módulo Kids">
             <div class="max-w-4xl mx-auto">
-                <button onclick="switchTab('onboarding')" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-seguro-600 transition mb-2" aria-label="Voltar ao menu principal">
-                     Voltar ao Menu
-                </button>
+                <div class="flex items-center gap-2 mb-4">
+                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
+                        Voltar
+                    </button>
+                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
+                        Voltar
+                    </button>
+                </div>
                 
                 <div class="bg-amber-100 border border-amber-200 rounded-2xl p-4 flex justify-between items-center shadow-sm" role="status" aria-live="polite">
                     <div class="flex items-center gap-2"><span id="kids-mission-title" class="text-sm font-bold text-slate-800">Carregando historinha...</span></div>
@@ -780,9 +774,14 @@
         <!-- TEENS -->
         <div id="tab-teens" class="tab-content space-y-6" role="region" aria-label="Módulo Teens">
             <div class="max-w-4xl mx-auto">
-                <button onclick="switchTab('onboarding')" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-indigo-600 transition mb-2" aria-label="Voltar ao menu principal">
-                     Voltar ao Menu
-                </button>
+                <div class="flex items-center gap-2 mb-4">
+                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
+                        Voltar
+                    </button>
+                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
+                        Voltar
+                    </button>
+                </div>
 
                 <div class="bg-slate-900 text-white rounded-3xl p-6 shadow-xl border border-slate-800 space-y-4">
                     <div id="teen-panel-header" class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-800 pb-4 gap-2">
@@ -844,9 +843,14 @@
         <!-- ADULTOS -->
         <div id="tab-adults" class="tab-content space-y-6" role="region" aria-label="Módulo Adulto">
             <div class="max-w-4xl mx-auto">
-                <button onclick="switchTab('onboarding')" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-seguro-600 transition mb-2" aria-label="Voltar ao menu principal">
-                     Voltar ao Menu
-                </button>
+                <div class="flex items-center gap-2 mb-4">
+                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
+                        Voltar
+                    </button>
+                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
+                        Voltar
+                    </button>
+                </div>
 
                 <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden flex flex-col h-[560px]">
                     <div class="bg-gradient-to-r from-seguro-700 to-seguro-600 p-4 flex items-center justify-between text-white shrink-0">
@@ -880,7 +884,7 @@
 
                 <!-- Menção ao guia -->
                 <div class="mt-4 bg-slate-50 border border-slate-200 rounded-2xl p-4 flex items-center justify-between gap-4">
-                    <p class="text-xs text-slate-500 leading-relaxed">Quer entender melhor como a Inteligencia Artificial funciona e seus riscos? Temos um guia completo baseado na SaferNet Brasil.</p>
+                    <p class="text-xs text-slate-500 leading-relaxed">Quer ler sobre Inteligencia Artificial? Temos um guia educativo baseado na SaferNet Brasil.</p>
                     <button onclick="switchTab('guia')" class="shrink-0 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2 rounded-xl transition">
                         Ver Guia
                     </button>
@@ -891,9 +895,14 @@
         <!-- IDOSOS -->
         <div id="tab-seniors" class="tab-content space-y-6" role="region" aria-label="Módulo Idosos">
             <div class="max-w-3xl mx-auto">
-                <button onclick="switchTab('onboarding')" class="inline-flex items-center gap-2 font-semibold text-slate-500 hover:text-rose-600 transition mb-2" style="font-size:1.05rem" aria-label="Voltar ao menu principal">
-                     Voltar ao Menu
-                </button>
+                <div class="flex items-center gap-2 mb-4">
+                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 font-bold px-4 py-2.5 rounded-xl transition shadow-sm" style="font-size:1rem" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
+                        Voltar
+                    </button>
+                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 font-bold px-4 py-2.5 rounded-xl transition shadow-sm" style="font-size:1rem" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
+                        Voltar
+                    </button>
+                </div>
 
                 <!-- Cabeçalho grande e legível -->
                 <div class="bg-rose-600 rounded-3xl p-6 text-white shadow-xl">
@@ -955,7 +964,7 @@
 
                 <!-- Menção ao guia -->
                 <div class="mt-6 bg-slate-50 border border-slate-200 rounded-2xl p-4 flex items-center justify-between gap-4">
-                    <p class="text-slate-500 leading-relaxed" style="font-size:0.9rem">Quer entender melhor como a Inteligencia Artificial funciona e seus riscos? Temos um guia completo baseado na SaferNet Brasil.</p>
+                    <p class="text-slate-500 leading-relaxed" style="font-size:0.9rem">Quer ler sobre Inteligencia Artificial? Temos um guia educativo baseado na SaferNet Brasil.</p>
                     <button onclick="switchTab('guia')" class="shrink-0 bg-slate-900 hover:bg-slate-800 text-white font-bold px-4 py-2 rounded-xl transition" style="font-size:0.85rem">
                         Ver Guia
                     </button>
@@ -1247,71 +1256,87 @@
         }
 
         function atualizarVisualizacaoModulos() {
-            const categorias = ['kids', 'teens', 'adults', 'seniors'];
             const badge = document.getElementById('perfil-header-badge');
+            const cardAtivo = document.getElementById('card-ativo-display');
+            const senhaBox = document.getElementById('senha-landing-box');
 
+            const infos = {
+                kids:    { titulo: 'Modo Kids',   desc: 'Uma historinha divertida guiada pelo nosso robozinho amigo. Ensina os pequenos a cuidarem do proprio nome e das senhas como um segredo precioso.', acao: 'Entrar na Aventura',       tab: 'kids' },
+                teens:   { titulo: 'Modo Teens',  desc: 'Situacoes do dia a dia sobre perfis falsos, links perigosos e mentiras de internet. Descubra como ser o detetive da sua seguranca!',              acao: 'Resolver Casos',           tab: 'teens' },
+                adults:  { titulo: 'Modo Adulto', desc: 'Converse com nosso assistente para tirar duvidas simples sobre redes sociais, controle do celular dos filhos e como agir diante de problemas na internet.', acao: 'Conversar com Assistente', tab: 'adults' },
+                seniors: { titulo: 'Modo Idosos', desc: 'Golpes de WhatsApp, PIX falso, boleto adulterado e muito mais. Aprenda a identificar as armadilhas digitais mais comuns que atingem pessoas da terceira idade.', acao: 'Aprender a se Proteger', tab: 'seniors' }
+            };
+
+            // Badge do header
             if (userCategory) {
-                let nomeCategoria = '';
-                if (userCategory === 'kids') nomeCategoria = 'Criança';
-                if (userCategory === 'teens') nomeCategoria = 'Jovem';
-                if (userCategory === 'adults') nomeCategoria = 'Adulto / Responsável';
-                if (userCategory === 'seniors') nomeCategoria = 'Idoso (60+)';
-
+                const nomes = { kids: 'Criança', teens: 'Jovem', adults: 'Adulto / Responsável', seniors: 'Idoso (60+)' };
                 badge.innerHTML = `
-                    <div class="bg-seguro-100 dark:bg-seguro-900 border border-seguro-200 text-seguro-800 dark:text-seguro-200 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-sm">
-                         Perfil: ${nomeCategoria}
-                        <button onclick="mostrarOnboardingParaTroca()" class="ml-1 hover:text-seguro-600 transition" title="Trocar perfil">
-                            
-                        </button>
-                    </div>
-                `;
+                    <div class="bg-seguro-100 border border-seguro-200 text-seguro-800 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-sm">
+                        Perfil: ${nomes[userCategory]}
+                        <button onclick="mostrarOnboardingParaTroca()" class="ml-1 hover:text-seguro-600 transition" title="Trocar perfil">trocar</button>
+                    </div>`;
             } else {
                 badge.innerHTML = `
-                    <button onclick="mostrarOnboardingParaTroca()" class="bg-amber-100 hover:bg-amber-200 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-xl border border-amber-200 transition shadow-sm flex items-center gap-1">
-                         Definir Perfil
-                    </button>
-                `;
+                    <button onclick="mostrarOnboardingParaTroca()" class="bg-amber-100 hover:bg-amber-200 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-xl border border-amber-200 transition shadow-sm">
+                        Definir Perfil
+                    </button>`;
             }
 
-            categorias.forEach(cat => {
+            // Cards da coluna esquerda — todos compactos, o ativo fica oculto da coluna
+            const todos = ['kids', 'teens', 'adults', 'seniors'];
+            todos.forEach(cat => {
                 const card = document.getElementById(`card-${cat}`);
                 if (!card) return;
-
-                const badgeContainer = card.querySelector('.badge-status-container');
-                const actionContainer = card.querySelector('.action-status-container');
-                const descEl = card.querySelector('p');
+                const badgeEl = card.querySelector('.badge-status-container');
 
                 if (!userCategory) {
+                    // Sem perfil: mostra todos normais
+                    card.classList.remove('hidden', 'opacity-40', 'grayscale');
+                    if (badgeEl) badgeEl.innerHTML = '';
                     return;
                 }
 
                 if (userCategory === cat) {
-                    // Card ativo — grande e destacado
-                    card.classList.remove('opacity-40', 'grayscale', 'border-transparent', 'h-20', 'py-3');
-                    card.classList.add('border-emerald-400', 'ring-4', 'ring-emerald-50/50', 'h-85');
-                    if (descEl) descEl.classList.remove('hidden');
-                    if (badgeContainer) badgeContainer.innerHTML = `<span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full">Recomendado</span>`;
-                    if (actionContainer) {
-                        let acaoTexto = "Entrar na Aventura";
-                        if (cat === 'teens') acaoTexto = "Resolver Casos";
-                        if (cat === 'adults') acaoTexto = "Conversar com Assistente";
-                        if (cat === 'seniors') acaoTexto = "Aprender a se Proteger";
-                        actionContainer.innerHTML = acaoTexto;
-                        actionContainer.className = "action-status-container flex items-center gap-2 text-emerald-600 font-bold text-xs sm:text-sm mt-3";
-                    }
+                    // Card ativo: some da coluna esquerda
+                    card.classList.add('hidden');
                 } else {
-                    // Card bloqueado — compacto
-                    card.classList.add('opacity-40', 'grayscale', 'border-transparent');
-                    card.classList.remove('border-emerald-400', 'ring-4', 'ring-emerald-50/50', 'h-85');
-                    card.classList.add('h-20', 'py-3');
-                    if (descEl) descEl.classList.add('hidden');
-                    if (badgeContainer) badgeContainer.innerHTML = `<span class="bg-slate-200 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-full">Bloqueado</span>`;
-                    if (actionContainer) {
-                        actionContainer.innerHTML = '';
-                        actionContainer.className = "action-status-container hidden";
-                    }
+                    // Bloqueado: fica compacto e acinzentado
+                    card.classList.remove('hidden');
+                    card.classList.add('opacity-40', 'grayscale');
+                    if (badgeEl) badgeEl.innerHTML = `<span class="text-[10px] font-bold text-slate-500">Bloqueado</span>`;
                 }
             });
+
+            // Card ativo na coluna direita
+            if (userCategory && infos[userCategory]) {
+                const info = infos[userCategory];
+                document.getElementById('card-ativo-titulo').textContent = info.titulo;
+                document.getElementById('card-ativo-desc').textContent = info.desc;
+                const btn = document.getElementById('card-ativo-btn');
+                btn.textContent = info.acao;
+                btn.onclick = () => switchTab(info.tab);
+                cardAtivo.classList.remove('hidden');
+            } else {
+                cardAtivo.classList.add('hidden');
+            }
+
+            // Guia: só aparece para adultos e idosos
+            const guiaBox = document.getElementById('guia-landing-box');
+            if (guiaBox) {
+                if (!userCategory || userCategory === 'kids' || userCategory === 'teens') {
+                    guiaBox.classList.add('hidden');
+                } else {
+                    guiaBox.classList.remove('hidden');
+                }
+            }
+
+            // Senha: só aparece para adultos
+            if (userCategory === 'adults') {
+                senhaBox.classList.remove('hidden');
+                atualizarStatusSenha();
+            } else {
+                senhaBox.classList.add('hidden');
+            }
         }
 
         function abrirModalBloqueio(categoria) {
