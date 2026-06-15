@@ -21,7 +21,7 @@
                             800: '#053f86', 900: '#0b356f',
                         },
                         esperanca: {
-                            50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac',
+                            50: '#f0df4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac',
                             400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d',
                             800: '#166534', 900: '#14532d',
                         }
@@ -32,19 +32,17 @@
     </script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
         .tab-content { display: none; opacity: 0; transform: translateY(12px); transition: all 0.4s ease-in-out; }
         .tab-content.active { display: block; }
         .tab-content.show { opacity: 1; transform: translateY(0); }
         
-        /* Animação do Robô flutuando */
         .robot-float { animation: floatRobot 3s ease-in-out infinite; }
         @keyframes floatRobot {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
 
-        /* Animação para os olhos piscarem */
         .eye-blink { animation: blinkEffect 4s infinite; }
         @keyframes blinkEffect {
             0%, 45%, 55%, 100% { transform: scaleY(1); }
@@ -54,9 +52,29 @@
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        /* Estilos de Alto Contraste */
+        .alto-contraste body { background: #000000 !important; color: #ffffff !important; }
+        .alto-contraste .bg-white, .alto-contraste .bg-slate-50, .alto-contraste .bg-amber-100, .alto-contraste .bg-slate-900, .alto-contraste .bg-slate-950 { background: #000000 !important; border: 2px solid #fff !important; color: #fff !important; }
+        .alto-contraste text, .alto-contraste p, .alto-contraste h1, .alto-contraste h2, .alto-contraste h3, .alto-contraste span, .alto-contraste div, .alto-contraste button { color: #fff !important; }
+        .alto-contraste button { border: 2px solid #fff !important; background: #000 !important; }
+        .alto-contraste .bg-gradient-to-r, .alto-contraste .bg-gradient-to-tr { background: #000 !important; border: 2px solid #fff !important; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between text-[16px]" id="app-body">
+
+    <div class="bg-slate-900 text-white text-xs py-2 px-4 flex justify-between items-center gap-2 flex-wrap z-[60] relative">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-universal-access text-base text-seguro-400"></i>
+            <span class="font-semibold">Acessibilidade:</span>
+        </div>
+        <div class="flex items-center gap-3 flex-wrap">
+            <button onclick="alterarFonte(1)" class="bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded font-bold"><i class="fa-solid fa-font"></i>+</button>
+            <button onclick="alterarFonte(-1)" class="bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded font-bold"><i class="fa-solid fa-font"></i>-</button>
+            <button onclick="toggleAltoContraste()" class="bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded font-bold flex items-center gap-1"><i class="fa-solid fa-circle-half-stroke"></i> Contraste</button>
+            <button onclick="toggleVoz()" id="btn-voz" class="bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded font-bold flex items-center gap-1 text-red-400"><i class="fa-solid fa-volume-xmark"></i> Voz Desativada</button>
+        </div>
+    </div>
 
     <header class="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -91,7 +109,7 @@
                     <span class="bg-esperanca-600 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">Dicas Simples e Práticas</span>
                     <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">Internet Segura para Toda a Família</h1>
                     <p class="text-seguro-100 text-base sm:text-lg text-justify max-w-4xl">
-                        Aprender a se proteger no mundo digital não precisa ser complicado ou cheio de termos técnicos chatos. Criamos este espaço interativo com jogos e conversas simples para ajudar crianças, jovens e adultos a navegarem com tranquilidade e sem medo!
+                        Aprender a se proteger no world digital não precisa ser complicado ou cheio de termos técnicos chatos. Criamos este espaço interativo com jogos e conversas simples para ajudar crianças, jovens e adultos a navegarem com tranquilidade e sem medo!
                     </p>
                 </div>
             </div>
@@ -294,13 +312,73 @@
     <script>
         let logsKids = [];
         let logsTeens = [];
+        let ttsAtivo = false;
+        let tamanhoFonteAtual = 16;
 
         function registrarLog(modulo, tema, status, detalhe) {
             if (modulo === 'Kids') logsKids.push({ tema, status, detalhe });
             if (modulo === 'Teens') logsTeens.push({ tema, status, detalhe });
         }
 
-        // RECONSTITUÍDO: Todas as perguntas originais completas estão de volta aqui!
+        // ACESSIBILIDADE ENGINE
+        function alterarFonte(direcao) {
+            tamanhoFonteAtual += direcao * 2;
+            if(tamanhoFonteAtual < 12) tamanhoFonteAtual = 12;
+            if(tamanhoFonteAtual > 24) tamanhoFonteAtual = 24;
+            document.getElementById('app-body').style.fontSize = tamanhoFonteAtual + 'px';
+        }
+
+        function toggleAltoContraste() {
+            document.documentElement.classList.toggle('alto-contraste');
+        }
+
+        function toggleVoz() {
+            ttsAtivo = !ttsAtivo;
+            const btn = document.getElementById('btn-voz');
+            if(ttsAtivo) {
+                btn.innerHTML = '<i class="fa-solid fa-volume-high"></i> Voz Ativada';
+                btn.classList.remove('text-red-400');
+                btn.classList.add('text-emerald-400');
+                falarVoz("Leitura de tela ativada.");
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> Voz Desativada';
+                btn.classList.remove('text-emerald-400');
+                btn.classList.add('text-red-400');
+                window.speechSynthesis.cancel();
+            }
+        }
+
+        function falarVoz(texto) {
+            if (!ttsAtivo) return;
+            window.speechSynthesis.cancel();
+            const limpo = texto.replace(/<[^>]*>/g, ''); 
+            const msg = new SpeechSynthesisUtterance(limpo);
+            msg.lang = 'pt-BR';
+            window.speechSynthesis.speak(msg);
+        }
+
+        // REINICIALIZAÇÃO COMPLETA DE JOGOS (SEM RELOAD)
+        function reiniciarKids() {
+            currentKidsIndex = 0;
+            kidsScore = 0;
+            logsKids = [];
+            document.getElementById('kids-score').innerText = '0';
+            document.getElementById('kids-next-btn').classList.add('hidden');
+            loadKidsQuestion();
+        }
+
+        function reiniciarTeens() {
+            currentTeenIndex = 0;
+            teenScore = 100;
+            logsTeens = [];
+            document.getElementById('teen-score').innerText = '100';
+            document.getElementById('teen-game-body').classList.remove('hidden');
+            document.getElementById('teen-panel-footer').classList.remove('hidden');
+            document.getElementById('teen-conclusion-box').classList.add('hidden');
+            document.getElementById('teen-next-btn').classList.add('hidden');
+            loadTeenCase();
+        }
+
         const kidsQuestions = [
             { tema: "Cuidados com Estranhos", question: "Você está jogando seu joguinho favorito e alguém que você não conhece na vida real pede o seu nome inteiro e o telefone da mamãe. O que você faz?", options: [{ text: "Não escrevo nada e chamo correndo um adulto de confiança!", correct: true }, { text: "Escrevo rapidinho para a pessoa ser minha amiga no jogo.", correct: false }], rule: "Regra Importante: Nosso nome verdadeiro, telefone e endereço são segredos preciosos que nunca contamos na internet!", explanation: "Muito bem! Pessoas na internet podem fingir ser crianças ou bonzinhas, mas nunca devemos dar nossos dados sem os pais deixarem." },
             { tema: "Cuidado com Fotos", question: "Alguém no bate-papo do jogo diz que vai te dar muitas moedas grátis se você mandar uma foto do seu rostinho fazendo pose. O que é o certo fazer?", options: [{ text: "Tiro a foto bem alegre para ganhar as moedas!", correct: false }, { text: "Não mando foto nenhuma e aviso correndo quem estiver cuidando de mim.", correct: true }], rule: "Regra Importante: Nosso corpinho e nosso rosto são muito valiosos. Nunca mandamos fotos para quem não conhecemos de verdade!", explanation: "Isso aí! Muitas vezes pessoas ruins mentem sobre presentes em jogos só para conseguir fotos de crianças." },
@@ -372,74 +450,108 @@
             if (tabName === 'teens' && currentTeenIndex === 0) loadTeenCase();
         }
 
-        // LÓGICA DO JOGO KIDS
+        // LÓGICA DO MODO KIDS
         function loadKidsQuestion() {
+            document.getElementById('kids-feedback-container').classList.add('hidden');
+            document.getElementById('kids-next-btn').classList.add('hidden');
+            
+            const screen = document.getElementById('robot-screen');
+            const mouth = document.getElementById('robot-mouth');
+            const statusLabel = document.getElementById('kids-avatar-status');
+            
+            screen.className = "w-full h-full bg-slate-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors duration-300";
+            mouth.className = "w-8 h-1 bg-cyan-400 rounded shadow-[0_0_6px_#22d3ee] transition-all duration-300";
+            statusLabel.className = "bg-amber-400 px-3 py-0.5 rounded-full text-[9px] font-black text-slate-950 uppercase tracking-wider mt-4 shadow text-center transition-colors duration-300";
+            statusLabel.innerText = "Pensando...";
+
             if (currentKidsIndex >= kidsQuestions.length) {
+                // Tela de Conclusão Kids com botão de jogar de novo
+                document.getElementById('kids-mission-title').innerText = "Missão Cumprida!";
+                document.getElementById('kids-step-indicator').innerText = "";
+                
+                let medalha = kidsScore >= 80 ? "🥇 Guardião de Ouro" : "🥈 Guardião de Prata";
+
                 document.getElementById('kids-quiz-container').innerHTML = `
                     <div class="text-center space-y-4 py-6">
-                        <span class="text-5xl">🏆</span>
-                        <h3 class="text-2xl font-black text-slate-900">Aventura Concluída!</h3>
-                        <p class="text-slate-600 text-sm">Você completou todas as missões e aprendeu a se proteger na internet!</p>
-                        <button onclick="switchTab('landing')" class="bg-amber-400 hover:bg-amber-500 font-bold px-6 py-2.5 rounded-xl text-sm transition">Voltar ao Início</button>
-                    </div>`;
-                document.getElementById('kids-next-btn').classList.add('hidden');
-                document.getElementById('kids-step-indicator').innerText = "Fim do Jogo";
-                setRobotExpression('happy', 'Fim!');
+                        <div class="text-5xl">🎉</div>
+                        <h3 class="text-2xl font-black text-slate-900">Parabéns, você terminou!</h3>
+                        <p class="text-slate-600 text-sm max-w-md mx-auto">Você completou o treinamento e aprendeu as chaves secretas para se proteger na internet!</p>
+                        <div class="inline-block bg-amber-50 border-2 border-amber-300 rounded-2xl p-4">
+                            <span class="block text-xs font-bold uppercase tracking-wider text-amber-600">Sua Conquista:</span>
+                            <span class="text-lg font-black text-slate-800">${medalha} (${kidsScore} pontos)</span>
+                        </div>
+                        <div class="pt-2">
+                            <button onclick="reiniciarKids()" class="bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition shadow">
+                                <i class="fa-solid fa-arrow-rotate-left"></i> Jogar de Novo
+                            </button>
+                        </div>
+                    </div>
+                `;
+                falarVoz("Parabéns! Você completou o treinamento do guardião digital!");
+                statusLabel.innerText = "Vencedor!";
                 return;
             }
 
             const q = kidsQuestions[currentKidsIndex];
-            document.getElementById('kids-mission-title').innerText = `Missão ${q.mission} - Tema: ${q.tema}`;
+            document.getElementById('kids-mission-title').innerText = `História: ${q.tema}`;
             document.getElementById('kids-step-indicator').innerText = `Pergunta ${currentKidsIndex + 1} de ${kidsQuestions.length}`;
-            document.getElementById('kids-next-btn').classList.add('hidden');
-            
-            const fbBox = document.getElementById('kids-feedback-container');
-            fbBox.classList.add('hidden');
 
-            let optionsHtml = q.options.map((opt, i) => `
-                <button onclick="answerKidsQuestion(${opt.correct}, ${i})" id="kids-opt-${i}" class="w-full text-left bg-slate-50 hover:bg-amber-50 border-2 border-slate-200 p-4 rounded-2xl font-semibold text-sm transition flex justify-between items-center group">
-                    <span>${opt.text}</span>
-                    <i class="fa-solid fa-circle text-slate-300 group-hover:text-amber-400 text-xs"></i>
-                </button>
-            `).join('');
+            let optionsHtml = '';
+            q.options.forEach((opt, idx) => {
+                optionsHtml += `
+                    <button onclick="answerKidsQuestion(${idx})" class="kids-opt-btn w-full bg-slate-50 hover:bg-amber-50 hover:border-amber-300 border-2 border-slate-200 text-left p-4 rounded-2xl text-xs sm:text-sm font-semibold transition flex items-center justify-between group">
+                        <span>${opt.text}</span>
+                        <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-amber-500 transition"></i>
+                    </button>
+                `;
+            });
 
             document.getElementById('kids-quiz-container').innerHTML = `
                 <div class="space-y-4">
-                    <h2 class="text-base sm:text-lg font-bold text-slate-900 leading-snug">${q.question}</h2>
-                    <div class="grid grid-cols-1 gap-3 pt-2">${optionsHtml}</div>
-                </div>`;
-            
-            setRobotExpression('thinking', 'Pensando');
+                    <p class="text-sm sm:text-base font-bold text-slate-900 leading-snug">${q.question}</p>
+                    <div class="space-y-2">${optionsHtml}</div>
+                </div>
+            `;
+            falarVoz(q.question);
         }
 
-        function answerKidsQuestion(isCorrect, chosenIndex) {
-            const q = kidsQuestions[currentKidsIndex];
-            const fbBox = document.getElementById('kids-feedback-container');
+        function answerKidsQuestion(index) {
+            document.querySelectorAll('.kids-opt-btn').forEach(btn => btn.removeAttribute('onclick'));
             
-            q.options.forEach((_, i) => {
-                const btn = document.getElementById(`kids-opt-${i}`);
-                btn.disabled = true;
-                if (q.options[i].correct) {
-                    btn.classList.add('border-esperanca-500', 'bg-esperanca-50');
-                } else if (i === chosenIndex) {
-                    btn.classList.add('border-rose-500', 'bg-rose-50');
-                }
-            });
+            const q = kidsQuestions[currentKidsIndex];
+            const isCorrect = q.options[index].correct;
+            const feedbackBox = document.getElementById('kids-feedback-container');
+            const screen = document.getElementById('robot-screen');
+            const mouth = document.getElementById('robot-mouth');
+            const statusLabel = document.getElementById('kids-avatar-status');
+
+            feedbackBox.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-200', 'text-emerald-800', 'bg-rose-50', 'border-rose-200', 'text-rose-800');
 
             if (isCorrect) {
                 kidsScore += 20;
                 document.getElementById('kids-score').innerText = kidsScore;
-                fbBox.className = "mt-4 p-4 rounded-2xl text-sm font-medium bg-emerald-50 border border-emerald-200 text-emerald-800 space-y-1";
-                fbBox.innerHTML = `<p class="font-bold">✨ Acertou de primeira!</p><p class="text-xs text-emerald-700 font-normal">${q.explanation}</p><p class="text-xs font-bold pt-1 text-slate-700">${q.rule}</p>`;
-                registrarLog('Kids', q.tema, 'Correto', 'A criança escolheu a opção de segurança recomendada.');
-                setRobotExpression('happy', 'Boa!');
+                registrarLog('Kids', q.tema, 'Acertou', q.explanation);
+                
+                feedbackBox.classList.add('bg-emerald-50', 'border', 'border-emerald-200', 'text-emerald-800');
+                feedbackBox.innerHTML = `<p class="font-bold text-sm mb-1">🌟 Sensacional!</p><p>${q.explanation}</p><p class="mt-2 text-xs opacity-80 font-bold">${q.rule}</p>`;
+                
+                screen.classList.add('bg-emerald-950');
+                mouth.className = "w-8 h-3 bg-emerald-400 rounded-b-full shadow-[0_0_6px_#34d399]";
+                statusLabel.classList.replace('bg-amber-400', 'bg-emerald-400');
+                statusLabel.innerText = "Muito Bem!";
+                falarVoz("Sensacional! " + q.explanation);
             } else {
-                fbBox.className = "mt-4 p-4 rounded-2xl text-sm font-medium bg-rose-50 border border-rose-200 text-rose-800 space-y-1";
-                fbBox.innerHTML = `<p class="font-bold">💡 Opa, vamos aprender juntos!</p><p class="text-xs text-rose-700 font-normal">${q.explanation}</p><p class="text-xs font-bold pt-1 text-slate-700">${q.rule}</p>`;
-                registrarLog('Kids', q.tema, 'Incorreto', 'A criança escolheu uma opção que a deixaria exposta na internet.');
-                setRobotExpression('warn', 'Cuidado!');
+                registrarLog('Kids', q.tema, 'Errou', q.explanation);
+                feedbackBox.classList.add('bg-rose-50', 'border', 'border-rose-200', 'text-rose-800');
+                feedbackBox.innerHTML = `<p class="font-bold text-sm mb-1">👉 Opa, atenção!</p><p>${q.explanation}</p><p class="mt-2 text-xs opacity-80 font-bold">${q.rule}</p>`;
+                
+                screen.classList.add('bg-rose-950');
+                mouth.className = "w-8 h-1 bg-rose-400 rounded shadow-[0_0_6px_#f43f5e]";
+                statusLabel.classList.replace('bg-amber-400', 'bg-rose-400');
+                statusLabel.innerText = "Atenção!";
+                falarVoz("Opa, atenção! " + q.explanation);
             }
-            fbBox.classList.remove('hidden');
+
             document.getElementById('kids-next-btn').classList.remove('hidden');
         }
 
@@ -448,58 +560,38 @@
             loadKidsQuestion();
         }
 
-        // CONTROLADOR DE EXPRESSÕES DO ROBOZI
-        function setRobotExpression(state, statusText) {
-            const screen = document.getElementById('robot-screen');
-            const eyes = document.getElementById('robot-eyes');
-            const mouth = document.getElementById('robot-mouth');
-            const label = document.getElementById('kids-avatar-status');
-            const box = document.getElementById('kids-avatar-box');
-
-            label.innerText = statusText;
-
-            if (state === 'thinking') {
-                screen.className = "w-full h-full bg-slate-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors duration-300";
-                box.className = "w-full md:w-44 bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center shadow-lg border-4 border-amber-400 shrink-0 min-h-[190px] transition-all duration-300";
-                label.className = "bg-amber-400 px-3 py-0.5 rounded-full text-[9px] font-black text-slate-950 uppercase tracking-wider mt-4 shadow text-center";
-                eyes.innerHTML = `
-                    <div class="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee] eye-blink"></div>
-                    <div class="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee] eye-blink"></div>`;
-                mouth.className = "w-8 h-1 bg-cyan-400 rounded shadow-[0_0_6px_#22d3ee]";
-            } 
-            else if (state === 'happy') {
-                screen.className = "w-full h-full bg-emerald-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors duration-300";
-                box.className = "w-full md:w-44 bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center shadow-lg border-4 border-emerald-400 shrink-0 min-h-[190px] transition-all duration-300";
-                label.className = "bg-emerald-400 px-3 py-0.5 rounded-full text-[9px] font-black text-white uppercase tracking-wider mt-4 shadow text-center animate-bounce";
-                eyes.innerHTML = `
-                    <div class="text-emerald-400 text-base font-extrabold -mt-2 leading-none">^</div>
-                    <div class="text-emerald-400 text-base font-extrabold -mt-2 leading-none">^</div>`;
-                mouth.className = "w-6 h-2 bg-emerald-400 rounded-b-full shadow-[0_0_6px_#34d399]";
-            } 
-            else if (state === 'warn') {
-                screen.className = "w-full h-full bg-amber-950 rounded-lg p-2 flex flex-col items-center justify-center gap-1.5 transition-colors duration-300";
-                box.className = "w-full md:w-44 bg-slate-900 rounded-3xl p-5 flex flex-col items-center justify-center shadow-lg border-4 border-amber-500 shrink-0 min-h-[190px] transition-all duration-300";
-                label.className = "bg-amber-500 px-3 py-0.5 rounded-full text-[9px] font-black text-white uppercase tracking-wider mt-4 shadow text-center";
-                eyes.innerHTML = `
-                    <div class="text-amber-400 text-xs font-bold leading-none">o</div>
-                    <div class="text-amber-400 text-xs font-bold leading-none">o</div>`;
-                mouth.className = "w-5 h-2 bg-amber-400 rounded-t-full shadow-[0_0_6px_#fbbf24]";
-            }
-        }
-
-        // LÓGICA DA MISSÃO JOVENS
+        // LÓGICA DO MODO TEENS
         function loadTeenCase() {
+            document.getElementById('teen-game-feedback').classList.add('hidden');
+            document.getElementById('teen-next-btn').classList.add('hidden');
+            document.getElementById('teen-inspection-log').classList.add('hidden');
+
             if (currentTeenIndex >= teenCases.length) {
                 document.getElementById('teen-game-body').classList.add('hidden');
                 document.getElementById('teen-panel-footer').classList.add('hidden');
-                const conc = document.getElementById('teen-conclusion-box');
-                conc.classList.remove('hidden');
-                conc.innerHTML = `
-                    <span class="text-5xl">🎖️</span>
-                    <h3 class="text-xl font-bold text-white">Casos Encerrados!</h3>
-                    <p class="text-slate-400 text-xs max-w-md mx-auto">Você completou o treinamento básico de segurança e descobriu como funcionam os principais truques usados na internet.</p>
-                    <div class="pt-2"><button onclick="switchTab('landing')" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold px-5 py-2 rounded-xl text-xs transition">Menu Inicial</button></div>
+                
+                const finalBox = document.getElementById('teen-conclusion-box');
+                finalBox.classList.remove('hidden');
+                
+                let tMedalha = teenScore >= 80 ? "🥇 Especialista em Cibersegurança" : "🕵️‍♂️ Investigador Aprendiz";
+
+                finalBox.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="text-4xl">🏆</div>
+                        <h3 class="text-xl font-extrabold text-white">Casos Concluídos!</h3>
+                        <p class="text-xs text-slate-400 max-w-md mx-auto">Você analisou todos os incidentes reportados na nossa rede e ajudou a manter a comunidade jovem mais protegida.</p>
+                        <div class="inline-block bg-indigo-950 border border-indigo-800 p-4 rounded-xl">
+                            <span class="block text-[10px] font-bold text-indigo-400 uppercase tracking-widest">Graduação Final:</span>
+                            <span class="text-base font-black text-white">${tMedalha} — Nota ${teenScore}%</span>
+                        </div>
+                        <div class="pt-2">
+                            <button onclick="reiniciarTeens()" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition shadow">
+                                <i class="fa-solid fa-arrow-rotate-left"></i> Analisar de Novo
+                            </button>
+                        </div>
+                    </div>
                 `;
+                falarVoz("Casos Concluídos! Sua pontuação final foi de " + teenScore + " por cento.");
                 return;
             }
 
@@ -508,50 +600,55 @@
             document.getElementById('teen-case-title').innerText = c.title;
             document.getElementById('teen-case-desc').innerText = c.desc;
             document.getElementById('teen-step-indicator').innerText = `Caso ${currentTeenIndex + 1} de ${teenCases.length}`;
-            
-            document.getElementById('teen-inspection-log').classList.add('hidden');
-            document.getElementById('teen-game-feedback').classList.add('hidden');
-            document.getElementById('teen-next-btn').classList.add('hidden');
 
-            const actHtml = c.actions.map((act, i) => `
-                <button onclick="answerTeenCase(${act.correct}, ${i})" id="teen-act-${i}" class="w-full text-left bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500 p-3 rounded-xl text-xs text-slate-300 transition">
-                    ${act.text}
-                </button>
-            `).join('');
-            document.getElementById('teen-actions-box').innerHTML = actHtml;
+            let actionsHtml = '';
+            c.actions.forEach((act, idx) => {
+                actionsHtml += `
+                    <button onclick="answerTeenCase(${idx})" class="teen-act-btn w-full bg-slate-900 hover:bg-indigo-950 border border-slate-800 hover:border-indigo-500 text-left p-3 rounded-xl text-xs transition text-slate-300">
+                        ${act.text}
+                    </button>
+                `;
+            });
+            document.getElementById('teen-actions-box').innerHTML = actionsHtml;
+            falarVoz(c.desc);
         }
 
         function inspectTeenPista(tipo) {
+            const log = document.getElementById('teen-inspection-log');
             const c = teenCases[currentTeenIndex];
-            const logBox = document.getElementById('teen-inspection-log');
-            logBox.classList.remove('hidden');
+            log.classList.remove('hidden');
             if (tipo === 'remetente') {
-                logBox.innerHTML = `<span class="text-slate-400 block font-bold">Dica sobre quem mandou:</span> ${c.remetente}`;
+                log.innerHTML = `<strong>Análise do Perfil:</strong> ${c.remetente}`;
             } else {
-                logBox.innerHTML = `<span class="text-slate-400 block font-bold">Dica sobre o link/pedido:</span> ${c.link}`;
+                log.innerHTML = `<strong>Análise da URL/Link:</strong> ${c.link}`;
             }
+            falarVoz(log.innerText);
         }
 
-        function answerTeenCase(isCorrect, index) {
+        function answerTeenCase(index) {
+            document.querySelectorAll('.teen-act-btn').forEach(btn => btn.removeAttribute('onclick'));
+            
             const c = teenCases[currentTeenIndex];
+            const chosen = c.actions[index];
             const fb = document.getElementById('teen-game-feedback');
             
-            c.actions.forEach((_, i) => {
-                document.getElementById(`teen-act-${i}`).disabled = true;
-            });
+            fb.classList.remove('hidden', 'bg-emerald-950/40', 'border-emerald-500', 'text-emerald-300', 'bg-rose-950/40', 'border-rose-500', 'text-rose-300');
 
-            if (isCorrect) {
-                fb.className = "p-4 rounded-2xl text-xs leading-relaxed border bg-emerald-950/40 border-emerald-800 text-emerald-300";
-                fb.innerHTML = c.actions[index].feedback;
-                registrarLog('Teens', c.tema, 'Seguro', 'O jovem soube identificar o perigo e tomou a atitude protetiva.');
+            if (chosen.correct) {
+                registrarLog('Teens', c.tema, 'Excelente', chosen.feedback);
+                fb.classList.add('bg-emerald-950/40', 'border-emerald-500', 'text-emerald-300');
+                fb.innerHTML = `<strong>SUCESSO:</strong> ${chosen.feedback}`;
+                falarVoz("Sucesso! " + chosen.feedback);
             } else {
-                teenScore = Math.max(0, teenScore - 25);
+                teenScore -= 25;
+                if(teenScore < 0) teenScore = 0;
                 document.getElementById('teen-score').innerText = teenScore;
-                fb.className = "p-4 rounded-2xl text-xs leading-relaxed border bg-rose-950/40 border-rose-800 text-rose-300";
-                fb.innerHTML = c.actions[index].feedback;
-                registrarLog('Teens', c.tema, 'Vulnerável', 'O jovem caiu na conversa ou armadilha descrita na situação.');
+                registrarLog('Teens', c.tema, 'Falhou', chosen.feedback);
+                fb.classList.add('bg-rose-950/40', 'border-rose-500', 'text-rose-300');
+                fb.innerHTML = `<strong>ALERTA DE SEGURANÇA:</strong> ${chosen.feedback}`;
+                falarVoz("Alerta de segurança! " + chosen.feedback);
             }
-            fb.classList.remove('hidden');
+
             document.getElementById('teen-next-btn').classList.remove('hidden');
         }
 
@@ -560,89 +657,127 @@
             loadTeenCase();
         }
 
-        // SIMULADOR DE CHATBOT (ADULTOS)
+        // LÓGICA DO CHATBOT BLINDADO (MODO ADULTO)
         function handleAdultQuestion(e) {
             e.preventDefault();
             const input = document.getElementById('chat-user-input');
-            const text = input.value.trim();
-            if (!text) return;
+            const query = input.value.trim();
+            if (!query) return;
 
-            addChatMessage(text, true);
+            appendChatMessage('Você', query, true);
             input.value = '';
 
             setTimeout(() => {
-                let reply = "";
-                const lower = text.toLowerCase();
+                const resposta = processarFiltrosEGerarResposta(query);
+                appendChatMessage('Guia Digital', resposta, false);
+                falarVoz(resposta);
+            }, 400);
+        }
 
-                if (lower.includes('resumo') || lower.includes('tema:') || lower.includes('kids') || lower.includes('teens')) {
-                    reply = `<p class="font-bold text-slate-900">Analisei os resultados do teste do seu filho. Aqui está o meu conselho prático:</p>
-                             <p>Notei que estamos testando a atenção deles no ambiente digital. Se eles erraram alguma questão sobre <b>"Cuidado com Estranhos"</b> ou <b>"Perfis Falsos"</b>, converse com eles hoje à noite durante o jantar de forma leve. Explique que na internet, pessoas adultas às vezes usam fotos de personagens ou fingem ter a mesma idade deles para puxar assunto.</p>
-                             <p><b>Dica de Ouro:</b> Crie uma "Palavra Secreta" da família. Diga para seus filhos que se alguém na internet prometer algo ou disser que conhece os pais deles, essa pessoa teria que saber a Palavra Secreta. Isso ajuda muito a proteger crianças de até 10 anos!</p>`;
-                } else if (lower.includes('roblox') || lower.includes('jogo') || lower.includes('jogos')) {
-                    reply = `<p class="font-bold text-slate-900">Sobre os jogos online (como Roblox ou PK XD):</p>
-                             <p>O maior perigo nos jogos não é o jogo em si, mas as caixas de conversa (chats). Pessoas mal-intencionadas usam itens grátis e moedas do jogo para atrair a confiança dos pequenos.</p>
-                             <p><b>O que você pode fazer agora:</b> Vá nas configurações do jogo no celular ou tablet do seu filho e procure por "Privacidade". Você pode desativar o chat com estranhos ou permitir que eles conversem apenas com amigos da escola que você já conhece de verdade.</p>`;
-                } else if (lower.includes('celular') || lower.includes('controle') || lower.includes('tempo')) {
-                    reply = `<p class="font-bold text-slate-900">Como controlar o uso do celular?</p>
-                             <p>Para não precisar ficar brigando todo dia por causa do tempo de tela, use aplicativos gratuitos de controle que fazem o trabalho chato por você.</p>
-                             <p>Se o celular do seu filho for <b>Android</b>, instale o aplicativo gratuito chamado <b>Google Family Link</b>. Se for <b>iPhone</b>, use a função chamada <b>Tempo de Uso</b> que já vem nas configurações. Com eles, você pode definir que o celular bloqueie sozinho às 21h, por exemplo, e escolhe quais aplicativos eles podem baixar.</p>`;
-                } else {
-                    reply = `<p class="font-bold text-slate-900">Entendi sua preocupação.</p>
-                             <p>Na internet, a melhor defesa para os nossos filhos é manter um canal de conversa aberto, onde eles saibam que se virem algo assustador ou se alguém fizer exigências, eles podem contar para você sem medo de perder o celular ou levar bronca.</p>
-                             <p>Gostaria de saber mais sobre como configurar o celular deles ou prefere dicas sobre como identificar links falsos de bancos e fofocas?</p>`;
+        function appendChatMessage(sender, text, isUser) {
+            const container = document.getElementById('chat-messages');
+            const side = isUser ? 'justify-end' : 'justify-start';
+            const color = isUser ? 'bg-seguro-600 text-white rounded-tr-none' : 'bg-white text-slate-700 rounded-tl-none border border-slate-100';
+            const icon = isUser ? '<span class="w-8 h-8 bg-slate-200 text-slate-700 rounded-full flex items-center justify-center text-xs shrink-0 order-2"><i class="fa-solid fa-user"></i></span>' : '<span class="w-8 h-8 bg-seguro-600 text-white rounded-full flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-robot"></i></span>';
+
+            const messageHtml = `
+                <div class="flex items-start gap-3 ${side}">
+                    ${icon}
+                    <div class="${color} p-4 rounded-2xl shadow-sm text-xs leading-relaxed max-w-[85%] space-y-1">
+                        <p class="font-bold text-[11px] ${isUser ? 'text-seguro-100' : 'text-slate-900'}">${sender}</p>
+                        <p>${text.replace(/\n/g, '<br>')}</p>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', messageHtml);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function processarFiltrosEGerarResposta(query) {
+            const lower = query.toLowerCase();
+
+            // 1. FILTRO CONTRA CRÍTICAS AO FILHO
+            const termosCritica = ['burro', 'idiota', 'estupido', 'so faz merda', 'imbecil', 'incompetente', 'so faz besteira', 'nao aprende', 'reprovou', 'cabeca dura'];
+            for(let termo of termosCritica) {
+                if (lower.includes(termo)) {
+                    return "Entendo perfeitamente a sua preocupação e a exaustão que a rotina de cuidados traz, mas lembre-se: erros cometidos na internet fazem parte do amadurecimento dos nossos jovens. Xingar ou rotular seu filho pode afastá-lo de você justamente quando ele mais precisa de proteção. Que tal focarmos em orientar em vez de punir? Vamos bater um papo construtivo com ele sobre como usar as redes com responsabilidade!";
                 }
+            }
 
-                addChatMessage(reply, false);
-            }, 800);
+            // 2. VERIFICAÇÃO DE ESCOPO (SEGURANÇA NA INTERNET / RESUMO DE PAIS)
+            const termosEscopo = [
+                'roblox', 'senha', 'filho', 'filha', 'criança', 'jovem', 'celular', 'instagram', 'tiktok', 'jogo', 
+                'site', 'link', 'hacker', 'virus', 'controle', 'bloquear', 'senha', 'segurança', 'protege', 'proteção', 
+                'monitorar', 'computador', 'resumo', 'logs', 'guilherme', 'sofia', 'caso', 'pergunta', 'internet', 'whatsapp'
+            ];
+
+            // Permite processar o relatório copiado
+            if (lower.includes('relatório') || lower.includes('desempenho') || lower.includes('modulo')) {
+                return "Obrigado por compartilhar o resumo de atividades! Analisando os dados salvos nesta seção, recomendo que chame seu filho para conversar sobre os pontos onde houve erros. Reforce que as regras de não falar com estranhos e nunca fornecer senhas são inegociáveis para a segurança dele!";
+            }
+
+            // Valida se a pergunta está ligada ao escopo do aplicativo
+            let estaNoEscopo = false;
+            for(let t of termosEscopo) {
+                if (lower.includes(t)) {
+                    estaNoEscopo = true;
+                    break;
+                }
+            }
+
+            if (!estaNoEscopo) {
+                return "Desculpe, mas sou um assistente especializado exclusivamente em Segurança Digital Familiar e proteção de crianças na internet. Não posso responder a perguntas sobre outros assuntos.";
+            }
+
+            // 3. BANCO DE RESPOSTAS DO ESCOPO
+            if (lower.includes('roblox') || lower.includes('jogos')) {
+                return "Para jogos como Roblox ou Minecraft: 1) Desative o chat de texto com desconhecidos nas opções de privacidade da conta. 2) Crie senhas fortes misturando letras e símbolos. 3) Configure uma senha PIN de quatro dígitos para que a criança não mude as configurações de privacidade sozinha.";
+            }
+            if (lower.includes('celular') || lower.includes('controle') || lower.includes('monitorar')) {
+                return "Recomendo muito a instalação de aplicativos de controle parental oficiais como o 'Google Family Link' (Android) ou o 'Tempo de Uso' nativo do iOS (Apple). Eles permitem gerenciar horários, bloquear downloads de apps impróprios e monitorar o tempo de tela de forma segura.";
+            }
+            if (lower.includes('senha')) {
+                return "Ensine seus filhos que senhas são segredos absolutos. Uma boa estratégia familiar é criar frases fáceis de lembrar para vocês, substituindo letras por números. Exemplo: 'MinhaCasaSegura123!' vira 'M1nh4C4s4S3gur4!'.";
+            }
+            if (lower.includes('redes sociais') || lower.includes('instagram') || lower.includes('tiktok')) {
+                return "Por lei, redes sociais exigem idade mínima de 13 anos. Se seu filho usa, certifique-se de que a conta está configurada como 'Privada', impeça mensagens diretas de desconhecidos e converse abertamente sobre nunca aceitar solicitações de amizade de pessoas que eles não conhecem fora da internet.";
+            }
+
+            return "Essa é uma excelente dúvida sobre convivência digital! A melhor proteção sempre será o diálogo aberto. Explique os perigos sem causar pânico, estabeleça horários equilibrados de uso do celular e deixe claro que se algo assustador acontecer, eles devem contar para você imediatamente sem medo de serem castigados.";
         }
 
-        function addChatMessage(content, isUser) {
-            const chatMessages = document.getElementById('chat-messages');
-            const wrapper = document.createElement('div');
-            wrapper.className = isUser ? "flex items-start gap-3 justify-end" : "flex items-start gap-3";
-
-            const avatar = isUser 
-                ? `<span class="w-8 h-8 bg-slate-200 text-slate-700 rounded-full flex items-center justify-center text-xs font-bold shrink-0">Você</span>`
-                : `<span class="w-8 h-8 bg-seguro-600 text-white rounded-full flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-robot"></i></span>`;
-
-            const card = isUser
-                ? `<div class="bg-seguro-600 text-white p-4 rounded-2xl rounded-tr-none shadow-sm text-xs leading-relaxed max-w-[85%]">${content}</div>`
-                : `<div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-xs leading-relaxed max-w-[85%] text-slate-700 space-y-2">${content}</div>`;
-
-            wrapper.innerHTML = isUser ? card + avatar : avatar + card;
-            chatMessages.appendChild(wrapper);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // RELATÓRIO DOS PAIS
+        // LÓGICA DO RELATÓRIO DOS PAIS
         function openParentReport() {
+            const modal = document.getElementById('parent-modal');
             const content = document.getElementById('modal-report-content');
-            document.getElementById('parent-modal').classList.remove('hidden');
+            modal.classList.remove('hidden');
 
             if (logsKids.length === 0 && logsTeens.length === 0) {
-                content.innerHTML = `<p class="text-center py-4 text-slate-500">Nenhum teste foi realizado ainda. Deixe seus filhos jogarem o <b>Jogo Kids</b> ou a <b>Missão Jovens</b> para ver o resumo aqui!</p>`;
+                content.innerHTML = "<p class='text-center py-4 text-slate-400 font-medium'>Nenhuma atividade foi realizada ainda. Chame seus filhos para jogarem os módulos!</p>";
                 return;
             }
 
-            let html = `<p class="font-medium text-slate-800">Aqui estão os resultados das respostas dos seus filhos traduzidos de forma simples:</p><div class="space-y-3 pt-2">`;
-
-            logsKids.forEach(l => {
-                html += `
-                    <div class="p-3 rounded-xl ${l.status === 'Correto' ? 'bg-emerald-50 border border-emerald-200 text-emerald-900' : 'bg-amber-50 border border-amber-200 text-amber-900'}">
-                        <span class="font-bold">[Módulo Criança] Tema: ${l.tema}</span>
-                        <p class="text-[11px] mt-0.5">${l.status === 'Correto' ? '👍 Seu filho sabe como agir em segurança nesta situação.' : '⚠️ Atenção: Seu filho demonstrou que aceitaria a conversa de um estranho ou daria uma informação pessoal. Vale a pena conversar com ele sobre isso.'}</p>
+            let html = "";
+            if (logsKids.length > 0) {
+                html += "<div class='space-y-2'><h4 class='font-black text-amber-600 uppercase text-[10px] tracking-wider'>🤖 Módulo Kids (Até 7 anos)</h4>";
+                logsKids.forEach(l => {
+                    html += `<div class="p-2.5 rounded-xl border bg-slate-50 flex flex-col gap-0.5">
+                        <div class="flex justify-between font-bold"><span class="text-slate-800">${l.tema}</span><span class="${l.status === 'Acertou' ? 'text-emerald-600' : 'text-rose-600'}">${l.status}</span></div>
+                        <p class="text-slate-500 text-[11px]">${l.detalhe}</p>
                     </div>`;
-            });
-
-            logsTeens.forEach(l => {
-                html += `
-                    <div class="p-3 rounded-xl ${l.status === 'Seguro' ? 'bg-emerald-50 border border-emerald-200 text-emerald-900' : 'bg-rose-50 border border-rose-200 text-rose-900'}">
-                        <span class="font-bold">[Módulo Jovem] Tema: ${l.tema}</span>
-                        <p class="text-[11px] mt-0.5">${l.status === 'Seguro' ? '👍 Demonstrou maturidade e não caiu na armadilha da situação.' : '⚠️ Demonstrou vulnerabilidade: Poderia ser enganado por falsas promessas de prêmios ou links mentirosos.'}</p>
+                });
+                html += "</div>";
+            }
+            if (logsTeens.length > 0) {
+                html += "<div class='space-y-2 mt-4'><h4 class='font-black text-indigo-400 uppercase text-[10px] tracking-wider'>🕵️‍♂️ Módulo Teens (8 a 17 anos)</h4>";
+                logsTeens.forEach(l => {
+                    html += `<div class="p-2.5 rounded-xl border bg-slate-50 flex flex-col gap-0.5">
+                        <div class="flex justify-between font-bold"><span class="text-slate-800">${l.tema}</span><span class="${l.status === 'Excelente' ? 'text-emerald-600' : 'text-rose-600'}">${l.status}</span></div>
+                        <p class="text-slate-500 text-[11px]">${l.detalhe}</p>
                     </div>`;
-            });
-
-            html += `</div><p class="text-[11px] text-slate-400 pt-2">Dica: Copie este diagnóstico e cole na barra de conversas do "Espaço dos Pais" para receber orientações personalizadas da nossa IA!</p>`;
+                });
+                html += "</div>";
+            }
             content.innerHTML = html;
         }
 
@@ -651,14 +786,9 @@
         }
 
         function copyReportToClipboard() {
-            if (logsKids.length === 0 && logsTeens.length === 0) return;
-            let text = "Resumo de Desempenho Familiar:\n";
-            logsKids.forEach(l => text += `- Criança em ${l.tema}: Apresentou perfil ${l.status}\n`);
-            logsTeens.forEach(l => text += `- Jovem em ${l.tema}: Apresentou perfil ${l.status}\n`);
-            
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Resumo copiado com sucesso! Agora vá para o 'Espaço dos Pais' e cole na conversa com a nossa IA.");
-            });
+            const content = document.getElementById('modal-report-content').innerText;
+            navigator.clipboard.writeText("Relatório Guardião Digital:\n" + content);
+            alert("Resumo copiado com sucesso! Agora vá até o 'Modo Adulto' e cole no chat para conversar.");
         }
     </script>
 </body>
