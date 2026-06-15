@@ -36,11 +36,24 @@
             --fonte-base: 16px;
         }
 
+        /* Faz as classes do Tailwind (text-sm, text-xs etc) escalarem com o root */
+        html { font-size: 16px; }
+
         body {
             font-family: 'Inter', sans-serif;
             transition: background-color 0.3s, color 0.3s;
-            font-size: var(--fonte-base);
         }
+
+        /* Sobrescreve os tamanhos fixos do Tailwind para usar rem escalável */
+        .text-xs   { font-size: 0.75rem !important; }
+        .text-sm   { font-size: 0.875rem !important; }
+        .text-base { font-size: 1rem !important; }
+        .text-lg   { font-size: 1.125rem !important; }
+        .text-xl   { font-size: 1.25rem !important; }
+        .text-2xl  { font-size: 1.5rem !important; }
+        .text-3xl  { font-size: 1.875rem !important; }
+        .text-4xl  { font-size: 2.25rem !important; }
+        .text-5xl  { font-size: 3rem !important; }
 
         .tab-content { display: none; opacity: 0; transform: translateY(12px); transition: all 0.4s ease-in-out; }
         .tab-content.active { display: block; }
@@ -66,12 +79,13 @@
         #acessibilidade-bar {
             background: #1e293b;
             color: #e2e8f0;
-            padding: 6px 16px;
+            padding: 8px 16px;
             font-size: 11px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 8px;
             border-bottom: 2px solid #334155;
         }
 
@@ -282,11 +296,30 @@
 
     <!-- ===== BARRA DE ACESSIBILIDADE ===== -->
     <div id="acessibilidade-bar" role="toolbar" aria-label="Ferramentas de acessibilidade">
-        <span class="a11y-label"><i class="fa-solid fa-universal-access"></i> Acessibilidade</span>
-        <!-- Voz (TTS) -->
-        <button id="btn-voz" onclick="toggleVoz()" aria-pressed="false" title="Ativar leitura de tela" class="text-red-400">
-            <i class="fa-solid fa-volume-xmark"></i> Voz
-        </button>
+        <div class="flex items-center gap-2 flex-wrap">
+            <span class="a11y-label"><i class="fa-solid fa-universal-access"></i> Acessibilidade</span>
+            <!-- Voz (TTS) -->
+            <button id="btn-voz" onclick="toggleVoz()" aria-pressed="false" title="Ativar leitura de tela" class="text-red-400">
+                <i class="fa-solid fa-volume-xmark"></i> Voz
+            </button>
+            <div class="a11y-divider"></div>
+            <!-- Contraste -->
+            <button id="btn-contraste" onclick="toggleAltoContraste()" aria-pressed="false" title="Ativar alto contraste">
+                <i class="fa-solid fa-circle-half-stroke"></i> Alto Contraste
+            </button>
+            <div class="a11y-divider"></div>
+            <!-- Animações -->
+            <button id="btn-animacoes" onclick="toggleAnimacoes()" aria-pressed="false" title="Desativar animações na tela">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Animações
+            </button>
+        </div>
+
+        <div class="flex items-center gap-1.5 mt-2 sm:mt-0">
+            <span class="a11y-label">Tamanho do texto:</span>
+            <button onclick="alterarFonte(1)" title="Aumentar texto"><i class="fa-solid fa-plus"></i></button>
+            <button onclick="alterarFonte(-1)" title="Diminuir texto"><i class="fa-solid fa-minus"></i></button>
+            <button onclick="resetarFonte()" title="Restaurar tamanho de texto padrão">A</button>
+        </div>
     </div>
 
     <header class="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 shadow-sm" role="banner">
@@ -302,7 +335,10 @@
                     </div>
                 </div>
 
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <!-- Badge Dinâmico de Identidade de Faixa Etária -->
+                    <div id="perfil-header-badge" class="transition-all"></div>
+
                     <button onclick="openParentReport()" class="bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold uppercase tracking-wider py-2 px-3 rounded-lg flex items-center gap-1.5 shadow transition" aria-label="Ver resumo de desempenho para os pais">
                         <i class="fa-solid fa-chart-pie text-esperanca-400" aria-hidden="true"></i> Resumo para os Pais
                     </button>
@@ -316,74 +352,152 @@
 
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8" id="conteudo-principal" role="main">
 
+        <!-- ONBOARDING — SELEÇÃO DE PERFIL SEM CAMPO DE IDADE -->
+        <div id="tab-onboarding" class="tab-content active show max-w-lg mx-auto py-8 space-y-6" role="region" aria-label="Boas-vindas e Seleção de Perfil">
+            <div class="bg-white border-2 border-slate-200 rounded-3xl p-8 shadow-xl text-center space-y-6">
+                <div class="flex justify-center">
+                    <div class="bg-gradient-to-tr from-seguro-600 to-seguro-500 text-white p-4 rounded-2xl shadow-md" aria-hidden="true">
+                        <i class="fa-solid fa-shield-halved text-4xl"></i>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <h2 class="text-2xl font-black text-slate-900">Bem-vindo ao Guardião Digital!</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Quem está usando agora? Escolha seu perfil para acessar o módulo certo para você.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-left">
+                    <!-- Kids: precisa de senha dos pais -->
+                    <button onclick="selecionarPerfilOnboarding('kids')"
+                        class="bg-amber-50 hover:bg-amber-100 border-2 border-amber-200 hover:border-amber-400 p-4 rounded-2xl font-bold text-slate-800 flex flex-col items-start gap-2 transition group">
+                        <span class="text-2xl group-hover:scale-110 transition-transform"></span>
+                        <span class="text-sm font-extrabold">Sou Criança</span>
+                        <span class="text-xs font-normal text-slate-500">Até 7 anos</span>
+                        <span class="text-[10px] text-amber-600 font-bold flex items-center gap-1 mt-1"><i class="fa-solid fa-lock"></i> Requer senha dos pais</span>
+                    </button>
+
+                    <!-- Teens: precisa de senha dos pais -->
+                    <button onclick="selecionarPerfilOnboarding('teens')"
+                        class="bg-indigo-50 hover:bg-indigo-100 border-2 border-indigo-200 hover:border-indigo-400 p-4 rounded-2xl font-bold text-slate-800 flex flex-col items-start gap-2 transition group">
+                        <span class="text-2xl group-hover:scale-110 transition-transform">🕵</span>
+                        <span class="text-sm font-extrabold">Sou Jovem</span>
+                        <span class="text-xs font-normal text-slate-500">8 a 17 anos</span>
+                        <span class="text-[10px] text-indigo-600 font-bold flex items-center gap-1 mt-1"><i class="fa-solid fa-lock"></i> Requer senha dos pais</span>
+                    </button>
+
+                    <!-- Adults: acesso direto -->
+                    <button onclick="selecionarPerfilOnboarding('adults')"
+                        class="bg-seguro-50 hover:bg-seguro-100 border-2 border-seguro-200 hover:border-seguro-400 p-4 rounded-2xl font-bold text-slate-800 flex flex-col items-start gap-2 transition group">
+                        <span class="text-2xl group-hover:scale-110 transition-transform"></span>
+                        <span class="text-sm font-extrabold">Sou Adulto</span>
+                        <span class="text-xs font-normal text-slate-500">Pais e Professores</span>
+                        <span class="text-[10px] text-seguro-600 font-bold flex items-center gap-1 mt-1"><i class="fa-solid fa-circle-check"></i> Acesso direto</span>
+                    </button>
+
+                    <!-- Seniors: acesso direto -->
+                    <button onclick="selecionarPerfilOnboarding('seniors')"
+                        class="bg-rose-50 hover:bg-rose-100 border-2 border-rose-200 hover:border-rose-400 p-4 rounded-2xl font-bold text-slate-800 flex flex-col items-start gap-2 transition group">
+                        <span class="text-2xl group-hover:scale-110 transition-transform"></span>
+                        <span class="text-sm font-extrabold">Sou Idoso</span>
+                        <span class="text-xs font-normal text-slate-500">60 anos ou mais</span>
+                        <span class="text-[10px] text-rose-600 font-bold flex items-center gap-1 mt-1"><i class="fa-solid fa-circle-check"></i> Acesso direto</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- LANDING -->
-        <div id="tab-landing" class="tab-content active show space-y-12">
+        <div id="tab-landing" class="tab-content space-y-12">
             <div class="bg-gradient-to-r from-seguro-900 to-seguro-700 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
                 <div class="max-w-4xl space-y-6 relative z-10">
                     <span class="bg-esperanca-600 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">Dicas Simples e Práticas</span>
                     <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">Internet Segura para Toda a Família</h1>
                     <p class="text-seguro-100 text-base sm:text-lg text-justify max-w-4xl">
-                        Aprender a se proteger no world digital não precisa ser complicado ou cheio de termos técnicos chatos. Criamos este espaço interativo com jogos e conversas simples para ajudar crianças, jovens e adultos a navegarem com tranquilidade e sem medo!
+                        Aprender a se proteger no mundo digital não precisa ser complicado ou cheio de termos técnicos chatos. Criamos este espaço interativo com jogos e conversas simples para ajudar crianças, jovens e adultos a navegarem com tranquilidade e sem medo!
                     </p>
                 </div>
             </div>
 
             <div id="modulos-selecao" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 scroll-mt-24" role="list" aria-label="Módulos do jogo">
-                <div onclick="switchTab('kids')" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:border-amber-400 hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-80 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Kids, para crianças até 7 anos" onkeydown="if(event.key==='Enter')switchTab('kids')">
+                
+                <!-- CARD KIDS -->
+                <div onclick="selecionarModulo('kids')" id="card-kids" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-85 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Kids, para crianças até 7 anos" onkeydown="if(event.key==='Enter')selecionarModulo('kids')">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
                             <div class="w-12 h-12 bg-amber-100 text-amber-500 rounded-2xl flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform" aria-hidden="true">🤖</div>
-                            <span class="bg-amber-100 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full">Até 7 anos</span>
+                            <div class="badge-status-container">
+                                <span class="bg-amber-100 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full">Até 7 anos</span>
+                            </div>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900">Modo Kids</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
                             Uma historinha divertida guiada pelo nosso robozinho amigo. Ensina os pequenos a cuidarem do próprio nome e das senhas como um segredo precioso.
                         </p>
                     </div>
-                    <div class="flex items-center gap-2 text-amber-500 font-bold text-sm" aria-hidden="true">Entrar na Aventura <i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="action-status-container flex items-center gap-2 text-amber-500 font-bold text-xs sm:text-sm mt-3" aria-hidden="true">
+                        Entrar na Aventura <i class="fa-solid fa-arrow-right"></i>
+                    </div>
                 </div>
 
-                <div onclick="switchTab('teens')" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:border-indigo-400 hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-80 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Teens, para jovens de 8 a 17 anos" onkeydown="if(event.key==='Enter')switchTab('teens')">
+                <!-- CARD TEENS -->
+                <div onclick="selecionarModulo('teens')" id="card-teens" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-85 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Teens, para jovens de 8 a 17 anos" onkeydown="if(event.key==='Enter')selecionarModulo('teens')">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
                             <div class="w-12 h-12 bg-indigo-100 text-indigo-500 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform" aria-hidden="true">🕵️‍♂️</div>
-                            <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded-full">De 8 a 17 anos</span>
+                            <div class="badge-status-container">
+                                <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded-full">De 8 a 17 anos</span>
+                            </div>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900">Modo Teens</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Situações do dia a dia sobre fofocas em redes sociais, links perigosos, perfis falsos e mentiras de internet. Descubra como ser o detetive da sua própria segurança!
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                            Situações do dia a dia sobre fofocas em redes sociais, links perigosos, perfis falsos e mentiras de internet. Descubra como ser o detetive da sua segurança!
                         </p>
                     </div>
-                    <div class="flex items-center gap-2 text-indigo-500 font-bold text-sm" aria-hidden="true">Resolver Casos <i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="action-status-container flex items-center gap-2 text-indigo-500 font-bold text-xs sm:text-sm mt-3" aria-hidden="true">
+                        Resolver Casos <i class="fa-solid fa-arrow-right"></i>
+                    </div>
                 </div>
 
-                <div onclick="switchTab('adults')" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:border-seguro-400 hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-80 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Adulto, para pais e professores" onkeydown="if(event.key==='Enter')switchTab('adults')">
+                <!-- CARD ADULTS -->
+                <div onclick="selecionarModulo('adults')" id="card-adults" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-85 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Adulto, para pais e professores" onkeydown="if(event.key==='Enter')selecionarModulo('adults')">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
                             <div class="w-12 h-12 bg-seguro-100 text-seguro-500 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform" aria-hidden="true">🛡️</div>
-                            <span class="bg-seguro-100 text-seguro-700 text-xs font-bold px-2.5 py-1 rounded-full">Pais e Professores</span>
+                            <div class="badge-status-container">
+                                <span class="bg-seguro-100 text-seguro-700 text-xs font-bold px-2.5 py-1 rounded-full">Pais e Professores</span>
+                            </div>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900">Modo Adulto</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
                             Converse com nosso assistente para tirar dúvidas simples sobre redes sociais, controle do celular dos filhos e como agir diante de problemas na internet.
                         </p>
                     </div>
-                    <div class="flex items-center gap-2 text-seguro-500 font-bold text-sm" aria-hidden="true">Conversar com Assistente <i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="action-status-container flex items-center gap-2 text-seguro-500 font-bold text-xs sm:text-sm mt-3" aria-hidden="true">
+                        Conversar com Assistente <i class="fa-solid fa-arrow-right"></i>
+                    </div>
                 </div>
 
-                <div onclick="switchTab('seniors')" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:border-rose-400 hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-80 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Idosos, para pessoas com 60 anos ou mais" onkeydown="if(event.key==='Enter')switchTab('seniors')">
+                <!-- CARD SENIORS -->
+                <div onclick="selecionarModulo('seniors')" id="card-seniors" class="bg-white rounded-3xl p-6 border-2 border-transparent hover:shadow-xl shadow-md transition-all flex flex-col justify-between h-85 group cursor-pointer" role="listitem button" tabindex="0" aria-label="Entrar no Modo Idosos, para pessoas com 60 anos ou mais" onkeydown="if(event.key==='Enter')selecionarModulo('seniors')">
                     <div class="space-y-4">
                         <div class="flex justify-between items-start">
                             <div class="w-12 h-12 bg-rose-100 text-rose-500 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform" aria-hidden="true">👴</div>
-                            <span class="bg-rose-100 text-rose-700 text-xs font-bold px-2.5 py-1 rounded-full">60+ anos</span>
+                            <div class="badge-status-container">
+                                <span class="bg-rose-100 text-rose-700 text-xs font-bold px-2.5 py-1 rounded-full">60+ anos</span>
+                            </div>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900">Modo Idosos</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
                             Golpes de WhatsApp, PIX falso, boleto adulterado e muito mais. Aprenda a identificar as armadilhas digitais mais comuns que atingem pessoas da terceira idade.
                         </p>
                     </div>
-                    <div class="flex items-center gap-2 text-rose-500 font-bold text-sm" aria-hidden="true">Aprender a se Proteger <i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="action-status-container flex items-center gap-2 text-rose-500 font-bold text-xs sm:text-sm mt-3" aria-hidden="true">
+                        Aprender a se Proteger <i class="fa-solid fa-arrow-right"></i>
+                    </div>
                 </div>
+
             </div>
         </div>
 
@@ -428,7 +542,7 @@
 
                 <div class="flex justify-between items-center mt-6">
                     <span id="kids-step-indicator" class="text-xs font-bold text-slate-400" aria-live="polite"></span>
-                    <button id="kids-next-btn" onclick="nextKidsQuestion()" class="hidden bg-amber-400 hover:bg-amber-500 text-slate-900 font-extrabold px-5 py-2.5 rounded-xl shadow transition text-sm">
+                    <button id="kids-next-btn" onclick="nextKidsQuestion()" class="hidden bg-amber-400 hover:bg-amber-50 text-slate-900 font-extrabold px-5 py-2.5 rounded-xl shadow transition text-sm">
                         Próxima Pergunta <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -540,7 +654,6 @@
                 </div>
             </div>
         </div>
-    </main>
 
         <!-- IDOSOS -->
         <div id="tab-seniors" class="tab-content space-y-6" role="region" aria-label="Módulo Idosos">
@@ -552,7 +665,7 @@
                 <!-- Cabeçalho grande e legível -->
                 <div class="bg-rose-600 rounded-3xl p-6 text-white shadow-xl">
                     <div class="flex items-center gap-4 mb-2">
-                        <span class="text-5xl" aria-hidden="true">👴</span>
+                        <span class="text-5xl" aria-hidden="true"></span>
                         <div>
                             <h2 class="font-extrabold leading-tight" style="font-size:1.5rem">Proteção contra Golpes Digitais</h2>
                             <p class="text-rose-100 mt-1" style="font-size:1rem">Para pessoas com 60 anos ou mais</p>
@@ -609,6 +722,8 @@
             </div>
         </div>
 
+    </main>
+
     <!-- MODAL DOS PAIS -->
     <div id="parent-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
         <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl border border-slate-100 space-y-4">
@@ -626,44 +741,84 @@
         </div>
     </div>
 
-    <!-- BOTÃO FLUTUANTE LIBRAS -->
-    <button id="libras-btn-flutuante" onclick="toggleLibrasPanel()" aria-label="Abrir painel de descrições em Libras e descrição de imagens" title="Libras / Descrição de Imagens">
-        <i class="fa-solid fa-hands" aria-hidden="true"></i>
+    <!-- MODAL DE SENHA DOS PAIS -->
+    <div id="senha-pais-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-60 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="senha-pais-titulo">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-7 shadow-2xl border border-slate-100 space-y-5">
+            <div class="text-center space-y-2">
+                <div class="text-4xl" aria-hidden="true"></div>
+                <h3 id="senha-pais-titulo" class="text-lg font-extrabold text-slate-900">Confirmação dos Pais</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">Para liberar o acesso de crianças e jovens, um <strong>pai ou responsável</strong> precisa autorizar com sua senha.</p>
+            </div>
+
+            <!-- Primeira vez: criar senha -->
+            <div id="senha-pais-criar" class="space-y-3 hidden">
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800 leading-relaxed">
+                    <i class="fa-solid fa-circle-info text-amber-500 mr-1"></i>
+                    Primeira vez! Crie agora a senha dos pais. Ela será pedida toda vez que uma criança quiser entrar.
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-slate-700 block mb-1" for="senha-pais-nova">Criar senha dos pais</label>
+                    <input type="password" id="senha-pais-nova" placeholder="Mínimo 4 caracteres..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-3 text-sm outline-none transition" autocomplete="new-password">
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-slate-700 block mb-1" for="senha-pais-confirma">Confirmar senha</label>
+                    <input type="password" id="senha-pais-confirma" placeholder="Repita a senha..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-3 text-sm outline-none transition" autocomplete="new-password">
+                </div>
+                <div id="senha-pais-erro-criar" class="hidden text-xs text-rose-600 font-semibold"></div>
+                <button onclick="criarSenhaPais()" class="w-full bg-seguro-600 hover:bg-seguro-700 text-white font-extrabold py-3 rounded-xl text-sm transition shadow">
+                    Criar Senha e Liberar Acesso <i class="fa-solid fa-unlock ml-1"></i>
+                </button>
+            </div>
+
+            <!-- Já tem senha: verificar -->
+            <div id="senha-pais-verificar" class="space-y-3 hidden">
+                <div>
+                    <label class="text-xs font-bold text-slate-700 block mb-1" for="senha-pais-input">Senha dos pais</label>
+                    <input type="password" id="senha-pais-input" placeholder="Digite a senha dos pais..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-3 text-sm outline-none transition" autocomplete="current-password" onkeydown="if(event.key==='Enter')verificarSenhaPais()">
+                </div>
+                <div id="senha-pais-erro" class="hidden text-xs text-rose-600 font-semibold"></div>
+                <button onclick="verificarSenhaPais()" class="w-full bg-seguro-600 hover:bg-seguro-700 text-white font-extrabold py-3 rounded-xl text-sm transition shadow">
+                    Confirmar e Liberar <i class="fa-solid fa-unlock ml-1"></i>
+                </button>
+                <button onclick="redefinirSenhaPais()" class="w-full text-xs text-slate-400 hover:text-rose-500 transition font-semibold">
+                    Responsável esqueceu a senha? Clique para redefinir
+                </button>
+            </div>
+
+            <button onclick="fecharSenhaPaisModal()" class="w-full text-xs text-slate-400 hover:text-slate-600 transition font-semibold pt-1">
+                Cancelar
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL DE BLOQUEIO DE IDADE -->
+    <div id="age-lock-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-55 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="lock-modal-titulo">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 text-center space-y-5">
+            <div class="text-5xl" aria-hidden="true">🔒</div>
+            <h3 id="lock-modal-titulo" class="text-xl font-black text-slate-900">Acesso Restrito</h3>
+            <p id="lock-modal-desc" class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                Este espaço possui dinâmicas e conteúdos exclusivos para outra faixa etária. Seu perfil atual está configurado para <strong id="lock-profile-name">...</strong>.
+            </p>
+            <div class="flex flex-col gap-2 pt-2">
+                <button onclick="redefinirPerfilPeloModal()" class="w-full bg-seguro-600 text-white font-extrabold p-3.5 rounded-xl text-xs hover:bg-seguro-700 transition shadow flex items-center justify-center gap-2 uppercase tracking-wider">
+                    <i class="fa-solid fa-user-gear"></i> Alterar meu Perfil / Idade
+                </button>
+                <button onclick="fecharModalBloqueio()" class="w-full bg-slate-100 font-bold p-3 rounded-xl text-xs text-slate-600 hover:bg-slate-200 transition">
+                    Voltar ao meu módulo recomendado
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÃO FLUTUANTE DESCRIÇÕES -->
+    <button id="libras-btn-flutuante" onclick="descreverTelaAtual()" aria-label="Descrever visualmente a tela atual" title="Descrição visual da tela">
+        <span style="font-size:11px; font-weight:900; letter-spacing:0.05em;">DESC</span>
     </button>
 
-    <!-- PAINEL LIBRAS -->
-    <div id="libras-painel" role="complementary" aria-label="Painel de descrições e Libras">
-        <h4><i class="fa-solid fa-hands" aria-hidden="true"></i> Libras & Descrições</h4>
-        <p style="font-size:11px; color:#94a3b8; margin-bottom:10px;">Clique em uma seção para ouvir a descrição ou ver o vídeo explicativo em Libras.</p>
-        <div class="libras-item" onclick="lerDescricaoLibras('kids')" tabindex="0" role="button" aria-label="Descrição do Modo Kids em Libras" onkeydown="if(event.key==='Enter')lerDescricaoLibras('kids')">
-            <i class="fa-solid fa-robot" style="color:#f59e0b"></i>
-            <div>
-                <strong style="font-size:11px; color:#fff;">Modo Kids</strong>
-                <p style="font-size:10px; color:#94a3b8; margin:0;">Histórinhas para crianças até 7 anos</p>
-            </div>
-        </div>
-        <div class="libras-item" onclick="lerDescricaoLibras('teens')" tabindex="0" role="button" aria-label="Descrição do Modo Teens em Libras" onkeydown="if(event.key==='Enter')lerDescricaoLibras('teens')">
-            <i class="fa-solid fa-user-secret" style="color:#818cf8"></i>
-            <div>
-                <strong style="font-size:11px; color:#fff;">Modo Teens</strong>
-                <p style="font-size:10px; color:#94a3b8; margin:0;">Casos de detetive para 8 a 17 anos</p>
-            </div>
-        </div>
-        <div class="libras-item" onclick="lerDescricaoLibras('adults')" tabindex="0" role="button" aria-label="Descrição do Modo Adulto em Libras" onkeydown="if(event.key==='Enter')lerDescricaoLibras('adults')">
-            <i class="fa-solid fa-shield-halved" style="color:#60a5fa"></i>
-            <div>
-                <strong style="font-size:11px; color:#fff;">Modo Adulto</strong>
-                <p style="font-size:10px; color:#94a3b8; margin:0;">Assistente para pais e professores</p>
-            </div>
-        </div>
-        <div class="libras-item" onclick="lerDescricaoLibras('seniors')" tabindex="0" role="button" aria-label="Descrição do Modo Idosos em Libras" onkeydown="if(event.key==='Enter')lerDescricaoLibras('seniors')">
-            <i class="fa-solid fa-user-shield" style="color:#f43f5e"></i>
-            <div>
-                <strong style="font-size:11px; color:#fff;">Modo Idosos</strong>
-                <p style="font-size:10px; color:#94a3b8; margin:0;">Golpes digitais contra a terceira idade</p>
-            </div>
-        </div>
-        <div id="libras-descricao" style="background:#0f172a; border:1px solid #1e3a5f; border-radius:10px; padding:10px; font-size:11px; color:#7cc0ff; margin-top:8px; display:none; line-height:1.6;"></div>
+    <!-- PAINEL DESCRIÇÕES (aparece automaticamente) -->
+    <div id="libras-painel" role="complementary" aria-label="Painel de descrição visual da tela">
+        <h4>📋 Descrição Visual</h4>
+        <div id="libras-descricao" style="background:#0f172a; border:1px solid #1e3a5f; border-radius:10px; padding:12px; font-size:11px; color:#7cc0ff; margin-top:8px; display:none; line-height:1.7;"></div>
     </div>
 
     <footer class="border-t border-slate-200 text-slate-400 text-[10px] py-4 text-center" role="contentinfo">
@@ -677,25 +832,279 @@
         let tamanhoFonteAtual = 16;
         let animacoesAtivas = true;
 
+        // Controle de Estado do Perfil e Idade do Usuário
+        let userAge = null;
+        let userCategory = null; // 'kids', 'teens', 'adults', 'seniors'
+
         function registrarLog(modulo, tema, status, detalhe) {
             if (modulo === 'Kids') logsKids.push({ tema, status, detalhe });
             if (modulo === 'Teens') logsTeens.push({ tema, status, detalhe });
         }
 
+        // ===== TOASTS DE NOTIFICAÇÃO (Substituindo o "alert" comum) =====
+        function mostrarNotificacao(mensagem, tipo = 'sucesso') {
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3.5 rounded-2xl shadow-2xl text-white text-xs font-bold tracking-wide flex items-center gap-2.5 transition-all duration-300 opacity-0 translate-y-4`;
+            
+            if (tipo === 'sucesso') {
+                toast.classList.add('bg-emerald-600', 'border', 'border-emerald-500');
+                toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${mensagem}`;
+            } else if (tipo === 'erro') {
+                toast.classList.add('bg-rose-600', 'border', 'border-rose-500');
+                toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${mensagem}`;
+            } else {
+                toast.classList.add('bg-slate-900', 'border', 'border-slate-800');
+                toast.innerHTML = `<i class="fa-solid fa-info"></i> ${mensagem}`;
+            }
+            
+            document.body.appendChild(toast);
+            
+            // Ativa animação de entrada
+            setTimeout(() => {
+                toast.classList.remove('opacity-0', 'translate-y-4');
+                toast.classList.add('opacity-100', 'translate-y-0');
+            }, 10);
+            
+            // Desaparece após 3.5 segundos
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // ===== SENHA DOS PAIS =====
+
+        let perfilPendente = null;
+
+        function abrirSenhaPaisModal() {
+            const temSenha = localStorage.getItem('senha_pais');
+            document.getElementById('senha-pais-criar').classList.toggle('hidden', !!temSenha);
+            document.getElementById('senha-pais-verificar').classList.toggle('hidden', !temSenha);
+            document.getElementById('senha-pais-erro').classList.add('hidden');
+            document.getElementById('senha-pais-erro-criar').classList.add('hidden');
+            document.getElementById('senha-pais-nova').value = '';
+            document.getElementById('senha-pais-confirma').value = '';
+            document.getElementById('senha-pais-input').value = '';
+            document.getElementById('senha-pais-modal').classList.remove('hidden');
+            setTimeout(() => {
+                const foco = temSenha ? 'senha-pais-input' : 'senha-pais-nova';
+                document.getElementById(foco)?.focus();
+            }, 100);
+        }
+
+        function fecharSenhaPaisModal() {
+            document.getElementById('senha-pais-modal').classList.add('hidden');
+            perfilPendente = null;
+        }
+
+        function criarSenhaPais() {
+            const nova = document.getElementById('senha-pais-nova').value.trim();
+            const confirma = document.getElementById('senha-pais-confirma').value.trim();
+            const erroEl = document.getElementById('senha-pais-erro-criar');
+            if (nova.length < 4) {
+                erroEl.innerText = 'A senha precisa ter pelo menos 4 caracteres.';
+                erroEl.classList.remove('hidden');
+                return;
+            }
+            if (nova !== confirma) {
+                erroEl.innerText = 'As senhas não coincidem. Tente de novo.';
+                erroEl.classList.remove('hidden');
+                return;
+            }
+            localStorage.setItem('senha_pais', btoa(nova));
+            fecharSenhaPaisModal();
+            if (perfilPendente) finalizarDefinirPerfil(perfilPendente);
+            perfilPendente = null;
+        }
+
+        function verificarSenhaPais() {
+            const digitada = document.getElementById('senha-pais-input').value.trim();
+            const salva = localStorage.getItem('senha_pais');
+            const erroEl = document.getElementById('senha-pais-erro');
+            if (btoa(digitada) === salva) {
+                const perfil = perfilPendente;
+                fecharSenhaPaisModal();
+                if (perfil) finalizarDefinirPerfil(perfil);
+            } else {
+                erroEl.innerText = 'Senha incorreta. Tente novamente.';
+                erroEl.classList.remove('hidden');
+                document.getElementById('senha-pais-input').value = '';
+                document.getElementById('senha-pais-input').focus();
+            }
+        }
+
+        function redefinirSenhaPais() {
+            if (confirm('Isso vai apagar a senha atual dos pais e você precisará criar uma nova. Continuar?')) {
+                localStorage.removeItem('senha_pais');
+                document.getElementById('senha-pais-verificar').classList.add('hidden');
+                document.getElementById('senha-pais-criar').classList.remove('hidden');
+                document.getElementById('senha-pais-nova')?.focus();
+            }
+        }
+
+        // ===== LÓGICA DO FILTRO DE IDADE (AGE GATE) =====
+
+        function selecionarPerfilOnboarding(categoria) {
+            // Kids e Teens: exige senha dos pais
+            if (categoria === 'kids' || categoria === 'teens') {
+                perfilPendente = categoria;
+                abrirSenhaPaisModal();
+            } else {
+                // Adulto e Idoso: acesso direto
+                finalizarDefinirPerfil(categoria);
+            }
+        }
+
+        function finalizarDefinirPerfil(categoria) {
+            userCategory = categoria;
+            const nomes = { kids: 'Criança', teens: 'Jovem', adults: 'Adulto', seniors: 'Idoso' };
+            mostrarNotificacao(`Perfil ${nomes[categoria]} ativado! Bem-vindo!`, 'sucesso');
+            atualizarVisualizacaoModulos();
+            switchTab('landing');
+        }
+
+        function definirPerfilDireto(categoria) {
+            if (categoria === 'adults') userCategory = 'adults';
+            else if (categoria === 'seniors_quick') userCategory = 'seniors';
+            mostrarNotificacao('Perfil definido com sucesso!', 'sucesso');
+            atualizarVisualizacaoModulos();
+            switchTab('landing');
+        }
+
+        function selecionarModulo(categoria) {
+            if (!userCategory) {
+                mostrarOnboardingParaTroca();
+                return;
+            }
+
+            if (userCategory === categoria) {
+                switchTab(categoria);
+            } else {
+                abrirModalBloqueio(categoria);
+            }
+        }
+
+        function atualizarVisualizacaoModulos() {
+            const categorias = ['kids', 'teens', 'adults', 'seniors'];
+            const badge = document.getElementById('perfil-header-badge');
+
+            if (userCategory) {
+                let nomeCategoria = '';
+                if (userCategory === 'kids') nomeCategoria = 'Criança';
+                if (userCategory === 'teens') nomeCategoria = 'Jovem';
+                if (userCategory === 'adults') nomeCategoria = 'Adulto / Responsável';
+                if (userCategory === 'seniors') nomeCategoria = 'Idoso (60+)';
+
+                badge.innerHTML = `
+                    <div class="bg-seguro-100 dark:bg-seguro-900 border border-seguro-200 text-seguro-800 dark:text-seguro-200 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-sm">
+                        <i class="fa-solid fa-user-tag text-[10px]"></i> Perfil: ${nomeCategoria}
+                        <button onclick="mostrarOnboardingParaTroca()" class="ml-1 hover:text-seguro-600 transition" title="Trocar perfil">
+                            <i class="fa-solid fa-user-gear"></i>
+                        </button>
+                    </div>
+                `;
+            } else {
+                badge.innerHTML = `
+                    <button onclick="mostrarOnboardingParaTroca()" class="bg-amber-100 hover:bg-amber-200 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-xl border border-amber-200 transition shadow-sm flex items-center gap-1">
+                        <i class="fa-solid fa-circle-exclamation text-[10px]"></i> Definir Perfil
+                    </button>
+                `;
+            }
+
+            categorias.forEach(cat => {
+                const card = document.getElementById(`card-${cat}`);
+                if (!card) return;
+
+                const badgeContainer = card.querySelector('.badge-status-container');
+                const actionContainer = card.querySelector('.action-status-container');
+
+                if (!userCategory) {
+                    return; 
+                }
+
+                if (userCategory === cat) {
+                    // Módulo Disponível/Recomendado
+                    card.classList.remove('opacity-60', 'grayscale', 'border-transparent');
+                    card.classList.add('border-emerald-400', 'ring-4', 'ring-emerald-50/50');
+                    if (badgeContainer) {
+                        badgeContainer.innerHTML = `<span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-circle-check"></i> Recomendado</span>`;
+                    }
+                    if (actionContainer) {
+                        let acaoTexto = "Entrar na Aventura";
+                        if (cat === 'teens') acaoTexto = "Resolver Casos";
+                        if (cat === 'adults') acaoTexto = "Conversar com Assistente";
+                        if (cat === 'seniors') acaoTexto = "Aprender a se Proteger";
+
+                        actionContainer.innerHTML = `${acaoTexto} <i class="fa-solid fa-arrow-right ml-1"></i>`;
+                        actionContainer.className = "action-status-container flex items-center gap-2 text-emerald-600 font-bold text-xs sm:text-sm mt-3";
+                    }
+                } else {
+                    // Módulo Bloqueado
+                    card.classList.add('opacity-60', 'grayscale', 'border-transparent');
+                    card.classList.remove('border-emerald-400', 'ring-4', 'ring-emerald-50/50');
+                    if (badgeContainer) {
+                        badgeContainer.innerHTML = `<span class="bg-slate-200 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-lock"></i> Bloqueado</span>`;
+                    }
+                    if (actionContainer) {
+                        actionContainer.innerHTML = `Bloqueado para sua idade <i class="fa-solid fa-lock text-slate-400"></i>`;
+                        actionContainer.className = "action-status-container flex items-center gap-2 text-slate-400 font-bold text-xs sm:text-sm mt-3";
+                    }
+                }
+            });
+        }
+
+        function abrirModalBloqueio(categoria) {
+            const modal = document.getElementById('age-lock-modal');
+            const desc = document.getElementById('lock-modal-desc');
+            const prof = document.getElementById('lock-profile-name');
+
+            let nomePerfil = '';
+            if (userCategory === 'kids') nomePerfil = 'Modo Kids (Crianças)';
+            if (userCategory === 'teens') nomePerfil = 'Modo Teens (Jovens)';
+            if (userCategory === 'adults') nomePerfil = 'Modo Adulto (Responsáveis)';
+            if (userCategory === 'seniors') nomePerfil = 'Modo Idosos (60+)';
+
+            let targetPerfil = '';
+            if (categoria === 'kids') targetPerfil = 'Kids (até 7 anos)';
+            if (categoria === 'teens') targetPerfil = 'Teens (de 8 a 17 anos)';
+            if (categoria === 'adults') targetPerfil = 'Adulto (para pais e professores)';
+            if (categoria === 'seniors') targetPerfil = 'Idosos (para maiores de 60 anos)';
+
+            prof.innerText = nomePerfil;
+            desc.innerHTML = `O módulo <strong>${targetPerfil}</strong> possui dinâmicas e histórias desenhadas especificamente para outra faixa etária. Seu perfil atual está configurado para o <strong>${nomePerfil}</strong>.<br><br>Deseja alterar sua idade nas configurações de perfil para acessar esta seção ou prefere focar em seu conteúdo recomendado?`;
+            
+            modal.classList.remove('hidden');
+        }
+
+        function fecharModalBloqueio() {
+            document.getElementById('age-lock-modal').classList.add('hidden');
+        }
+
+        function redefinirPerfilPeloModal() {
+            fecharModalBloqueio();
+            mostrarOnboardingParaTroca();
+        }
+
+        function mostrarOnboardingParaTroca() {
+            switchTab('onboarding');
+        }
+
+
         // ===== ACESSIBILIDADE =====
 
         function alterarFonte(direcao) {
-            tamanhoFonteAtual += direcao * 2;
+            tamanhoFonteAtual += direcao * 1;
             if (tamanhoFonteAtual < 12) tamanhoFonteAtual = 12;
-            if (tamanhoFonteAtual > 26) tamanhoFonteAtual = 26;
-            document.getElementById('app-body').style.fontSize = tamanhoFonteAtual + 'px';
-            anunciarParaLeitorDeTela('Tamanho da fonte: ' + tamanhoFonteAtual + ' pixels');
+            if (tamanhoFonteAtual > 24) tamanhoFonteAtual = 24;
+            document.documentElement.style.fontSize = tamanhoFonteAtual + 'px';
+            anunciarParaLeitorDeTela('Tamanho da fonte ajustado para: ' + tamanhoFonteAtual + ' pixels');
         }
 
         function resetarFonte() {
             tamanhoFonteAtual = 16;
-            document.getElementById('app-body').style.fontSize = '16px';
-            anunciarParaLeitorDeTela('Fonte restaurada para o tamanho padrão');
+            document.documentElement.style.fontSize = '16px';
+            anunciarParaLeitorDeTela('Fonte restaurada para o tamanho padrão de 16 pixels');
         }
 
         function toggleAltoContraste() {
@@ -732,28 +1141,80 @@
             body.classList.toggle('sem-animacoes', !animacoesAtivas);
             btn.classList.toggle('ativo', !animacoesAtivas);
             btn.setAttribute('aria-pressed', !animacoesAtivas);
-            anunciarParaLeitorDeTela(!animacoesAtivas ? 'Animações desativadas' : 'Animações ativadas');
+            anunciarParaLeitorDeTela(!animacoesAtivas ? 'Animações suspensas com sucesso' : 'Animações ativadas com sucesso');
         }
 
-        function toggleLibrasPanel() {
-            const painel = document.getElementById('libras-painel');
-            painel.classList.toggle('aberto');
-            const aberto = painel.classList.contains('aberto');
-            document.getElementById('libras-btn-flutuante').setAttribute('aria-expanded', aberto);
-        }
+        function descreverTelaAtual() {
+            document.getElementById('libras-painel').classList.add('aberto');
+            // Descobre qual aba está visível
+            const abas = ['onboarding', 'landing', 'kids', 'teens', 'adults', 'seniors'];
+            let abaAtiva = null;
+            for (const aba of abas) {
+                const el = document.getElementById(`tab-${aba}`);
+                if (el && el.classList.contains('active')) { abaAtiva = aba; break; }
+            }
 
-        const descricaoLibras = {
-            kids: 'Modo Kids: Este módulo é uma historinha interativa guiada pelo robozinho Robô. Você vai responder perguntas sobre como proteger seu nome, suas senhas e seu corpinho na internet. Cada pergunta certa rende estrelas de pontos. No final, você recebe uma medalha de Guardião!',
-            teens: 'Modo Teens: Você é um detetive investigando casos reais de perigos na internet. Cada caso mostra uma situação suspeita, como um perfil falso no Discord, uma ameaça de chantagem ou um link roubando senhas. Você usa botões de investigação para descobrir pistas e escolhe a ação correta.',
-            adults: 'Modo Adulto: Um assistente inteligente exclusivo para pais e professores. Você pode fazer perguntas sobre como configurar o celular do seu filho com segurança, como funciona o controle parental, quais aplicativos são perigosos e como conversar com crianças sobre os riscos da internet.',
-            seniors: 'Modo Idosos: Este módulo apresenta cinco situações reais de golpes digitais aplicados contra pessoas da terceira idade no Brasil. São eles: o golpe do WhatsApp clonado, o link falso do banco, o falso motoboy, o boleto adulterado e a falsa central de segurança. Você lê cada situação e escolhe a atitude correta para se proteger.'
-        };
+            const descricoes = {
+                onboarding: 'Você está na tela de boas-vindas do Guardião Digital. No centro da tela há um escudo azul, o logo do aplicativo. Abaixo, o título "Bem-vindo ao Guardião Digital!" e um texto explicando o propósito. Logo abaixo aparecem quatro botões grandes em grade dois por dois: o primeiro é laranja com um robô e diz "Sou Criança", o segundo é roxo com um detetive e diz "Sou Jovem", o terceiro é azul com um escudo e diz "Sou Adulto", e o quarto é vermelho com um ícone de idoso e diz "Sou Idoso". Os dois primeiros têm um aviso de cadeado indicando que precisam de senha dos pais.',
 
-        function lerDescricaoLibras(modulo) {
+                landing: () => {
+                    const perfil = userCategory ? { kids: 'Criança', teens: 'Jovem', adults: 'Adulto', seniors: 'Idoso' }[userCategory] : 'não definido';
+                    return `Você está na tela principal com os quatro módulos do jogo. No topo há um banner azul escuro com o título "Internet Segura para Toda a Família". Abaixo aparecem quatro cartões lado a lado. Seu perfil atual é ${perfil}, então o cartão correspondente está destacado com borda verde e o texto "Recomendado". Os outros três cartões estão acinzentados e mostram "Bloqueado". No canto superior direito há o botão "Resumo para os Pais".`;
+                },
+
+                kids: () => {
+                    const perguntaEl = document.getElementById('kids-question-text');
+                    const stepEl = document.getElementById('kids-step-indicator');
+                    const score = document.getElementById('kids-score')?.innerText || '0';
+                    const step = stepEl?.innerText || '';
+                    const pergunta = perguntaEl?.innerText || 'Carregando pergunta...';
+                    const feedbackEl = document.getElementById('kids-feedback-container');
+                    const temFeedback = feedbackEl && !feedbackEl.classList.contains('hidden');
+                    let desc = `Você está no Modo Kids. ${step}. Sua pontuação atual é ${score} pontos. `;
+                    desc += `À esquerda há um robô animado que reage às suas respostas. `;
+                    desc += `À direita está a pergunta: "${pergunta}". `;
+                    desc += `Abaixo da pergunta há dois botões com as opções de resposta. `;
+                    if (temFeedback) desc += `Uma mensagem de feedback aparece abaixo das opções com o resultado da sua última resposta. `;
+                    return desc;
+                },
+
+                teens: () => {
+                    const titulo = document.getElementById('teen-case-title')?.innerText || '';
+                    const desc = document.getElementById('teen-case-desc')?.innerText || '';
+                    const step = document.getElementById('teen-step-indicator')?.innerText || '';
+                    const score = document.getElementById('teen-score')?.innerText || '100';
+                    return `Você está no Modo Teens, Central de Casos. ${step}. Sua nota de segurança é ${score}%. O caso atual se chama "${titulo}". A descrição da situação é: ${desc}. À esquerda há dois botões de investigação: "Olhar quem enviou" e "Olhar o link enviado", que revelam pistas sobre o caso. À direita aparecem as opções de ação para você decidir o que fazer na situação.`;
+                },
+
+                adults: () => {
+                    const msgs = document.querySelectorAll('#chat-messages > div');
+                    const total = msgs.length;
+                    return `Você está no Modo Adulto, o chat com o assistente de segurança digital. No topo há um cabeçalho azul com o nome "Guia Digital de Proteção Familiar" e um indicador verde mostrando que o assistente está online. A área central mostra a conversa — atualmente há ${total} mensagem${total !== 1 ? 's' : ''} na tela. Na parte inferior há um campo de texto onde você digita sua pergunta, e um botão azul "Enviar" ao lado.`;
+                },
+
+                seniors: () => {
+                    const step = document.getElementById('seniors-step-indicator')?.innerText || '';
+                    const titulo = document.getElementById('seniors-mission-title')?.innerText || '';
+                    const score = document.getElementById('seniors-score')?.innerText || '0';
+                    const perguntaEl = document.getElementById('seniors-question-text');
+                    const pergunta = perguntaEl?.innerText || '';
+                    return `Você está no Modo Idosos. ${step}. Sua pontuação é ${score} pontos. No topo há um cabeçalho vermelho com o título "${titulo}". Abaixo há um aviso em amarelo sobre golpes digitais no Brasil. A situação atual diz: "${pergunta}". Abaixo da situação há dois botões grandes com as opções do que você faria. No final da página há um painel escuro com números de emergência: Banco Central, Polícia Civil e Procon.`;
+                }
+            };
+
             const div = document.getElementById('libras-descricao');
             div.style.display = 'block';
-            div.innerHTML = '<strong style="color:#4ade80;">ℹ️ Descrição:</strong><br>' + descricaoLibras[modulo];
-            falarVoz(descricaoLibras[modulo]);
+
+            let texto = '';
+            if (!abaAtiva) {
+                texto = 'Não foi possível identificar a tela atual.';
+            } else {
+                const d = descricoes[abaAtiva];
+                texto = typeof d === 'function' ? d() : d;
+            }
+
+            div.innerHTML = `<strong style="color:#4ade80; display:block; margin-bottom:6px;">👁️ O que está na tela:</strong>${texto}`;
+            falarVoz(texto);
         }
 
         function falarVoz(texto) {
@@ -829,15 +1290,23 @@
         // ===== NAVEGAÇÃO =====
 
         function switchTab(tabName) {
+            // Se o perfil ainda não foi configurado, proíbe navegação para abas principais, forçando o onboarding
+            if (!userCategory && tabName !== 'onboarding') {
+                mostrarNotificacao('Por favor, informe sua idade ou selecione seu perfil primeiro!', 'info');
+                tabName = 'onboarding';
+            }
+
             document.querySelectorAll('.tab-content').forEach(el => {
                 el.classList.remove('show');
                 setTimeout(() => el.classList.remove('active'), 150);
             });
             setTimeout(() => {
                 const target = document.getElementById(`tab-${tabName}`);
-                target.classList.add('active');
-                setTimeout(() => target.classList.add('show'), 50);
-                target.focus && target.setAttribute('tabindex', '-1');
+                if (target) {
+                    target.classList.add('active');
+                    setTimeout(() => target.classList.add('show'), 50);
+                    target.focus && target.setAttribute('tabindex', '-1');
+                }
             }, 200);
 
             if (tabName === 'kids' && currentKidsIndex === 0) loadKidsQuestion();
@@ -1203,6 +1672,7 @@
         }
 
 
+        // ===== CHAT DO RESPONSÁVEL (MODO ADULTO) =====
 
         function handleAdultQuestion(e) {
             e.preventDefault();
@@ -1317,7 +1787,7 @@
         function copyReportToClipboard() {
             const content = document.getElementById('modal-report-content').innerText;
             navigator.clipboard.writeText("Relatório Guardião Digital:\n" + content);
-            alert("Resumo copiado com sucesso! Agora vá até o 'Modo Adulto' e cole no chat para conversar.");
+            mostrarNotificacao("Resumo copiado com sucesso! Agora vá até o 'Modo Adulto' e cole no chat para conversar.", "sucesso");
         }
 
         // Fecha modal ao clicar fora
@@ -1338,9 +1808,20 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeParentReport();
+                fecharModalBloqueio();
+                fecharSenhaPaisModal();
                 document.getElementById('libras-painel').classList.remove('aberto');
             }
         });
+
+        document.getElementById('senha-pais-modal').addEventListener('click', function(e) {
+            if (e.target === this) fecharSenhaPaisModal();
+        });
+
+        // Executado ao carregar para garantir estados e visual
+        window.onload = function() {
+            atualizarVisualizacaoModulos();
+        }
     </script>
 </body>
 </html>
