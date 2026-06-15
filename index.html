@@ -381,7 +381,7 @@
                     <!-- Teens: precisa de senha dos pais -->
                     <button onclick="selecionarPerfilOnboarding('teens')"
                         class="bg-indigo-50 hover:bg-indigo-100 border-2 border-indigo-200 hover:border-indigo-400 p-4 rounded-2xl font-bold text-slate-800 flex flex-col items-start gap-2 transition group">
-                        <span class="text-2xl group-hover:scale-110 transition-transform">🕵</span>
+                        <span class="text-2xl group-hover:scale-110 transition-transform"></span>
                         <span class="text-sm font-extrabold">Sou Jovem</span>
                         <span class="text-xs font-normal text-slate-500">8 a 17 anos</span>
                         <span class="text-[10px] text-indigo-600 font-bold flex items-center gap-1 mt-1"><i class="fa-solid fa-lock"></i> Requer senha dos pais</span>
@@ -560,7 +560,7 @@
                     <div id="teen-panel-header" class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-800 pb-4 gap-2">
                         <div>
                             <span class="text-xs font-bold tracking-widest text-indigo-400 uppercase">Detetive da Internet</span>
-                            <h2 class="text-xl font-extrabold flex items-center gap-2"><span aria-hidden="true">🕵️‍♂️</span> Central de Casos</h2>
+                            <h2 class="text-xl font-extrabold flex items-center gap-2"><span aria-hidden="true"></span> Central de Casos</h2>
                         </div>
                         <div>
                             <span class="bg-indigo-950 border border-indigo-800 px-3 py-1 rounded-xl text-xs font-bold text-indigo-300" role="status" aria-live="polite">Sua Nota de Segurança: <span id="teen-score">100</span>%</span>
@@ -579,7 +579,7 @@
                             </div>
                             
                             <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-                                <span class="text-[11px] font-bold uppercase text-indigo-400 block mb-1"><span aria-hidden="true">🔍</span> Botões de Investigação (Dicas)</span>
+                                <span class="text-[11px] font-bold uppercase text-indigo-400 block mb-1"><span aria-hidden="true"></span> Botões de Investigação (Dicas)</span>
                                 <div class="grid grid-cols-2 gap-2">
                                     <button onclick="inspectTeenPista('remetente')" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-left p-2.5 rounded-xl text-xs flex items-center gap-2 transition text-slate-300" aria-label="Investigar quem enviou a mensagem">
                                         <i class="fa-solid fa-user text-indigo-400" aria-hidden="true"></i> Olhar quem enviou
@@ -673,7 +673,7 @@
                     </div>
                     <div class="flex items-center justify-between mt-4 bg-rose-700/50 rounded-2xl px-4 py-3">
                         <span id="seniors-mission-title" class="font-bold text-white" style="font-size:1rem">Pronto para começar?</span>
-                        <span class="bg-white text-rose-700 font-extrabold px-4 py-1.5 rounded-xl" style="font-size:1rem" aria-label="Pontuação">🛡️ <span id="seniors-score" aria-live="polite">0</span> pontos</span>
+                        <span class="bg-white text-rose-700 font-extrabold px-4 py-1.5 rounded-xl" style="font-size:1rem" aria-label="Pontuação"> <span id="seniors-score" aria-live="polite">0</span> pontos</span>
                     </div>
                 </div>
 
@@ -728,7 +728,7 @@
     <div id="parent-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
         <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl border border-slate-100 space-y-4">
             <div class="flex justify-between items-center border-b pb-3">
-                <h3 id="modal-titulo" class="text-base font-black text-slate-900 flex items-center gap-2"><span aria-hidden="true">📊</span> Como foi o desempenho dos seus filhos?</h3>
+                <h3 id="modal-titulo" class="text-base font-black text-slate-900 flex items-center gap-2"><span aria-hidden="true"></span> Como foi o desempenho dos seus filhos?</h3>
                 <button onclick="closeParentReport()" class="text-slate-400 hover:text-slate-600 text-xl" aria-label="Fechar relatório"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
             </div>
             <div id="modal-report-content" class="space-y-3 max-h-96 overflow-y-auto text-xs text-slate-600 leading-relaxed" aria-live="polite"></div>
