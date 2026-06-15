@@ -909,6 +909,8 @@
                 return;
             }
             localStorage.setItem('senha_pais', btoa(nova));
+            // Marca sessão como autorizada para não pedir senha de novo nesta sessão
+            sessionStorage.setItem('pais_autorizado', '1');
             fecharSenhaPaisModal();
             if (perfilPendente) finalizarDefinirPerfil(perfilPendente);
             perfilPendente = null;
@@ -919,6 +921,8 @@
             const salva = localStorage.getItem('senha_pais');
             const erroEl = document.getElementById('senha-pais-erro');
             if (btoa(digitada) === salva) {
+                // Marca sessão como autorizada
+                sessionStorage.setItem('pais_autorizado', '1');
                 const perfil = perfilPendente;
                 fecharSenhaPaisModal();
                 if (perfil) finalizarDefinirPerfil(perfil);
@@ -942,12 +946,15 @@
         // ===== LÓGICA DO FILTRO DE IDADE (AGE GATE) =====
 
         function selecionarPerfilOnboarding(categoria) {
-            // Kids e Teens: exige senha dos pais
             if (categoria === 'kids' || categoria === 'teens') {
-                perfilPendente = categoria;
-                abrirSenhaPaisModal();
+                // Se já autorizou nesta sessão, entra direto
+                if (sessionStorage.getItem('pais_autorizado') === '1') {
+                    finalizarDefinirPerfil(categoria);
+                } else {
+                    perfilPendente = categoria;
+                    abrirSenhaPaisModal();
+                }
             } else {
-                // Adulto e Idoso: acesso direto
                 finalizarDefinirPerfil(categoria);
             }
         }
