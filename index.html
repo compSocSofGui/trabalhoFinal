@@ -340,7 +340,7 @@
                     <button onclick="openParentReport()" class="bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold uppercase tracking-wider py-2 px-3 rounded-lg flex items-center gap-1.5 shadow transition" aria-label="Ver resumo de desempenho para os pais">
                          Resumo para os Pais
                     </button>
-                    <button onclick="switchTab('onboarding')" class="text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-seguro-600 transition flex items-center gap-1.5 py-2 px-3 rounded-lg" aria-label="Ir para escolha de perfil">
+                    <button onclick="irParaInicio()" class="text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-seguro-600 transition flex items-center gap-1.5 py-2 px-3 rounded-lg" aria-label="Ir para escolha de perfil">
                          Início
                     </button>
                 </div>
@@ -1345,6 +1345,15 @@
         function redefinirPerfilPeloModal() {
             fecharModalBloqueio();
             mostrarOnboardingParaTroca();
+        }
+
+        function irParaInicio() {
+            if (userCategory === 'kids' || userCategory === 'teens') {
+                perfilPendente = '__trocar__';
+                abrirSenhaPaisModal();
+            } else {
+                switchTab('onboarding');
+            }
         }
 
         function mostrarOnboardingParaTroca() {
