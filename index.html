@@ -401,10 +401,16 @@
                         <span class="text-[10px] text-rose-600 font-bold flex items-center gap-1 mt-1"> Acesso direto</span>
                     </button>
                 </div>
+
+                <!-- Link para o guia -->
+                <div class="border-t border-slate-100 pt-4 text-center">
+                    <p class="text-xs text-slate-400 mb-2">Nao se encaixa em nenhum perfil acima?</p>
+                    <button onclick="switchTab('guia')" class="bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition w-full">
+                        Acessar o Guia de Inteligencia Artificial
+                    </button>
+                </div>
             </div>
         </div>
-
-        <!-- LANDING -->
         <div id="tab-landing" class="tab-content space-y-12">
             <div class="bg-gradient-to-r from-seguro-900 to-seguro-700 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
                 <div class="max-w-4xl space-y-6 relative z-10">
@@ -494,6 +500,207 @@
                     </div>
                 </div>
 
+            </div>
+
+            <!-- BANNER GUIA DE IA -->
+            <div class="bg-slate-900 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="space-y-1">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-slate-400">Nao se encaixa em nenhuma das categorias acima?</span>
+                    <h3 class="text-white font-extrabold text-base">Guia de Inteligencia Artificial</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed max-w-lg">Entenda o que e a IA, como ela funciona, seus riscos e como usa-la com responsabilidade. Baseado no material da SaferNet Brasil.</p>
+                </div>
+                <button onclick="switchTab('guia')" class="shrink-0 bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-xs px-5 py-3 rounded-xl transition shadow">
+                    Acessar o Guia
+                </button>
+            </div>
+        </div>
+
+        <!-- GUIA DE IA -->
+        <div id="tab-guia" class="tab-content space-y-6" role="region" aria-label="Guia de Inteligencia Artificial">
+            <div class="max-w-3xl mx-auto space-y-5">
+                <button onclick="switchTab('landing')" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-800 transition mb-1">
+                    Voltar ao Menu
+                </button>
+
+                <div class="bg-slate-900 rounded-3xl p-7 text-white space-y-2">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-slate-400">Material Educativo</span>
+                    <h2 class="text-2xl font-extrabold">Guia de Inteligencia Artificial</h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">Clique em um topico para ler. Baseado no Guia de Literacia em IA da SaferNet Brasil (2024).</p>
+                    <button onclick="toggleTodosTopicos()" id="btn-ler-tudo" class="mt-2 bg-white text-slate-900 font-extrabold text-xs px-4 py-2 rounded-xl hover:bg-slate-100 transition">
+                        Ler tudo de uma vez
+                    </button>
+                </div>
+
+                <!-- TOPICOS EXPANSIVEIS -->
+                <div class="space-y-3" id="guia-topicos">
+
+                    <div class="guia-topico bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                        <button onclick="toggleTopico(this)" class="w-full text-left p-5 flex justify-between items-center font-bold text-slate-900 hover:bg-slate-50 transition">
+                            <span>O que e Inteligencia Artificial?</span>
+                            <span class="topico-seta text-slate-400 text-xs font-black">VER</span>
+                        </button>
+                        <div class="topico-conteudo hidden border-t border-slate-100 p-5 space-y-3 text-sm text-slate-600 leading-relaxed">
+                            <p>Sabe quando voce conversa com a assistente de voz do seu celular e ela responde suas perguntas? Ou quando o YouTube parece adivinhar exatamente qual video voce quer assistir? Isso e Inteligencia Artificial funcionando.</p>
+                            <p><strong class="text-slate-900">A comparacao da bicicleta:</strong> imagine que voce esta aprendendo a andar de bicicleta. No comeco, voce cai, erra. Quanto mais pratica, mais seu cerebro aprende. A IA funciona de forma parecida, mas com computadores: programas que aprendem analisando milhoes de exemplos ate descobrirem padroes.</p>
+                            <div class="bg-rose-50 border border-rose-200 rounded-xl p-4">
+                                <p><strong class="text-rose-900">O ponto importante:</strong> a IA nao entende o que esta fazendo como voce entende. Ela so identifica padroes. Por isso comete erros bizarros — como sugerir cola para grudar queijo na pizza, pois seus dados dizem que "cola serve para grudar".</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="guia-topico bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                        <button onclick="toggleTopico(this)" class="w-full text-left p-5 flex justify-between items-center font-bold text-slate-900 hover:bg-slate-50 transition">
+                            <span>A IA no seu dia a dia</span>
+                            <span class="topico-seta text-slate-400 text-xs font-black">VER</span>
+                        </button>
+                        <div class="topico-conteudo hidden border-t border-slate-100 p-5 space-y-3 text-sm text-slate-600 leading-relaxed">
+                            <p>Voce provavelmente usa IA todos os dias sem perceber:</p>
+                            <ul class="space-y-2">
+                                <li><strong class="text-slate-900">No celular:</strong> desbloqueio por rosto, sugestoes de palavras ao digitar e o corretor automatico.</li>
+                                <li><strong class="text-slate-900">Nas redes sociais:</strong> o feed do Instagram ou TikTok e personalizado por uma IA que analisa quais videos voce assiste ate o final.</li>
+                                <li><strong class="text-slate-900">Nos filtros de foto:</strong> filtros que transformam seu rosto usam IA para identificar onde estao seus olhos, nariz e boca.</li>
+                                <li><strong class="text-slate-900">Nos jogos:</strong> a IA ajusta a dificuldade em tempo real e cria cenarios enquanto voce joga.</li>
+                                <li><strong class="text-slate-900">Em ferramentas de estudo:</strong> ChatGPT, Gemini e outros assistentes geram textos e ajudam a explicar conceitos.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="guia-topico bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                        <button onclick="toggleTopico(this)" class="w-full text-left p-5 flex justify-between items-center font-bold text-slate-900 hover:bg-slate-50 transition">
+                            <span>O que a IA faz de bom</span>
+                            <span class="topico-seta text-slate-400 text-xs font-black">VER</span>
+                        </button>
+                        <div class="topico-conteudo hidden border-t border-slate-100 p-5 space-y-3 text-sm text-slate-600 leading-relaxed">
+                            <ul class="space-y-2">
+                                <li><strong class="text-slate-900">Ajuda no aprendizado:</strong> cria exercicios especificos para onde voce tem mais dificuldade.</li>
+                                <li><strong class="text-slate-900">Traduz idiomas:</strong> ajuda a ler em ingles, coreano ou qualquer outra lingua.</li>
+                                <li><strong class="text-slate-900">Ajuda pessoas com deficiencia:</strong> legendas automaticas para surdos, descricoes de imagens em voz alta para cegos.</li>
+                                <li><strong class="text-slate-900">Estimula criatividade:</strong> pode ajudar a criar musica, desenhos e historias — desde que voce use como apoio, nao substituto.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="guia-topico bg-white border border-rose-200 rounded-2xl overflow-hidden shadow-sm">
+                        <button onclick="toggleTopico(this)" class="w-full text-left p-5 flex justify-between items-center font-bold text-slate-900 hover:bg-rose-50 transition">
+                            <span>Risco 1 — Deepfakes</span>
+                            <span class="topico-seta text-slate-400 text-xs font-black">VER</span>
+                        </button>
+                        <div class="topico-conteudo hidden border-t border-rose-100 p-5 space-y-3 text-sm text-slate-600 leading-relaxed">
+                            <p>Deepfake junta "deep learning" (um tipo de IA) e "fake" (falso). Sao fotos, audios ou videos criados por IA para parecer reais, mas completamente falsos.</p>
+                            <div class="bg-rose-50 border border-rose-200 rounded-xl p-4">
+                                <p><strong class="text-rose-900">O caso mais grave: deepfakes sexuais.</strong> Alguem mal-intencionado pega fotos comuns de uma pessoa e usa IA para coloca-la em situacoes intimas que nunca existiram. Em 2025, jornalistas brasileiros encontraram um forum criminoso com imagens de influenciadoras adolescentes — nem elas nem seus pais sabiam.</p>
+                            </div>
+                            <p><strong class="text-slate-900">O que fazer:</strong> isso e crime. Nao compartilhe. A culpa nunca e da vitima. Proteja seu perfil. Guarde provas antes de apagar. Denuncie em safernet.org.br/denuncie ou Disque 100.</p>
+                        </div>
+                    </div>
+
+                    <div class="guia-topico bg-white border border-orange-200 rounded-2xl overflow-hidden shadow-sm">
+                        <button onclick="toggleTopico(this)" class="w-full text-left p-5 flex justify-between items-center font-bold text-slate-900 hover:bg-orange-50 transition">
+                            <span>Risco 2 — Preconceito da IA</span>
+                            <span class="topico-seta text-slate-400 text-xs font-black">VER</span>
+                        </button>
+                        <div class="topico-conteudo hidden border-t border-orange-100 p-5 space-y-3 text-sm text-slate-600 leading-relaxed">
+                            <p>A IA aprende com dados criados por humanos — cheios de estereotipos. Isso e chamado de vies algoritmico: a IA reproduz e amplifica os preconceitos da sociedade.</p>
+                            <ul class="space-y-1">
+                                <li>Ferramentas de IA ja foram flagradas clarificando a pele de pessoas negras em fotos profissionais.</li>
+                                <li>IAs de recrutamento ja rejeitaram curriculos de mulheres automaticamente.</li>
+                                <li>Geradores de imagem costumam criar "familias felizes" sempre com pessoas brancas.</li>
+                            </ul>
+                            <p><strong class="text-slate-900">O que fazer:</strong> questione sempre o que a IA produz. Pergunte: quem esta sendo representado? Quem esta faltando? Essa representacao e justa?</p>
+                        </div>
+                    </div>
+
+                    <div class="guia-topico bg-white border border-yellow-200 rounded-2xl overflow-hidden shadow-sm">
+                        <button onclick="toggleTopico(this)" class="w-full text-left p-5 flex justify-between items-center font-bold text-slate-900 hover:bg-yellow-50 transition">
+                            <span>Risco 3 — A IA captura sua atencao</span>
+                            <span class="topico-seta text-slate-400 text-xs font-black">VER</span>
+                        </button>
+                        <div class="topico-conteudo hidden border-t border-yellow-100 p-5 space-y-3 text-sm text-slate-600 leading-relaxed">
+                            <p>As redes sociais usam IA para fazer voce ficar o maximo de tempo possivel na plataforma. Quanto mais tempo voce fica, mais anuncios voce ve e mais dinheiro a empresa ganha.</p>
+                            <p>A IA analisa quais videos voce assiste ate o final, quais pula, quais curte — e monta um perfil seus interesses para oferecer mais do mesmo. Isso cria a "toca do coelho": voce comeca vendo um video e acaba horas depois sem perceber.</p>
+                            <p><strong class="text-slate-900">O que fazer:</strong> perceba quando esta rolando sem pensar. Configure limite de tempo nos apps. Faca pausas durante refeicoes e antes de dormir.</p>
+                        </div>
+                    </div>
+
+                    <div class="guia-topico bg-white border border-purple-200 rounded-2xl overflow-hidden shadow-sm">
+                        <button onclick="toggleTopico(this)" class="w-full text-left p-5 flex justify-between items-center font-bold text-slate-900 hover:bg-purple-50 transition">
+                            <span>Risco 4 — Privacidade em risco</span>
+                            <span class="topico-seta text-slate-400 text-xs font-black">VER</span>
+                        </button>
+                        <div class="topico-conteudo hidden border-t border-purple-100 p-5 space-y-3 text-sm text-slate-600 leading-relaxed">
+                            <p>Toda vez que voce usa a internet, deixa rastros. Na internet, essas pegadas nao desaparecem — elas ficam para sempre.</p>
+                            <p>Empresas provavelmente sabem onde voce mora, que lugares frequenta, quem sao seus amigos, do que gosta, seus medos e insegurancas — tudo com base em cliques, buscas e tempo gasto em cada conteudo.</p>
+                            <div class="bg-purple-50 border border-purple-200 rounded-xl p-3 text-xs">
+                                <strong>Lembre:</strong> quando um app e "gratis", voce nao e o cliente — voce e o produto. Suas informacoes sao vendidas para anunciantes.
+                            </div>
+                            <p><strong class="text-slate-900">O que fazer:</strong> deixe o perfil privado, nao compartilhe endereco ou escola, configure permissoes do celular e use autenticacao em duas etapas.</p>
+                        </div>
+                    </div>
+
+                    <div class="guia-topico bg-white border border-red-200 rounded-2xl overflow-hidden shadow-sm">
+                        <button onclick="toggleTopico(this)" class="w-full text-left p-5 flex justify-between items-center font-bold text-slate-900 hover:bg-red-50 transition">
+                            <span>Risco 5 — Noticias falsas e conteudo fake</span>
+                            <span class="topico-seta text-slate-400 text-xs font-black">VER</span>
+                        </button>
+                        <div class="topico-conteudo hidden border-t border-red-100 p-5 space-y-3 text-sm text-slate-600 leading-relaxed">
+                            <p>A IA ficou tao boa em criar conteudo que esta cada vez mais dificil distinguir o real do falso.</p>
+                            <ul class="space-y-1">
+                                <li><strong class="text-slate-900">Textos falsos:</strong> ChatGPT pode escrever noticias falsas que parecem reais ou fingir ser outra pessoa.</li>
+                                <li><strong class="text-slate-900">Imagens falsas:</strong> fotos de pessoas que nao existem, lugares que nunca existiram.</li>
+                                <li><strong class="text-slate-900">Audios e videos falsos:</strong> a IA pode clonar uma voz com poucos minutos de gravacao. Golpistas ja usaram isso para fingir ser um familiar pedindo dinheiro.</li>
+                            </ul>
+                            <p><strong class="text-slate-900">Regra de ouro:</strong> se algo parece chocante demais para ser verdade, provavelmente nao e. Verifique em Agencia Lupa, Aos Fatos ou Projeto Comprova antes de compartilhar.</p>
+                        </div>
+                    </div>
+
+                    <div class="guia-topico bg-white border border-green-200 rounded-2xl overflow-hidden shadow-sm">
+                        <button onclick="toggleTopico(this)" class="w-full text-left p-5 flex justify-between items-center font-bold text-slate-900 hover:bg-green-50 transition">
+                            <span>Como usar a IA de forma responsavel</span>
+                            <span class="topico-seta text-slate-400 text-xs font-black">VER</span>
+                        </button>
+                        <div class="topico-conteudo hidden border-t border-green-100 p-5 space-y-3 text-sm text-slate-600 leading-relaxed">
+                            <ul class="space-y-3">
+                                <li><strong class="text-slate-900">1. Use como ferramenta, nao atalho:</strong> se a IA faz seu trabalho, quem esta aprendendo? Peca ideias, explicacoes e revisoes — nao o trabalho pronto.</li>
+                                <li><strong class="text-slate-900">2. Seja honesto:</strong> se usou IA para algo, diga. Entregar trabalho feito por IA como seu e trapaca.</li>
+                                <li><strong class="text-slate-900">3. Questione sempre:</strong> a IA pode estar errada, inventar informacoes ou ter dados desatualizados. Sempre verifique em fontes confiaveis.</li>
+                                <li><strong class="text-slate-900">4. Use para criar, nao copiar:</strong> use IA para potencializar sua criatividade, nao para substitui-la.</li>
+                                <li><strong class="text-slate-900">5. Pense no impacto:</strong> antes de usar IA para criar algo, pergunte: isso pode ferir alguem? Estou sendo etico?</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="guia-topico bg-white border border-rose-200 rounded-2xl overflow-hidden shadow-sm">
+                        <button onclick="toggleTopico(this)" class="w-full text-left p-5 flex justify-between items-center font-bold text-slate-900 hover:bg-rose-50 transition">
+                            <span>Quando pedir ajuda</span>
+                            <span class="topico-seta text-slate-400 text-xs font-black">VER</span>
+                        </button>
+                        <div class="topico-conteudo hidden border-t border-rose-100 p-5 space-y-3 text-sm text-slate-600 leading-relaxed">
+                            <p>Procure um adulto de confianca se:</p>
+                            <ul class="space-y-1">
+                                <li>Voce ou alguem esta sendo vitima de cyberbullying ou deepfakes.</li>
+                                <li>Voce esta se sentindo mal por causa do que ve nas redes sociais.</li>
+                                <li>Voce nao consegue ficar longe do celular, mesmo querendo.</li>
+                                <li>Alguem online esta pedindo coisas estranhas ou te fazendo sentir desconfortavel.</li>
+                                <li>Voce recebeu ameacas ou chantagem.</li>
+                                <li>Voce sente que a IA e seu unico amigo ou a unica que te entende.</li>
+                            </ul>
+                            <div class="bg-slate-900 text-white rounded-xl p-4 space-y-1 text-xs">
+                                <p class="font-bold text-sm">Canais de ajuda:</p>
+                                <p>Denuncia: safernet.org.br/denuncie</p>
+                                <p>Ajuda online: ajuda.org.br</p>
+                                <p>Disque 100 (gratuito, de qualquer telefone)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-1">
+                    <p class="text-xs font-extrabold uppercase tracking-widest text-slate-400 mb-2">Referencia</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        SAFERNET BRASIL. <strong>Guia de letramento em Inteligencia Artificial.</strong> Sao Paulo: SaferNet, 2024. Disponivel em: https://arquivos.safernet.org.br/pdfs/guialetramentoia.pdf
+                    </p>
+                </div>
             </div>
         </div>
 
@@ -654,7 +861,10 @@
                             <p class="text-xs text-slate-500 mt-0.5" id="senha-status-txt">Carregando...</p>
                         </div>
                         <button onclick="abrirGerenciarSenha()" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition" id="btn-gerenciar-senha">
-                            Gerenciar
+                            Alterar senha
+                        </button>
+                        <button onclick="redefinirSenhaPais()" class="bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold px-4 py-2 rounded-xl border border-rose-200 transition" id="btn-redefinir-senha">
+                            Esqueci a senha
                         </button>
                     </div>
 
@@ -807,9 +1017,6 @@
                 <button onclick="verificarSenhaPais()" class="w-full bg-seguro-600 hover:bg-seguro-700 text-white font-extrabold py-3 rounded-xl text-sm transition shadow">
                     Confirmar e Liberar 
                 </button>
-                <button onclick="redefinirSenhaPais()" class="w-full text-xs text-slate-400 hover:text-rose-500 transition font-semibold">
-                    Responsável esqueceu a senha? Clique para redefinir
-                </button>
             </div>
 
             <button onclick="fecharSenhaPaisModal()" class="w-full text-xs text-slate-400 hover:text-slate-600 transition font-semibold pt-1">
@@ -900,6 +1107,24 @@
             }, 3500);
         }
 
+        // ===== GUIA DE IA =====
+
+        function toggleTopico(btn) {
+            const conteudo = btn.nextElementSibling;
+            const seta = btn.querySelector('.topico-seta');
+            const aberto = !conteudo.classList.contains('hidden');
+            conteudo.classList.toggle('hidden', aberto);
+            seta.textContent = aberto ? 'VER' : 'FECHAR';
+        }
+
+        let todosAbertos = false;
+        function toggleTodosTopicos() {
+            todosAbertos = !todosAbertos;
+            document.querySelectorAll('.topico-conteudo').forEach(c => c.classList.toggle('hidden', !todosAbertos));
+            document.querySelectorAll('.topico-seta').forEach(s => s.textContent = todosAbertos ? 'FECHAR' : 'VER');
+            document.getElementById('btn-ler-tudo').textContent = todosAbertos ? 'Recolher tudo' : 'Ler tudo de uma vez';
+        }
+
         // ===== SENHA DOS PAIS =====
 
         let perfilPendente = null;
@@ -952,11 +1177,14 @@
             const salva = localStorage.getItem('senha_pais');
             const erroEl = document.getElementById('senha-pais-erro');
             if (btoa(digitada) === salva) {
-                // Marca sessão como autorizada
                 sessionStorage.setItem('pais_autorizado', '1');
                 const perfil = perfilPendente;
                 fecharSenhaPaisModal();
-                if (perfil) finalizarDefinirPerfil(perfil);
+                if (perfil === '__gerenciar__') {
+                    _mostrarFormGerenciar();
+                } else if (perfil) {
+                    finalizarDefinirPerfil(perfil);
+                }
             } else {
                 erroEl.innerText = 'Senha incorreta. Tente novamente.';
                 erroEl.classList.remove('hidden');
@@ -1324,9 +1552,9 @@
         // ===== NAVEGAÇÃO =====
 
         function switchTab(tabName) {
-            // Se o perfil ainda não foi configurado, proíbe navegação para abas principais, forçando o onboarding
-            if (!userCategory && tabName !== 'onboarding') {
-                mostrarNotificacao('Por favor, informe sua idade ou selecione seu perfil primeiro!', 'info');
+            // O guia é livre — qualquer pessoa pode acessar sem perfil
+            if (!userCategory && tabName !== 'onboarding' && tabName !== 'guia') {
+                mostrarNotificacao('Por favor, selecione seu perfil primeiro!', 'info');
                 tabName = 'onboarding';
             }
 
@@ -1793,15 +2021,29 @@
         }
 
         function abrirGerenciarSenha() {
-            const temSenha = localStorage.getItem('senha_pais');
-            // Se não tem senha ainda, esconde o campo "senha atual"
-            document.getElementById('gerenciar-senha-atual-wrap').classList.toggle('hidden', !temSenha);
-            document.getElementById('gerenciar-senha-atual').value = '';
+            // Se não autenticou nesta sessão, pede a senha antes de abrir
+            if (localStorage.getItem('senha_pais') && sessionStorage.getItem('pais_autorizado') !== '1') {
+                perfilPendente = '__gerenciar__';
+                abrirSenhaPaisModal();
+                return;
+            }
+            _mostrarFormGerenciar();
+        }
+
+        function _mostrarFormGerenciar() {
+            document.getElementById('gerenciar-senha-atual-wrap').classList.add('hidden');
             document.getElementById('gerenciar-senha-nova').value = '';
             document.getElementById('gerenciar-senha-confirma').value = '';
             document.getElementById('gerenciar-senha-erro').classList.add('hidden');
             document.getElementById('gerenciar-senha-form').classList.remove('hidden');
             document.getElementById('btn-gerenciar-senha').classList.add('hidden');
+            document.getElementById('btn-redefinir-senha').classList.add('hidden');
+        }
+
+        function fecharGerenciarSenha() {
+            document.getElementById('gerenciar-senha-form').classList.add('hidden');
+            document.getElementById('btn-gerenciar-senha').classList.remove('hidden');
+            document.getElementById('btn-redefinir-senha').classList.remove('hidden');
         }
 
         function fecharGerenciarSenha() {
@@ -1810,20 +2052,12 @@
         }
 
         function salvarNovaSenha() {
-            const temSenha = localStorage.getItem('senha_pais');
-            const atual = document.getElementById('gerenciar-senha-atual').value.trim();
             const nova = document.getElementById('gerenciar-senha-nova').value.trim();
             const confirma = document.getElementById('gerenciar-senha-confirma').value.trim();
             const erroEl = document.getElementById('gerenciar-senha-erro');
 
             erroEl.classList.add('hidden');
 
-            // Se já tinha senha, valida a atual
-            if (temSenha && btoa(atual) !== temSenha) {
-                erroEl.innerText = 'Senha atual incorreta.';
-                erroEl.classList.remove('hidden');
-                return;
-            }
             if (nova.length < 4) {
                 erroEl.innerText = 'A nova senha precisa ter pelo menos 4 caracteres.';
                 erroEl.classList.remove('hidden');
@@ -1844,11 +2078,19 @@
 
         function atualizarStatusSenha() {
             const el = document.getElementById('senha-status-txt');
+            const btnRedefinir = document.getElementById('btn-redefinir-senha');
+            const btnAlterar = document.getElementById('btn-gerenciar-senha');
             if (!el) return;
             const temSenha = localStorage.getItem('senha_pais');
-            el.textContent = temSenha
-                ? 'Senha configurada. Os modulos Kids e Teens estao protegidos.'
-                : 'Nenhuma senha criada ainda. Clique em Gerenciar para criar.';
+            if (temSenha) {
+                el.textContent = 'Senha configurada. Os modulos Kids e Teens estao protegidos.';
+                btnRedefinir?.classList.remove('hidden');
+                btnAlterar.innerText = 'Alterar senha';
+            } else {
+                el.textContent = 'Nenhuma senha criada ainda. Clique para criar.';
+                btnRedefinir?.classList.add('hidden');
+                btnAlterar.innerText = 'Criar senha';
+            }
         }
 
         // ===== MOTOR DE RESPOSTAS DO ASSISTENTE =====
