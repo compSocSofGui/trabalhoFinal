@@ -316,9 +316,9 @@
 
         <div class="flex items-center gap-1.5 mt-2 sm:mt-0">
             <span class="a11y-label">Tamanho do texto:</span>
-            <button onclick="alterarFonte(1)" title="Aumentar texto"></button>
-            <button onclick="alterarFonte(-1)" title="Diminuir texto"></button>
-            <button onclick="resetarFonte()" title="Restaurar tamanho de texto padrão">A</button>
+            <button onclick="alterarFonte(1)" title="Aumentar texto" aria-label="Aumentar fonte">A+</button>
+            <button onclick="alterarFonte(-1)" title="Diminuir texto" aria-label="Diminuir fonte">A−</button>
+            <button onclick="resetarFonte()" title="Restaurar tamanho de texto padrão" aria-label="Restaurar fonte padrão">A</button>
         </div>
     </div>
 
@@ -1292,6 +1292,13 @@
                 tabName = 'onboarding';
             }
 
+            // Registra no histórico do navegador para a seta de voltar funcionar
+            history.pushState({ tab: tabName }, '', '#' + tabName);
+
+            _ativarTab(tabName);
+        }
+
+        function _ativarTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(el => {
                 el.classList.remove('show');
                 setTimeout(() => el.classList.remove('active'), 150);
@@ -1301,7 +1308,6 @@
                 if (target) {
                     target.classList.add('active');
                     setTimeout(() => target.classList.add('show'), 50);
-                    target.focus && target.setAttribute('tabindex', '-1');
                 }
             }, 200);
 
@@ -1309,6 +1315,12 @@
             if (tabName === 'teens' && currentTeenIndex === 0) loadTeenCase();
             if (tabName === 'seniors' && currentSeniorsIndex === 0) loadSeniorsQuestion();
         }
+
+        // Intercepta o botão de voltar/avançar do Safari/navegador
+        window.addEventListener('popstate', function(e) {
+            const tab = e.state?.tab || 'onboarding';
+            _ativarTab(tab);
+        });
 
         // ===== LÓGICA KIDS =====
 
