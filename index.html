@@ -340,8 +340,8 @@
                     <button onclick="openParentReport()" class="bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold uppercase tracking-wider py-2 px-3 rounded-lg flex items-center gap-1.5 shadow transition" aria-label="Ver resumo de desempenho para os pais">
                          Resumo para os Pais
                     </button>
-                    <button onclick="history.back()" class="text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-seguro-600 transition flex items-center gap-1.5 py-2 px-3 rounded-lg" aria-label="Voltar para página anterior">
-                         Voltar
+                    <button onclick="switchTab('onboarding')" class="text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-seguro-600 transition flex items-center gap-1.5 py-2 px-3 rounded-lg" aria-label="Ir para escolha de perfil">
+                         Início
                     </button>
                 </div>
             </div>
@@ -530,12 +530,9 @@
         <!-- GUIA DE IA -->
         <div id="tab-guia" class="tab-content space-y-6" role="region" aria-label="Guia de Inteligencia Artificial">
             <div class="max-w-3xl mx-auto space-y-5">
-                <div class="flex items-center gap-2 mb-4">
-                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior">
-                        Voltar
-                    </button>
-                </div>
-
+                <button onclick="switchTab('landing')" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-800 transition mb-4" aria-label="Voltar para o menu de módulos">
+                    Voltar
+                </button>
                 <div class="bg-slate-900 rounded-3xl p-7 text-white space-y-2">
                     <span class="text-xs font-extrabold uppercase tracking-widest text-slate-400">Material Educativo</span>
                     <h2 class="text-2xl font-extrabold">Guia de Inteligencia Artificial</h2>
@@ -721,18 +718,13 @@
         <!-- KIDS -->
         <div id="tab-kids" class="tab-content space-y-6" role="region" aria-label="Módulo Kids">
             <div class="max-w-4xl mx-auto">
-                <div class="flex items-center gap-2 mb-4">
-                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
-                        Voltar
-                    </button>
-                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
-                        Voltar
-                    </button>
-                </div>
-                
+                <button onclick="switchTab('landing')" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-800 transition mb-4" aria-label="Voltar para o menu de módulos">
+                    Voltar
+                </button>
+
                 <div class="bg-amber-100 border border-amber-200 rounded-2xl p-4 flex justify-between items-center shadow-sm" role="status" aria-live="polite">
                     <div class="flex items-center gap-2"><span id="kids-mission-title" class="text-sm font-bold text-slate-800">Carregando historinha...</span></div>
-                    <div class="bg-white px-3 py-1 rounded-xl shadow-sm border border-amber-200 text-sm font-extrabold text-slate-800" aria-label="Sua pontuação"> Pontos: <span id="kids-score" aria-live="polite">0</span></div>
+                    <div class="bg-white px-3 py-1 rounded-xl shadow-sm border border-amber-200 text-sm font-extrabold text-slate-800" aria-label="Sua pontuação">Pontos: <span id="kids-score" aria-live="polite">0</span></div>
                 </div>
 
                 <div class="relative flex flex-col md:flex-row items-stretch gap-4 mt-6">
@@ -774,15 +766,9 @@
         <!-- TEENS -->
         <div id="tab-teens" class="tab-content space-y-6" role="region" aria-label="Módulo Teens">
             <div class="max-w-4xl mx-auto">
-                <div class="flex items-center gap-2 mb-4">
-                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
-                        Voltar
-                    </button>
-                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
-                        Voltar
-                    </button>
-                </div>
-
+                <button onclick="switchTab('landing')" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-800 transition mb-4" aria-label="Voltar para o menu de módulos">
+                    Voltar
+                </button>
                 <div class="bg-slate-900 text-white rounded-3xl p-6 shadow-xl border border-slate-800 space-y-4">
                     <div id="teen-panel-header" class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-800 pb-4 gap-2">
                         <div>
@@ -843,15 +829,9 @@
         <!-- ADULTOS -->
         <div id="tab-adults" class="tab-content space-y-6" role="region" aria-label="Módulo Adulto">
             <div class="max-w-4xl mx-auto">
-                <div class="flex items-center gap-2 mb-4">
-                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
-                        Voltar
-                    </button>
-                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-xl transition shadow-sm" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
-                        Voltar
-                    </button>
-                </div>
-
+                <button onclick="switchTab('landing')" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-800 transition mb-4" aria-label="Voltar para o menu de módulos">
+                    Voltar
+                </button>
                 <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden flex flex-col h-[560px]">
                     <div class="bg-gradient-to-r from-seguro-700 to-seguro-600 p-4 flex items-center justify-between text-white shrink-0">
                         <div class="flex items-center space-x-3">
@@ -895,15 +875,9 @@
         <!-- IDOSOS -->
         <div id="tab-seniors" class="tab-content space-y-6" role="region" aria-label="Módulo Idosos">
             <div class="max-w-3xl mx-auto">
-                <div class="flex items-center gap-2 mb-4">
-                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 font-bold px-4 py-2.5 rounded-xl transition shadow-sm" style="font-size:1rem" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
-                        Voltar
-                    </button>
-                    <button onclick="history.back()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-500 hover:text-slate-800 font-bold px-4 py-2.5 rounded-xl transition shadow-sm" style="font-size:1rem" title="Voltar para a pagina anterior" aria-label="Voltar para pagina anterior">
-                        Voltar
-                    </button>
-                </div>
-
+                <button onclick="switchTab('landing')" class="inline-flex items-center gap-2 font-semibold text-slate-500 hover:text-slate-800 transition mb-4" style="font-size:1rem" aria-label="Voltar para o menu de módulos">
+                    Voltar
+                </button>
                 <!-- Cabeçalho grande e legível -->
                 <div class="bg-rose-600 rounded-3xl p-6 text-white shadow-xl">
                     <div class="flex items-center gap-4 mb-2">
@@ -1195,6 +1169,8 @@
                 fecharSenhaPaisModal();
                 if (perfil === '__gerenciar__') {
                     _mostrarFormGerenciar();
+                } else if (perfil === '__trocar__') {
+                    switchTab('onboarding');
                 } else if (perfil) {
                     finalizarDefinirPerfil(perfil);
                 }
@@ -1372,7 +1348,13 @@
         }
 
         function mostrarOnboardingParaTroca() {
-            switchTab('onboarding');
+            // Kids e Teens só podem trocar de perfil com senha dos pais
+            if (userCategory === 'kids' || userCategory === 'teens') {
+                perfilPendente = '__trocar__';
+                abrirSenhaPaisModal();
+            } else {
+                switchTab('onboarding');
+            }
         }
 
 
