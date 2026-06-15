@@ -619,11 +619,9 @@
                 <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden flex flex-col h-[560px]">
                     <div class="bg-gradient-to-r from-seguro-700 to-seguro-600 p-4 flex items-center justify-between text-white shrink-0">
                         <div class="flex items-center space-x-3">
-                            
                             <div>
                                 <h3 class="font-bold text-sm">Guia Digital de Proteção Familiar</h3>
                                 <p class="text-xs text-seguro-100 flex items-center gap-1">
-                                    
                                     Online para ajudar sua família
                                 </p>
                             </div>
@@ -632,7 +630,6 @@
 
                     <div id="chat-messages" class="flex-grow overflow-y-auto p-6 space-y-4 bg-slate-50" role="log" aria-live="polite" aria-label="Conversa com o assistente">
                         <div class="flex items-start gap-3">
-                            
                             <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-xs leading-relaxed max-w-[85%] text-slate-700 space-y-2">
                                 <p class="font-bold text-slate-900 text-sm">Olá, responsável!</p>
                                 <p>Estou aqui para traduzir a segurança da internet de um jeito simples. Você pode fazer perguntas sobre como proteger o celular do seu filho, regras para jogos (como Roblox), como colocar senhas seguras em casa ou colar o "Resumo dos Pais" gerado aqui no aplicativo para entender os resultados dos testes das crianças!</p>
@@ -646,6 +643,40 @@
                             <input type="text" id="chat-user-input" placeholder="Ex: Meu filho joga muito online, como protejo ele?" class="flex-grow bg-slate-50 border-2 border-slate-200 focus:border-seguro-500 focus:bg-white text-slate-800 rounded-2xl px-4 py-3 text-xs outline-none transition" required autocomplete="off">
                             <button type="submit" class="bg-seguro-600 hover:bg-seguro-700 text-white font-bold px-5 rounded-2xl transition flex items-center justify-center text-xs shadow" aria-label="Enviar pergunta">Enviar</button>
                         </form>
+                    </div>
+                </div>
+
+                <!-- Gerenciar senha dos filhos -->
+                <div class="mt-4 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="font-bold text-sm text-slate-900">Senha de acesso dos filhos</p>
+                            <p class="text-xs text-slate-500 mt-0.5" id="senha-status-txt">Carregando...</p>
+                        </div>
+                        <button onclick="abrirGerenciarSenha()" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition" id="btn-gerenciar-senha">
+                            Gerenciar
+                        </button>
+                    </div>
+
+                    <!-- Formulário inline de troca de senha (oculto por padrão) -->
+                    <div id="gerenciar-senha-form" class="hidden space-y-3 pt-3 border-t border-slate-100">
+                        <div id="gerenciar-senha-atual-wrap">
+                            <label class="text-xs font-bold text-slate-700 block mb-1">Senha atual</label>
+                            <input type="password" id="gerenciar-senha-atual" placeholder="Digite a senha atual..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 block mb-1">Nova senha</label>
+                            <input type="password" id="gerenciar-senha-nova" placeholder="Mínimo 4 caracteres..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 block mb-1">Confirmar nova senha</label>
+                            <input type="password" id="gerenciar-senha-confirma" placeholder="Repita a nova senha..." class="w-full border-2 border-slate-200 focus:border-seguro-500 rounded-xl px-4 py-2.5 text-xs outline-none transition">
+                        </div>
+                        <div id="gerenciar-senha-erro" class="hidden text-xs text-rose-600 font-semibold"></div>
+                        <div class="flex gap-2">
+                            <button onclick="salvarNovaSenha()" class="flex-grow bg-seguro-600 hover:bg-seguro-700 text-white font-bold py-2.5 rounded-xl text-xs transition">Salvar nova senha</button>
+                            <button onclick="fecharGerenciarSenha()" class="px-4 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition">Cancelar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1321,6 +1352,7 @@
             if (tabName === 'kids' && currentKidsIndex === 0) loadKidsQuestion();
             if (tabName === 'teens' && currentTeenIndex === 0) loadTeenCase();
             if (tabName === 'seniors' && currentSeniorsIndex === 0) loadSeniorsQuestion();
+            if (tabName === 'adults') atualizarStatusSenha();
         }
 
         // Intercepta o botão de voltar/avançar do Safari/navegador
@@ -1758,6 +1790,65 @@
             `;
             container.insertAdjacentHTML('beforeend', messageHtml);
             container.scrollTop = container.scrollHeight;
+        }
+
+        function abrirGerenciarSenha() {
+            const temSenha = localStorage.getItem('senha_pais');
+            // Se não tem senha ainda, esconde o campo "senha atual"
+            document.getElementById('gerenciar-senha-atual-wrap').classList.toggle('hidden', !temSenha);
+            document.getElementById('gerenciar-senha-atual').value = '';
+            document.getElementById('gerenciar-senha-nova').value = '';
+            document.getElementById('gerenciar-senha-confirma').value = '';
+            document.getElementById('gerenciar-senha-erro').classList.add('hidden');
+            document.getElementById('gerenciar-senha-form').classList.remove('hidden');
+            document.getElementById('btn-gerenciar-senha').classList.add('hidden');
+        }
+
+        function fecharGerenciarSenha() {
+            document.getElementById('gerenciar-senha-form').classList.add('hidden');
+            document.getElementById('btn-gerenciar-senha').classList.remove('hidden');
+        }
+
+        function salvarNovaSenha() {
+            const temSenha = localStorage.getItem('senha_pais');
+            const atual = document.getElementById('gerenciar-senha-atual').value.trim();
+            const nova = document.getElementById('gerenciar-senha-nova').value.trim();
+            const confirma = document.getElementById('gerenciar-senha-confirma').value.trim();
+            const erroEl = document.getElementById('gerenciar-senha-erro');
+
+            erroEl.classList.add('hidden');
+
+            // Se já tinha senha, valida a atual
+            if (temSenha && btoa(atual) !== temSenha) {
+                erroEl.innerText = 'Senha atual incorreta.';
+                erroEl.classList.remove('hidden');
+                return;
+            }
+            if (nova.length < 4) {
+                erroEl.innerText = 'A nova senha precisa ter pelo menos 4 caracteres.';
+                erroEl.classList.remove('hidden');
+                return;
+            }
+            if (nova !== confirma) {
+                erroEl.innerText = 'As senhas não coincidem.';
+                erroEl.classList.remove('hidden');
+                return;
+            }
+
+            localStorage.setItem('senha_pais', btoa(nova));
+            sessionStorage.setItem('pais_autorizado', '1');
+            fecharGerenciarSenha();
+            atualizarStatusSenha();
+            mostrarNotificacao('Senha atualizada com sucesso!', 'sucesso');
+        }
+
+        function atualizarStatusSenha() {
+            const el = document.getElementById('senha-status-txt');
+            if (!el) return;
+            const temSenha = localStorage.getItem('senha_pais');
+            el.textContent = temSenha
+                ? 'Senha configurada. Os modulos Kids e Teens estao protegidos.'
+                : 'Nenhuma senha criada ainda. Clique em Gerenciar para criar.';
         }
 
         // ===== MOTOR DE RESPOSTAS DO ASSISTENTE =====
