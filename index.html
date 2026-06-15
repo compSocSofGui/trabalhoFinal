@@ -283,40 +283,9 @@
     <!-- ===== BARRA DE ACESSIBILIDADE ===== -->
     <div id="acessibilidade-bar" role="toolbar" aria-label="Ferramentas de acessibilidade">
         <span class="a11y-label"><i class="fa-solid fa-universal-access"></i> Acessibilidade</span>
-        
-        <div class="a11y-divider" aria-hidden="true"></div>
-
-        <!-- Tamanho da fonte -->
-        <span class="a11y-label">Fonte</span>
-        <button onclick="alterarFonte(-1)" title="Diminuir fonte" aria-label="Diminuir tamanho da fonte">
-            <i class="fa-solid fa-minus"></i> A−
-        </button>
-        <button onclick="alterarFonte(1)" title="Aumentar fonte" aria-label="Aumentar tamanho da fonte">
-            <i class="fa-solid fa-plus"></i> A+
-        </button>
-        <button onclick="resetarFonte()" title="Restaurar fonte padrão" aria-label="Restaurar fonte padrão" style="font-size:10px;">
-            <i class="fa-solid fa-rotate-left"></i> Padrão
-        </button>
-
-        <div class="a11y-divider" aria-hidden="true"></div>
-
-        <!-- Alto Contraste -->
-        <button id="btn-contraste" onclick="toggleAltoContraste()" aria-pressed="false" title="Alternar alto contraste">
-            <i class="fa-solid fa-circle-half-stroke"></i> Contraste
-        </button>
-
-        <div class="a11y-divider" aria-hidden="true"></div>
-
         <!-- Voz (TTS) -->
         <button id="btn-voz" onclick="toggleVoz()" aria-pressed="false" title="Ativar leitura de tela" class="text-red-400">
             <i class="fa-solid fa-volume-xmark"></i> Voz
-        </button>
-
-        <div class="a11y-divider" aria-hidden="true"></div>
-
-        <!-- Sem animações -->
-        <button id="btn-animacoes" onclick="toggleAnimacoes()" aria-pressed="false" title="Reduzir animações">
-            <i class="fa-solid fa-wind"></i> Sem Animações
         </button>
     </div>
 
