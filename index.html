@@ -2112,13 +2112,92 @@
         // ===== MOTOR DE RESPOSTAS DO ASSISTENTE =====
 
         async function gerarRespostaLocal(query) {
-            // Simula tempo de resposta natural
             await new Promise(r => setTimeout(r, 800 + Math.random() * 600));
 
             const q = query.toLowerCase()
-                .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // remove acentos para comparação
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-            // Temas fora do escopo — recusa educada
+            // 1. DETECTA RELATÓRIO COLADO — tem prioridade máxima
+            const ehRelatorio = q.includes('relatorio guardiao') || 
+                (q.includes('modulo kids') && q.includes('modulo teens')) ||
+                (q.includes('acertou') && q.includes('errou')) ||
+                (q.includes('excelente') && q.includes('falhou')) ||
+                q.includes('guardiao digital:');
+
+            if (ehRelatorio || q.includes('resumo') || q.includes('relatorio') || q.includes('desempenho') || q.includes('resultado') || q.includes('melhorar') && (q.includes('kids') || q.includes('teens') || q.includes('modulo') || q.includes('acertou') || q.includes('errou'))) {
+
+                // Analisa o texto colado para extrair APENAS os temas com erro
+                const errosEncontrados = [];
+                const temasBusca = [
+                    { termo: 'cuidados com estranhos', nome: 'Cuidados com Estranhos' },
+                    { termo: 'cuidado com fotos', nome: 'Cuidado com Fotos' },
+                    { termo: 'cuidado com senhas', nome: 'Cuidado com Senhas' },
+                    { termo: 'coisas com medo', nome: 'Coisas com Medo' },
+                    { termo: 'jogos novos', nome: 'Jogos Novos' },
+                    { termo: 'perfis falsos', nome: 'Perfis Falsos' },
+                    { termo: 'chantagem com fotos', nome: 'Chantagem com Fotos' },
+                    { termo: 'links ladroes', nome: 'Links Ladrões de Senha' },
+                    { termo: 'golpes de dinheiro', nome: 'Golpes de Dinheiro Fácil' },
+                ];
+
+                // Percorre linha a linha: se a linha tem o tema E a próxima tem "errou" ou "falhou"
+                const linhas = query.split('\n');
+                linhas.forEach((linha, i) => {
+                    const l = linha.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    const proxima = (linhas[i+1] || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    const mesmaLinha = l.includes('errou') || l.includes('falhou');
+                    const proximaFalhou = proxima.includes('errou') || proxima.includes('falhou');
+                    if (mesmaLinha || proximaFalhou) {
+                        temasBusca.forEach(t => {
+                            if (l.includes(t.termo) && !errosEncontrados.includes(t.nome)) {
+                                errosEncontrados.push(t.nome);
+                            }
+                        });
+                    }
+                });
+
+                // Também detecta no texto corrido (sem quebras de linha)
+                temasBusca.forEach(t => {
+                    const idx = q.indexOf(t.termo);
+                    if (idx !== -1) {
+                        const trecho = q.substring(idx, idx + 80);
+                        if ((trecho.includes('errou') || trecho.includes('falhou')) && !errosEncontrados.includes(t.nome)) {
+                            errosEncontrados.push(t.nome);
+                        }
+                    }
+                });
+
+                // Usa os logs da sessão também
+                const errosKids = logsKids.filter(l => l.status !== 'Acertou');
+                const errosTeens = logsTeens.filter(l => l.status !== 'Excelente');
+                const todosErros = [...new Set([...errosEncontrados, ...errosKids.map(e => e.tema), ...errosTeens.map(e => e.tema)])];
+
+                if (todosErros.length === 0) {
+                    return 'Que resultado excelente! Seu filho acertou tudo. Para manter o aprendizado, reforce as regras de ouro periodicamente em conversas do dia a dia — especialmente sobre não dar dados para estranhos e nunca contar a senha para ninguém.';
+                }
+
+                const conselhos = {
+                    'Coisas com Medo':          'Para "Coisas com Medo": combine com seu filho que sempre que algo na internet assustar, ele pode te contar sem medo de punição. Essa segurança é mais eficaz do que qualquer regra.',
+                    'Golpes de Dinheiro Fácil': 'Para "Golpes de Dinheiro Fácil": explique que dinheiro fácil na internet não existe. Golpistas usam essa promessa para roubar documentos e dados bancários da família.',
+                    'Cuidado com Fotos':        'Para "Cuidado com Fotos": reforce que foto do rosto ou do corpo nunca se manda para desconhecidos, nem em troca de presentes ou moedas de jogo.',
+                    'Cuidado com Senhas':       'Para "Cuidado com Senhas": pratique em casa — crie uma senha juntos e combine que ela é segredo dos dois. Nem o melhor amigo pode saber.',
+                    'Cuidados com Estranhos':   'Para "Estranhos na Internet": simule situações com seu filho — "e se alguém pedisse seu nome no jogo?". Deixe claro que ele pode interromper a conversa e te chamar.',
+                    'Jogos Novos':              'Para "Jogos Novos": estabeleça uma regra simples — nenhum jogo novo sem você ver antes. Use o controle parental para bloquear instalações sem sua aprovação.',
+                    'Perfis Falsos na Internet':'Para "Perfis Falsos": mostre como identificar contas suspeitas — criadas há poucos dias, sem amigos em comum, pedidos estranhos. Pratique isso como um jogo de detetive.',
+                    'Chantagem com Fotos':      'Para "Chantagem": deixe claro que se alguém ameaçar seu filho online, ele deve te contar imediatamente sem medo de punição. Vocês vão resolver juntos.',
+                    'Links Ladrões de Senha':   'Para "Links Suspeitos": treine seu filho a nunca clicar em link recebido por mensagem sem te mostrar antes, mesmo que seja de um amigo.',
+                };
+
+                let resposta = `Analisei o relatório. Os pontos que precisam de atenção são: ${todosErros.join(', ')}.\n\n`;
+                todosErros.forEach(tema => {
+                    const conselho = conselhos[tema];
+                    if (conselho) resposta += conselho + '\n\n';
+                });
+                resposta += 'A dica mais importante: não transforme esses erros em punição. Use-os como ponto de partida para uma conversa natural. Crianças aprendem muito mais quando se sentem seguras para perguntar.';
+                return resposta;
+            }
+
+            // 2. FILTRO DE FORA DO ESCOPO
             const foraDoEscopo = [
                 'cobol', 'python', 'javascript', 'programacao', 'receita', 'culinaria', 'cozinha',
                 'politica', 'presidente', 'eleicao', 'futebol', 'esporte', 'filme', 'serie',
@@ -2164,28 +2243,6 @@
 
             if (q.includes('conversar') || q.includes('explicar') || q.includes('filho') || q.includes('crianca') || q.includes('como falar')) {
                 return 'A conversa mais importante é a primeira. Ao invés de listar proibições, pergunte ao seu filho o que ele faz na internet — isso abre diálogo sem gerar defesa. Estabeleça uma regra clara: "Se algo te deixar desconfortável online, pode me contar sem medo de perder o celular." Crianças escondem problemas quando temem punição. Ser um porto seguro é mais eficaz do que qualquer filtro tecnológico.';
-            }
-
-            if (q.includes('resumo') || q.includes('relatorio') || q.includes('desempenho') || q.includes('resultado')) {
-                const totalKids = logsKids.length;
-                const totalTeens = logsTeens.length;
-                if (totalKids === 0 && totalTeens === 0) {
-                    return 'Ainda não há atividades registradas nesta sessão. Peça para seus filhos jogarem os módulos Kids ou Teens e depois volte aqui para ver o desempenho deles e conversar sobre os pontos onde precisam de mais atenção.';
-                }
-                const acertosKids = logsKids.filter(l => l.status === 'Acertou').length;
-                const acertosTeens = logsTeens.filter(l => l.status === 'Excelente').length;
-                let resumo = 'Com base nas atividades desta sessão: ';
-                if (totalKids > 0) resumo += `no Modo Kids foram ${totalKids} perguntas respondidas, com ${acertosKids} acertos. `;
-                if (totalTeens > 0) resumo += `no Modo Teens foram ${totalTeens} casos analisados, com ${acertosTeens} decisões corretas. `;
-                const errosKids = logsKids.filter(l => l.status !== 'Acertou');
-                const errosTeens = logsTeens.filter(l => l.status !== 'Excelente');
-                const erros = [...errosKids, ...errosTeens];
-                if (erros.length > 0) {
-                    resumo += `Os temas que merecem mais conversa em casa são: ${erros.map(e => e.tema).join(', ')}.`;
-                } else {
-                    resumo += 'Parabéns, seu filho acertou tudo! Reforce as regras de ouro periodicamente para fixar o aprendizado.';
-                }
-                return resumo;
             }
 
             if (q.includes('link') || q.includes('phishing') || q.includes('site falso') || q.includes('virus') || q.includes('malware')) {
